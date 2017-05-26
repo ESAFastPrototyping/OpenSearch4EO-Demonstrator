@@ -87,9 +87,9 @@ body {
 .eoos-property.used {
 	background: #e0f1ff;
 }
-.eoos-property.used:hover {
-	background: #d7ecff;
-}
+/*.eoos-property.used:hover {*/
+	/*background: #d7ecff;*/
+/*}*/
 .eoos-property.used .eoos-property-indicator::after {
 	font-family: FontAwesome, sans-serif;
 	font-size: 2rem;
