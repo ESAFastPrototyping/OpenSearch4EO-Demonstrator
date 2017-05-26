@@ -24,7 +24,7 @@ body {
 }
 .eoos-provider:hover,
 .eoos-property:hover {
-	background: #e7f5ff;
+	background: #f0faff;
 }
 .eoos-provider > h2,
 .eoos-property  h2 {
@@ -37,7 +37,8 @@ body {
 .eoos-provider-custom-input {
 	width: calc(100% - 10rem);
 }
-.eoos-provider-custom-input input {
+.eoos-provider input,
+.eoos-property input {
 	display: block;
 	width: 100%;
 	margin-top: .5rem;
@@ -87,6 +88,9 @@ body {
 .eoos-property.used {
 	background: #e0f1ff;
 }
+.eoos-property.used:hover {
+	background: #d7ecff;
+}
 .eoos-property.used .eoos-property-indicator::after {
 	font-family: FontAwesome, sans-serif;
 	font-size: 2rem;
@@ -99,5 +103,14 @@ body {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%,-50%);
-	color: #00f;
+	color: #599aff;
+}
+
+
+.eoos-property-timerange {
+	display: flex;
+	justify-content: space-between;
+}
+.eoos-property-timerange > label {
+	width: 46%;
 }
