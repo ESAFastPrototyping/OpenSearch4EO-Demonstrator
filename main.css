@@ -14,16 +14,18 @@ body {
 	border-bottom: 1px solid #bbb;
 	margin: 0;
 
-	cursor: pointer;
+
 
 	position: relative;
+}
+.eoos-provider {
+	cursor: pointer;
 }
 .eoos-provider,
 .eoos-property-content {
 	padding: 1.6rem 1rem 2rem 1rem;
 }
-.eoos-provider:hover,
-.eoos-property:hover {
+.eoos-provider:hover {
 	background: #f0faff;
 }
 .eoos-provider > h2,
