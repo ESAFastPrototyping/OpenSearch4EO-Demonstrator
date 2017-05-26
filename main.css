@@ -16,6 +16,8 @@ body {
 	padding: 1.6rem 1rem 2rem 1rem;
 
 	cursor: pointer;
+
+	position: relative;
 }
 .eoos-provider:hover,
 .eoos-property:hover {
@@ -42,4 +44,28 @@ body {
 	padding: .05rem .5rem 0 .5rem;
 	/*background: transparent;*/
 	border: 1px solid #aaa;
+}
+
+.eoos-provider-go {
+	position: absolute;
+	top: 50%;
+	right: 2rem;
+	transform: translateY(-50%);
+	width: 3rem;
+	height: 3rem;
+}
+.eoos-provider-go::after {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 3rem;
+	height: 3rem;
+	line-height: 3rem;
+	font-family: FontAwesome;
+	content: "\f105";
+	text-align: center;
+	font-size: 2rem;
+}
+.eoos-provider-go.highlighted {
+	background: #9cf;
 }
