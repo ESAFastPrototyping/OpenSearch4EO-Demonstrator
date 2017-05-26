@@ -10,10 +10,20 @@ var handleProviderClick = function(e) {
 var handleUrlInputChange = function() {
 	$('.eoos-provider.custom').find('.eoos-provider-go').addClass('highlighted');
 };
+var handlePropertyUse = function(e) {
+	var target = $(e.currentTarget).closest('.eoos-property');
+	target.addClass('used');
+};
 
 $(function() {
 
 	$('#provider-list').on('click.eoos', '.eoos-provider, .eoos-provider-go', handleProviderClick);
 	$('#provider-connector-url').on('input.eoos', handleUrlInputChange);
+
+
+	$('#property-fulltext').on('input.eoos', handlePropertyUse);
+	$('#property-location-select-in-map').on('click.eoos', handlePropertyUse);
+	$('#property-timerange-start').on('change.eoos', handlePropertyUse);
+	$('#property-timerange-end').on('change.eoos', handlePropertyUse);
 
 });
