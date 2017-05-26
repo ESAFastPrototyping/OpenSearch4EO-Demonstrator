@@ -1,0 +1,41 @@
+body {
+	background-color: #fff;
+	color: #222;
+	font-family: Open Sans, Arial, sans-serif;
+}
+
+.eoos-content-column {
+	margin: 10rem auto 0 auto;
+	width: 50rem;
+}
+
+.eoos-provider {
+	border-bottom: 1px solid #bbb;
+	margin: 0;
+	padding: 1.6rem 1rem 2rem 1rem;
+
+	cursor: pointer;
+}
+.eoos-provider:hover {
+	background: #e7f5ff;
+}
+.eoos-provider > h2 {
+	margin: 0 0 1rem 0;
+}
+.eoos-provider.custom {
+	border-top: 1px solid #bbb;
+}
+.eoos-provider-custom-input {
+	width: calc(100% - 10rem);
+}
+.eoos-provider-custom-input input {
+	display: block;
+	width: 100%;
+	margin-top: .5rem;
+	height: 2rem;
+	line-height: 1.5rem;
+	font-size: 1rem;
+	padding: .05rem .5rem 0 .5rem;
+	/*background: transparent;*/
+	border: 1px solid #aaa;
+}
