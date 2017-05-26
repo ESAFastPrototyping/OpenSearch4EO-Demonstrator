@@ -7,8 +7,7 @@ var handleProviderClick = function(e) {
 		window.location.href = "2.html";
 	}
 };
-var handleUrlInputChange = function(e) {
-	console.log('changeee');
+var handleUrlInputChange = function() {
 	$('.eoos-provider.custom').find('.eoos-provider-go').addClass('highlighted');
 };
 
