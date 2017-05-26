@@ -14,7 +14,7 @@ var handleUrlInputChange = function(e) {
 
 $(function() {
 
-	$('#provider-list').on('click.eoos', '.eoos-provider', handleProviderClick);
+	$('#provider-list').on('click.eoos', '.eoos-provider, .eoos-provider-go', handleProviderClick);
 	$('#provider-connector-url').on('input.eoos', handleUrlInputChange);
 
 });
