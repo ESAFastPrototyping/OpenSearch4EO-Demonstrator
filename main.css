@@ -13,18 +13,21 @@ body {
 .eoos-property {
 	border-bottom: 1px solid #bbb;
 	margin: 0;
-	padding: 1.6rem 1rem 2rem 1rem;
 
 	cursor: pointer;
 
 	position: relative;
+}
+.eoos-provider,
+.eoos-property-content {
+	padding: 1.6rem 1rem 2rem 1rem;
 }
 .eoos-provider:hover,
 .eoos-property:hover {
 	background: #e7f5ff;
 }
 .eoos-provider > h2,
-.eoos-property > h2 {
+.eoos-property  h2 {
 	margin: 0 0 1rem 0;
 }
 .eoos-provider.custom,
@@ -68,4 +71,33 @@ body {
 }
 .eoos-provider-go.highlighted {
 	background: #9cf;
+}
+
+.eoos-property {
+	display: flex;
+}
+.eoos-property-content {
+	flex-grow: 1;
+}
+.eoos-property-indicator {
+	width: 7rem;
+	position: relative;
+}
+
+.eoos-property.used {
+	background: #e0f1ff;
+}
+.eoos-property.used .eoos-property-indicator::after {
+	font-family: FontAwesome, sans-serif;
+	font-size: 2rem;
+	content: "\f00c";
+	text-align: center;
+	width: 3rem;
+	height: 3rem;
+	line-height: 3rem;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	color: #00f;
 }
