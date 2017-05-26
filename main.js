@@ -10,6 +10,12 @@ var handleProviderClick = function(e) {
 var handleUrlInputChange = function() {
 	$('.eoos-provider.custom').find('.eoos-provider-go').addClass('highlighted');
 };
+var handleUrlInputKeyPress = function(e) {
+	if ( e.which == 13 ) {
+		e.preventDefault();
+		window.location.href = "2.html";
+	}
+};
 var handlePropertyUse = function(e) {
 	var target = $(e.currentTarget).closest('.eoos-property');
 	target.addClass('used');
@@ -19,6 +25,7 @@ $(function() {
 
 	$('#provider-list').on('click.eoos', '.eoos-provider, .eoos-provider-go', handleProviderClick);
 	$('#provider-connector-url').on('input.eoos', handleUrlInputChange);
+	$('#provider-connector-url').on('keypress.eoos', handleUrlInputKeyPress);
 
 
 	$('#property-fulltext').on('input.eoos', handlePropertyUse);
