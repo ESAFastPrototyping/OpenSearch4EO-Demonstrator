@@ -9,20 +9,24 @@ body {
 	width: 50rem;
 }
 
-.eoos-provider {
+.eoos-provider,
+.eoos-property {
 	border-bottom: 1px solid #bbb;
 	margin: 0;
 	padding: 1.6rem 1rem 2rem 1rem;
 
 	cursor: pointer;
 }
-.eoos-provider:hover {
+.eoos-provider:hover,
+.eoos-property:hover {
 	background: #e7f5ff;
 }
-.eoos-provider > h2 {
+.eoos-provider > h2,
+.eoos-property > h2 {
 	margin: 0 0 1rem 0;
 }
-.eoos-provider.custom {
+.eoos-provider.custom,
+.eoos-property:first-of-type {
 	border-top: 1px solid #bbb;
 }
 .eoos-provider-custom-input {
