@@ -113,3 +113,33 @@ body {
 .eoos-property-timerange > label {
 	width: 46%;
 }
+
+
+#provider-search-controls {
+	height: 0;
+	position: relative;
+}
+
+.eoos-search-btn {
+	width: 8rem;
+	height: 2.5rem;
+	border: 1px solid #ccc;
+	line-height: 2.5rem;
+	text-align: center;
+	cursor: pointer;
+}
+.eoos-search-btn.primary {
+	background: #cfc;
+}
+
+#search-back,
+#search-submit {
+	position: absolute;
+	top: 0;
+}
+#search-back {
+	left: -12rem;
+}
+#search-submit {
+	right: -12rem;
+}
