@@ -13,6 +13,7 @@ body {
 	background-color: #fff;
 	color: #222;
 	font-family: Open Sans, Arial, sans-serif;
+	overflow: hidden;
 }
 
 .eoos-content-column {
