@@ -155,20 +155,26 @@ body {
 }
 
 
-
-#results-container {
-	width: 100%;
-	height: 100%;
-	display: flex;
+#map-area {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 70%;
+	background: #000;
 }
 #results-area {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
 	width: 30%;
 	display: flex;
 	flex-direction: column;
+	background: #fff;
 }
-#map-area {
-	width: 70%;
-	background: #000;
+#results-area.expanded {
+	width: 100%;
 }
 
 #results-back {
