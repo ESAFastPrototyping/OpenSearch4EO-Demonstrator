@@ -194,6 +194,11 @@ body {
 	padding: 0 .5rem;
 	font-size: .85rem;
 }
+#results-back > a {
+	text-decoration: none;
+	color: #666;
+}
+
 #results-header {
 	padding: .5rem;
 
