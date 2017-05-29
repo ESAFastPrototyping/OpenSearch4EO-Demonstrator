@@ -19,6 +19,13 @@ var handleUrlInputKeyPress = function(e) {
 var handlePropertyUse = function(e) {
 	var target = $(e.currentTarget).closest('.eoos-property');
 	target.addClass('used');
+	$('#search-submit').text('Search');
+};
+var handleSearchClick = function() {
+	window.location.href = "3.html";
+};
+var handleSearchBackClick = function() {
+	window.location.href = "1.html";
 };
 
 $(function() {
@@ -32,5 +39,8 @@ $(function() {
 	$('#property-location-select-in-map').on('click.eoos', handlePropertyUse);
 	$('#property-timerange-start').on('change.eoos', handlePropertyUse);
 	$('#property-timerange-end').on('change.eoos', handlePropertyUse);
+
+	$('#search-submit').on('click.eoos', handleSearchClick);
+	$('#search-back').on('click.eoos', handleSearchBackClick);
 
 });
