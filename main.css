@@ -239,6 +239,10 @@ body {
 	overflow: hidden;
 	position: relative;
 	border-bottom: 1px solid #f2f2f2;
+	cursor: pointer;
+}
+.eoos-result:hover {
+	background: #f0f8ff;
 }
 .eoos-result-properties {
 	width: calc(100vw - 6rem);
@@ -262,7 +266,7 @@ body {
 }
 .eoos-result-property,
 .eoos-results-list-header {
-	flex-basis: 10vw;
+	flex-basis: 12vw;
 	border-left: 1px solid #f2f2f2;
 	font-size: .85rem;
 }
@@ -274,6 +278,9 @@ body {
 .eoos-result-property {
 	padding: .3rem .5rem;
 	line-height: 2.4rem;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }
 .eoos-result-property:last-child {
 	border-right: 1px solid #f2f2f2;
@@ -294,7 +301,7 @@ body {
 	right: 0;
 	width: 6rem;
 	height: 100%;
-	background: #fff;
+	/*background: #fff;*/
 }
 .eoos-result-controls > div {
 	display: inline-block;
@@ -302,7 +309,7 @@ body {
 	width: 2rem;
 	height: 2rem;
 	line-height: 2rem;
-	background: #f0f8ff;
+	/*background: #f0f8ff;*/
 	cursor: pointer;
 	position: relative;
 }
