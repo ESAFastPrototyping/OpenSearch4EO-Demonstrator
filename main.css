@@ -220,7 +220,7 @@ body {
 }
 #results-list-header {
 	overflow-x: hidden;
-	border-top: 1px solid #ddd;
+	/* border-top: 1px solid #ddd; */
 }
 #results-list {
 	flex-grow: 1;
@@ -247,6 +247,9 @@ body {
 #results-list-header {
 	width: 100vw;
 	display: flex;
+	height:  2rem;
+	line-height: 2rem;
+	color: #888;
 }
 .eoos-result-name {
 	display: block;
@@ -266,6 +269,7 @@ body {
 .eoos-results-list-header {
 	text-transform: uppercase;
 	padding: .2rem .5rem;
+	border-color: #fff;
 }
 .eoos-result-property {
 	padding: .3rem .5rem;
