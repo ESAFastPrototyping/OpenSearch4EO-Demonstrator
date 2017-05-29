@@ -1,6 +1,7 @@
 * {
 /* 	margin: 0; */
 /* padding: 0; */
+	box-sizing: border-box;
 }
 
 html, body {
@@ -189,13 +190,36 @@ body {
 }
 #results-header {
 	padding: .5rem;
+
+	position: relative;
+}
+#results-header > h1,
+#results-search {
 	width: 30vw;
+}
+#results-header > h1 {
+	font-size: 1.5rem;
+	margin: .5rem 0;
 }
 #results-search > span.eoos-results-property {
 	display: block;
 }
+#results-expand-button {
+	position: absolute;
+	top: 1rem;
+	right: .5rem;
+	width: 6rem;
+	height: 2rem;
+	line-height: 1.9rem;
+	border: 1px solid #e2e2e2;
+	text-align: center;
+	cursor: pointer;
+
+}
 #results-list {
 	flex-grow: 1;
+	overflow-x: hidden;
+	border-top: 1px solid #ddd;
 }
 #results-pagination {
 	padding: .5rem;

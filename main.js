@@ -28,6 +28,20 @@ var handleSearchBackClick = function() {
 	window.location.href = "1.html";
 };
 
+
+var handleResultsExpandClick = function() {
+	var resultsArea = $('#results-area');
+	var expandButton = $('#results-expand-button');
+	var expanded = resultsArea.hasClass('expanded');
+	if (expanded) {
+		resultsArea.removeClass('expanded');
+		expandButton.text('Expand »');
+	} else {
+		resultsArea.addClass('expanded');
+		expandButton.text('« Collapse');
+	}
+};
+
 $(function() {
 
 	$('#provider-list').on('click.eoos', '.eoos-provider, .eoos-provider-go', handleProviderClick);
@@ -42,5 +56,8 @@ $(function() {
 
 	$('#search-submit').on('click.eoos', handleSearchClick);
 	$('#search-back').on('click.eoos', handleSearchBackClick);
+
+
+	$('#results-expand-button').on('click.eoos', handleResultsExpandClick);
 
 });
