@@ -160,7 +160,7 @@ body {
 	top: 0;
 	right: 0;
 	bottom: 0;
-	width: 70%;
+	width: 70vw;
 	background: #000;
 }
 #results-area {
@@ -168,13 +168,16 @@ body {
 	top: 0;
 	bottom: 0;
 	left: 0;
-	width: 30%;
+	width: 30vw;
 	display: flex;
 	flex-direction: column;
 	background: #fff;
+
+	transition:
+		width .3s ease-in-out;
 }
 #results-area.expanded {
-	width: 100%;
+	width: 100vw;
 }
 
 #results-back {
@@ -186,6 +189,7 @@ body {
 }
 #results-header {
 	padding: .5rem;
+	width: 30vw;
 }
 #results-search > span.eoos-results-property {
 	display: block;
