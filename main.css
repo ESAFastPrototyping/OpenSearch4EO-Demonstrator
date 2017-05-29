@@ -172,7 +172,9 @@ body {
 	width: 30vw;
 	display: flex;
 	flex-direction: column;
+	overflow: hidden;
 	background: #fff;
+	font-size: .85rem;
 
 	transition:
 		width .3s ease-in-out;
@@ -229,4 +231,71 @@ body {
 	padding: .5rem;
 	text-align: center;
 	border-top: 1px solid #eee;
+}
+
+
+.eoos-result {
+	height: 3rem;
+	overflow: hidden;
+	position: relative;
+	border-bottom: 1px solid #f2f2f2;
+}
+.eoos-result-properties {
+	width: calc(100vw - 6rem);
+	display: flex;
+}
+#results-list-header {
+	width: 100vw;
+	display: flex;
+}
+.eoos-result-name {
+	display: block;
+	font-weight: 700;
+	font-size: .95rem;
+}
+.eoos-result-time {
+	display: block;
+	font-size: .75rem;
+}
+.eoos-result-property,
+.eoos-results-list-header {
+	flex-basis: 10vw;
+	border-left: 1px solid #f2f2f2;
+	font-size: .85rem;
+}
+.eoos-results-list-header {
+	text-transform: uppercase;
+	padding: .2rem .5rem;
+}
+.eoos-result-property {
+	padding: .3rem .5rem;
+	line-height: 2.4rem;
+}
+.eoos-result-property:last-child {
+	border-right: 1px solid #f2f2f2;
+}
+.eoos-result-name-time,
+#results-list-header-name-time {
+	width: 30vw;
+	flex-basis: 30vw;
+	padding: .2rem 6rem .2rem .5rem;
+}
+#results-list-header-name-time {
+	text-transform: uppercase;
+	font-size: .85rem;
+}
+.eoos-result-controls {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 6rem;
+	height: 100%;
+	background: #fff;
+}
+.eoos-result-controls > div {
+	display: inline-block;
+	margin: .5rem 0 .5rem .5rem;
+	width: 2rem;
+	height: 2rem;
+	background: #eee;
 }
