@@ -297,5 +297,29 @@ body {
 	margin: .5rem 0 .5rem .5rem;
 	width: 2rem;
 	height: 2rem;
-	background: #eee;
+	line-height: 2rem;
+	background: #f0f8ff;
+	cursor: pointer;
+	position: relative;
+}
+.eoos-result-controls > div:hover {
+	background: #d3ecfb;
+}
+.eoos-result-controls > div::after {
+	display: block;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	text-align: center;
+	line-height: inherit;
+	font-family: FontAwesome, sans-serif;
+	color:#69a5da;
+}
+.eoos-result-detail-button::after {
+	content: "\f129";
+}
+.eoos-result-search-button::after {
+	content: "\f002";
 }
