@@ -163,6 +163,8 @@ body {
 }
 #results-area {
 	width: 30%;
+	display: flex;
+	flex-direction: column;
 }
 #map-area {
 	width: 70%;
@@ -181,6 +183,9 @@ body {
 }
 #results-search > span.eoos-results-property {
 	display: block;
+}
+#results-list {
+	flex-grow: 1;
 }
 #results-pagination {
 	padding: .5rem;
