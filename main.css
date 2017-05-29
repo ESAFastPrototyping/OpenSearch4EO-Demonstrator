@@ -216,10 +216,14 @@ body {
 	cursor: pointer;
 
 }
+#results-list-header {
+	overflow-x: hidden;
+	border-top: 1px solid #ddd;
+}
 #results-list {
 	flex-grow: 1;
 	overflow-x: hidden;
-	border-top: 1px solid #ddd;
+	border-top: 1px solid #eee;
 }
 #results-pagination {
 	padding: .5rem;
