@@ -50,6 +50,15 @@ var handleTabClick = function(e) {
 	$('#sidebar-tabs').find('a').removeClass('active');
 	$('#' + tab).addClass('active');
 	target.addClass('active');
+
+	if (tab == "tab-results") {
+		$('#timeline').show();
+	} else {
+		$('#timeline').hide();
+		$('#sidebar').removeClass('expanded');
+		$('#results-expand-button').text('Expand »');
+	}
+
 };
 
 $(function() {
