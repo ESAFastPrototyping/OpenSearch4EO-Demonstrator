@@ -374,3 +374,98 @@ body {
 .eoos-result-search-button::after {
 	content: "\f002";
 }
+
+
+
+#timeline {
+	position: absolute;
+	bottom: 1vw;
+	right: 1vw;
+	width: 68vw;
+	height: 3rem;
+}
+#timeline-results {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 1.5rem;
+	overflow: hidden;
+	background: rgba(255,255,255,.3);
+}
+#timeline-timeline {
+	position: absolute;
+	top: 1.5rem;
+	left: 0;
+	right: 0;
+	height: 1.5rem;
+	overflow: hidden;
+}
+.eoos-timeline-month {
+	position: absolute;
+	top: 0;
+	text-align: center;
+	font-size: .75rem;
+	line-height: 1.5rem;
+	/*background: rgba(238,238,238,.7);*/
+	background: #fff;
+}
+.eoos-timeline-month:not(:last-child) {
+	/*border-right: 1px solid #999999;*/
+	border-right: 1px solid #ccc;
+}
+.eoos-timeline-month:nth-child(even) {
+	/*background: rgba(193,193,193,.7);*/
+	background: rgba(238,238,238,1);
+}
+
+#timeline-interval {
+	position: absolute;
+	top: 1.3rem;
+	height: 1.9rem;
+	background: rgba(160,190,255,.6);
+	/*border-width: 0 1px;*/
+	/*border-style: solid;*/
+	/*border-color: #69a5da;*/
+}
+.eoos-timeline-handle {
+	display: block;
+	position: absolute;
+	top: 0;
+	width: 10px;
+	height: 100%;
+	cursor: ew-resize;
+}
+.eoos-timeline-handle::after {
+	content: ' ';
+	position: absolute;
+	top: 0;
+	left: 4px;
+	width: 2px;
+	height: 100%;
+	background: #a6d2ff;
+	/*background: #ff0;*/
+}
+.eoos-timeline-handle:hover::after {
+	left: 3px;
+	width: 4px;
+	/*background: #fff;*/
+	background: #2e74ff;
+}
+.eoos-timeline-handle:first-child {
+	left: -4px;
+}
+.eoos-timeline-handle:last-child {
+	right: -4px;
+}
+
+
+.eoos-timeline-result {
+	position: absolute;
+	top: 0;
+	width: 1px;
+	height: 100%;
+	background: #c0dbff;
+	/*background: #273c4e;*/
+	/*background: #fff;*/
+}
