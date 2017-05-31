@@ -17,127 +17,137 @@
 	</div>
 
 	<div id="sidebar">
-		<div id="results-back">
-			<a href="2.html">&lt; back to search</a>
+		<div id="breadcrumbs">
+			<a href="2.html">EO OpenSearch</a>
+			<span> &gt; </span>
+			<b>FEDEO</b>
 		</div>
-		<div id="results-header">
-			<h1>Results</h1>
-			<div id="results-search">
-				<span class="eoos-results-property"><b>Location:</b> polygon</span>
-				<span class="eoos-results-property"><b>Time range:</b> 2017-05-18 - 2017-05-26</span>
-			</div>
-			<div id="results-expand-button">Expand &raquo;</div>
+		<div id="sidebar-tabs">
+			<a data-for="tab-search">Search</a>
+			<a data-for="tab-results" class="current">Results</a>
+			<a data-for="tab-history">History</a>
+			<!--<a data-for="tab-layers">Map</a>-->
 		</div>
-		<div id="results-list-header">
-			<div id="results-list-header-name-time">Name / time</div>
-			<div class="eoos-results-list-header">Platform</div>
-			<div class="eoos-results-list-header">Instrument</div>
-		</div>
-		<div id="results-list">
-
-			<div class="eoos-result">
-				<div class="eoos-result-properties">
-					<div class="eoos-result-name-time">
-						<span class="eoos-result-name">Product 1</span>
-						<span class="eoos-result-time">2017-05-19 18:25:04</span>
-					</div>
-					<div class="eoos-result-property">
-						TERRA
-					</div>
-					<div class="eoos-result-property">
-						MODIS
-					</div>
+		<div id="tab-results" class="sidebar-tab">
+			<div id="results-header">
+				<h1>Results</h1>
+				<div id="results-search">
+					<span class="eoos-results-property"><b>Location:</b> polygon</span>
+					<span class="eoos-results-property"><b>Time range:</b> 2017-05-18 - 2017-05-26</span>
 				</div>
-				<div class="eoos-result-controls">
-					<div class="eoos-result-detail-button" title="Show details…"></div>
-					<div class="eoos-result-search-button" title="Find similar…"></div>
-				</div>
+				<div id="results-expand-button">Expand &raquo;</div>
 			</div>
-
-			<div class="eoos-result">
-				<div class="eoos-result-properties">
-					<div class="eoos-result-name-time">
-						<span class="eoos-result-name">Product 2</span>
-						<span class="eoos-result-time">2017-05-20 13:00:00</span>
-					</div>
-					<div class="eoos-result-property">
-						AERIAL PHOTOGRAPHS
-					</div>
-					<div class="eoos-result-property">
-						CAMERA
-					</div>
-				</div>
-				<div class="eoos-result-controls">
-					<div class="eoos-result-detail-button" title="Show details…"></div>
-					<div class="eoos-result-search-button" title="Find similar…"></div>
-				</div>
+			<div id="results-list-header">
+				<div id="results-list-header-name-time">Name / time</div>
+				<div class="eoos-results-list-header">Platform</div>
+				<div class="eoos-results-list-header">Instrument</div>
 			</div>
+			<div id="results-list">
 
-			<div class="eoos-result">
-				<div class="eoos-result-properties">
-					<div class="eoos-result-name-time">
-						<span class="eoos-result-name">Product 3</span>
-						<span class="eoos-result-time">2017-05-21 8:13:45</span>
+				<div class="eoos-result">
+					<div class="eoos-result-properties">
+						<div class="eoos-result-name-time">
+							<span class="eoos-result-name">Product 1</span>
+							<span class="eoos-result-time">2017-05-19 18:25:04</span>
+						</div>
+						<div class="eoos-result-property">
+							TERRA
+						</div>
+						<div class="eoos-result-property">
+							MODIS
+						</div>
 					</div>
-					<div class="eoos-result-property">
-						LANDSAT-7
-					</div>
-					<div class="eoos-result-property">
-						MODIS
+					<div class="eoos-result-controls">
+						<div class="eoos-result-detail-button" title="Show details…"></div>
+						<div class="eoos-result-search-button" title="Find similar…"></div>
 					</div>
 				</div>
-				<div class="eoos-result-controls">
-					<div class="eoos-result-detail-button" title="Show details…"></div>
-					<div class="eoos-result-search-button" title="Find similar…"></div>
+
+				<div class="eoos-result">
+					<div class="eoos-result-properties">
+						<div class="eoos-result-name-time">
+							<span class="eoos-result-name">Product 2</span>
+							<span class="eoos-result-time">2017-05-20 13:00:00</span>
+						</div>
+						<div class="eoos-result-property">
+							AERIAL PHOTOGRAPHS
+						</div>
+						<div class="eoos-result-property">
+							CAMERA
+						</div>
+					</div>
+					<div class="eoos-result-controls">
+						<div class="eoos-result-detail-button" title="Show details…"></div>
+						<div class="eoos-result-search-button" title="Find similar…"></div>
+					</div>
 				</div>
+
+				<div class="eoos-result">
+					<div class="eoos-result-properties">
+						<div class="eoos-result-name-time">
+							<span class="eoos-result-name">Product 3</span>
+							<span class="eoos-result-time">2017-05-21 8:13:45</span>
+						</div>
+						<div class="eoos-result-property">
+							LANDSAT-7
+						</div>
+						<div class="eoos-result-property">
+							MODIS
+						</div>
+					</div>
+					<div class="eoos-result-controls">
+						<div class="eoos-result-detail-button" title="Show details…"></div>
+						<div class="eoos-result-search-button" title="Find similar…"></div>
+					</div>
+				</div>
+
+				<div class="eoos-result">
+					<div class="eoos-result-properties">
+						<div class="eoos-result-name-time">
+							<span class="eoos-result-name">Scene 2017-05-22-17:35:12</span>
+							<span class="eoos-result-time">2017-05-22 17:35:12</span>
+						</div>
+						<div class="eoos-result-property">
+							TERRA
+						</div>
+						<div class="eoos-result-property">
+							MODIS
+						</div>
+					</div>
+					<div class="eoos-result-controls">
+						<div class="eoos-result-detail-button" title="Show details…"></div>
+						<div class="eoos-result-search-button" title="Find similar…"></div>
+					</div>
+				</div>
+
+				<div class="eoos-result">
+					<div class="eoos-result-properties">
+						<div class="eoos-result-name-time">
+							<span class="eoos-result-name">Product 7</span>
+							<span class="eoos-result-time">2017-05-22 18:25:04</span>
+						</div>
+						<div class="eoos-result-property">
+							SENTINEL-1B
+						</div>
+						<div class="eoos-result-property">
+							SLSTR
+						</div>
+					</div>
+					<div class="eoos-result-controls">
+						<div class="eoos-result-detail-button" title="Show details…"></div>
+						<div class="eoos-result-search-button" title="Find similar…"></div>
+					</div>
+				</div>
+
 			</div>
-
-			<div class="eoos-result">
-				<div class="eoos-result-properties">
-					<div class="eoos-result-name-time">
-						<span class="eoos-result-name">Scene 2017-05-22-17:35:12</span>
-						<span class="eoos-result-time">2017-05-22 17:35:12</span>
-					</div>
-					<div class="eoos-result-property">
-						TERRA
-					</div>
-					<div class="eoos-result-property">
-						MODIS
-					</div>
-				</div>
-				<div class="eoos-result-controls">
-					<div class="eoos-result-detail-button" title="Show details…"></div>
-					<div class="eoos-result-search-button" title="Find similar…"></div>
-				</div>
+			<div id="results-pagination">
+				<a>&laquo;</a>
+				<a>1</a>
+				<a>2</a>
+				<a>3</a>
+				<span>…</span>
+				<a>&raquo;</a>
 			</div>
-
-			<div class="eoos-result">
-				<div class="eoos-result-properties">
-					<div class="eoos-result-name-time">
-						<span class="eoos-result-name">Product 7</span>
-						<span class="eoos-result-time">2017-05-22 18:25:04</span>
-					</div>
-					<div class="eoos-result-property">
-						SENTINEL-1B
-					</div>
-					<div class="eoos-result-property">
-						SLSTR
-					</div>
-				</div>
-				<div class="eoos-result-controls">
-					<div class="eoos-result-detail-button" title="Show details…"></div>
-					<div class="eoos-result-search-button" title="Find similar…"></div>
-				</div>
-			</div>
-
-		</div>
-		<div id="results-pagination">
-			<a>&laquo;</a>
-			<a>1</a>
-			<a>2</a>
-			<a>3</a>
-			<span>…</span>
-			<a>&raquo;</a>
 		</div>
 	</div>
 

@@ -30,14 +30,14 @@ var handleSearchBackClick = function() {
 
 
 var handleResultsExpandClick = function() {
-	var resultsArea = $('#results-area');
+	var sidebar = $('#sidebar');
 	var expandButton = $('#results-expand-button');
-	var expanded = resultsArea.hasClass('expanded');
+	var expanded = sidebar.hasClass('expanded');
 	if (expanded) {
-		resultsArea.removeClass('expanded');
+		sidebar.removeClass('expanded');
 		expandButton.text('Expand »');
 	} else {
-		resultsArea.addClass('expanded');
+		sidebar.addClass('expanded');
 		expandButton.text('« Collapse');
 	}
 };
@@ -55,7 +55,7 @@ $(function() {
 	$('#property-timerange-end').on('change.eoos', handlePropertyUse);
 
 	$('#search-submit').on('click.eoos', handleSearchClick);
-	$('#search-back').on('click.eoos', handleSearchBackClick);
+	$('#breadcrumbs').on('click.eoos', 'a', handleSearchBackClick);
 
 
 	$('#results-expand-button').on('click.eoos', handleResultsExpandClick);
