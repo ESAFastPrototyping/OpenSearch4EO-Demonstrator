@@ -42,6 +42,16 @@ var handleResultsExpandClick = function() {
 	}
 };
 
+
+var handleTabClick = function(e) {
+	var target = $(e.currentTarget).closest('#sidebar-tabs > a');
+	var tab = target.attr('data-for');
+	$('.sidebar-tab').removeClass('active');
+	$('#sidebar-tabs').find('a').removeClass('active');
+	$('#' + tab).addClass('active');
+	target.addClass('active');
+};
+
 $(function() {
 
 	$('#provider-list').on('click.eoos', '.eoos-provider, .eoos-provider-go', handleProviderClick);
@@ -56,6 +66,9 @@ $(function() {
 
 	$('#search-submit').on('click.eoos', handleSearchClick);
 	$('#breadcrumbs').on('click.eoos', 'a', handleSearchBackClick);
+
+
+	$('#sidebar-tabs').on('click.eoos', 'a', handleTabClick);
 
 
 	$('#results-expand-button').on('click.eoos', handleResultsExpandClick);

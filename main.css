@@ -190,8 +190,11 @@ body {
 
 .sidebar-tab {
 	flex-grow: 1;
-	display: flex;
+	display: none;
 	flex-direction: column;
+}
+.sidebar-tab.active {
+	display: flex;
 }
 
 #breadcrumbs, #sidebar-tabs {
@@ -223,7 +226,7 @@ body {
 #sidebar-tabs > a:hover {
 	background: rgba(255,255,255,.7);
 }
-#sidebar-tabs > a.current {
+#sidebar-tabs > a.active {
 	background: #fff;
 }
 
