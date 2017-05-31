@@ -28,8 +28,59 @@
 			<a data-for="tab-history">History</a>
 			<!--<a data-for="tab-layers">Map</a>-->
 		</div>
+
+		<!-- =================== SEARCH TAB ======================== -->
+
+		<div id="tab-search" class="sidebar-tab">
+			<div class="sidebar-header">
+				<h1>Search</h1>
+			</div>
+			<div id="search-properties">
+				<div class="eoos-property">
+					<div class="eoos-property-content">
+						<h2>Fulltext</h2>
+						<div class="eoos-property-input">
+							<label>
+								<input type="text" id="property-fulltext" />
+							</label>
+						</div>
+					</div>
+					<div class="eoos-property-indicator"></div>
+				</div>
+
+				<div class="eoos-property">
+					<div class="eoos-property-content">
+						<h2>Location</h2>
+						<div class="eoos-property-input">
+							<button id="property-location-select-in-map">Select in map</button>
+						</div>
+					</div>
+					<div class="eoos-property-indicator"></div>
+				</div>
+
+				<div class="eoos-property">
+					<div class="eoos-property-content">
+						<h2>Time range</h2>
+						<div class="eoos-property-timerange">
+							<label>
+								From
+								<input type="datetime-local" id="property-timerange-start" />
+							</label>
+							<label>
+								To
+								<input type="datetime-local" id="property-timerange-end" />
+							</label>
+						</div>
+					</div>
+					<div class="eoos-property-indicator"></div>
+				</div>
+			</div>
+		</div>
+
+		<!-- =================== RESULTS TAB ======================== -->
+
 		<div id="tab-results" class="sidebar-tab active">
-			<div id="results-header">
+			<div class="sidebar-header">
 				<h1>Results</h1>
 				<div id="results-search">
 					<span class="eoos-results-property"><b>Location:</b> polygon</span>
@@ -149,6 +200,8 @@
 				<a>&raquo;</a>
 			</div>
 		</div>
+
+
 	</div>
 
 </body>

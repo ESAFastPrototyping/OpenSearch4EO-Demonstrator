@@ -230,16 +230,16 @@ body {
 	background: #fff;
 }
 
-#results-header {
+.sidebar-header {
 	padding: .5rem;
 
 	position: relative;
 }
-#results-header > h1,
+.sidebar-header > h1,
 #results-search {
 	width: 30vw;
 }
-#results-header > h1 {
+.sidebar-header > h1 {
 	font-size: 1.5rem;
 	margin: .5rem 0;
 }
