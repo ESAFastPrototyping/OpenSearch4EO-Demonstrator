@@ -81,7 +81,10 @@
 									<input type="number" id="timerange-from-day" min="1" max="31" value="16" />
 									<a class="eoos-property-timerange-spinner bottom"></a>
 								</div>
-								<span>&nbsp;</span>
+								<div class="eoos-property-timerange-input">
+									<input type="date" id="timerange-from-date" value="2017-05-16" />
+								</div>
+
 								<div class="eoos-property-timerange-input">
 									<a class="eoos-property-timerange-spinner top"></a>
 									<input type="number" id="timerange-from-hours" min="0" max="23" value="18" />
@@ -92,6 +95,9 @@
 									<a class="eoos-property-timerange-spinner top"></a>
 									<input type="number" id="timerange-from-minutes" min="0" max="59" value="30" />
 									<a class="eoos-property-timerange-spinner bottom"></a>
+								</div>
+								<div class="eoos-property-timerange-input">
+									<input type="time" id="timerange-from-time" value="18:30" />
 								</div>
 							</div>
 						</div>
@@ -115,18 +121,25 @@
 									<input type="number" id="timerange-to-day" min="1" max="31" value="16" />
 									<a class="eoos-property-timerange-spinner bottom"></a>
 								</div>
-								<span>&nbsp;</span>
+								<div class="eoos-property-timerange-input">
+									<input type="date" id="timerange-to-date" value="2017-05-16" />
+								</div>
+
 								<div class="eoos-property-timerange-input">
 									<a class="eoos-property-timerange-spinner top"></a>
-									<input type="number" id="timerange-to-hours" min="0" max="23" value="18" />
+									<input type="number" id="timerange-to-hours" min="0" max="23" />
 									<a class="eoos-property-timerange-spinner bottom"></a>
 								</div>
 								<span>:</span>
 								<div class="eoos-property-timerange-input">
 									<a class="eoos-property-timerange-spinner top"></a>
-									<input type="number" id="timerange-to-minutes" min="0" max="59" value="30" />
+									<input type="number" id="timerange-to-minutes" min="0" max="59" />
 									<a class="eoos-property-timerange-spinner bottom"></a>
 								</div>
+								<div class="eoos-property-timerange-input">
+									<input type="time" id="timerange-to-time" />
+								</div>
+
 							</div>
 						</div>
 					</div>

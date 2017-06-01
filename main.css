@@ -125,21 +125,109 @@ body {
 .eoos-property-timerange {
 	display: flex;
 	justify-content: space-between;
-	line-height: 2.7rem;
+	line-height: 3.7rem;
+	margin-top: .5rem
 }
 .eoos-property-timerange-inputs {
 	width: calc(30vw - 8rem);
 	display: flex;
 }
-.eoos-property-timerange-inputs > input {
-	width: 3.7rem;
+
+.eoos-property-timerange-input {
+	display: flex;
+	flex-direction: column;
+}
+.eoos-property-timerange-spinner {
+	display: block;
+	height: 1rem;
+	cursor:pointer;
+	position: relative;
+}
+.eoos-property-timerange-spinner:hover {
+	background: #daf6fd;
+}
+.eoos-property-timerange-spinner::after {
+	position: absolute;
+	left: 0;
+	top: 0;
+	display: block;
+	height: 1rem;
+	width: 100%;
+	font-family: FontAwesome, sans-serif;
+	font-size: .85rem;
+	line-height: 1rem;
+	text-align: center;
+	color: #888;
+}
+.eoos-property-timerange-spinner.top::after {
+	content: "\f0d8";
+}
+.eoos-property-timerange-spinner.bottom::after {
+	content: "\f0d7";
+}
+
+.eoos-property-timerange-input > input {
+	width: 2.3rem;
+	margin: 0;
 }
 #timerange-from-year,
 #timerange-to-year {
-	width: 4.7rem
+	width: 3.45rem
 }
 .eoos-property-timerange-inputs > span {
 	padding: 0 .3rem;
+}
+
+.eoos-property-timerange-input > input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+}
+
+#timerange-from-date,
+#timerange-to-date,
+#timerange-from-time,
+#timerange-to-time {
+	margin: 1rem 2rem 0 .8rem;
+	border-color: #ddd;
+	background: #eee;
+	position: relative;
+}
+#timerange-from-date::-webkit-clear-button,
+#timerange-to-date::-webkit-clear-button,
+#timerange-from-time::-webkit-clear-button,
+#timerange-to-time::-webkit-clear-button {
+	display: none;
+}
+#timerange-from-date::-webkit-calendar-picker-indicator,
+#timerange-to-date::-webkit-calendar-picker-indicator {
+	opacity: 0;
+}
+#timerange-from-date::after,
+#timerange-to-date::after,
+#timerange-from-time::after,
+#timerange-to-time::after {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 2rem;
+	line-height: 1.9rem;
+	width: 100%;
+	text-align: center;
+	font-family: FontAwesome, sans-serif;
+	font-size: .85rem;
+	color: #666;
+	pointer-events: none;
+}
+#timerange-from-date::after,
+#timerange-to-date::after {
+	content: "\f073";
+}
+#timerange-from-time::after,
+#timerange-to-time::after {
+	content: "\f017";
+}
+#timerange-from-time,
+#timerange-to-time {
+	color: transparent;
 }
 
 
