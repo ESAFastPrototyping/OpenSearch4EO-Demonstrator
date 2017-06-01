@@ -57,7 +57,7 @@ body {
 	font-size: 1rem;
 	padding: .05rem .5rem 0 .5rem;
 	/*background: transparent;*/
-	border: 1px solid #aaa;
+	border: 1px solid #ccc;
 }
 
 .eoos-provider-go {
@@ -123,16 +123,23 @@ body {
 
 
 .eoos-property-timerange {
-/* 	display: flex;
-	justify-content: space-between; */
-}
-.eoos-property-timerange > label {
 	display: flex;
 	justify-content: space-between;
 	line-height: 2.7rem;
 }
-.eoos-property-timerange > label > input {
+.eoos-property-timerange-inputs {
 	width: calc(30vw - 8rem);
+	display: flex;
+}
+.eoos-property-timerange-inputs > input {
+	width: 3.7rem;
+}
+#timerange-from-year,
+#timerange-to-year {
+	width: 4.7rem
+}
+.eoos-property-timerange-inputs > span {
+	padding: 0 .3rem;
 }
 
 

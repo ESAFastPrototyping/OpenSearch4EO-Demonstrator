@@ -62,14 +62,32 @@
 					<div class="eoos-property-content">
 						<h2>Time range</h2>
 						<div class="eoos-property-timerange">
-							<label>
-								From
-								<input type="datetime-local" id="property-timerange-start" />
-							</label>
-							<label>
-								To
-								<input type="datetime-local" id="property-timerange-end" />
-							</label>
+							From
+							<div class="eoos-property-timerange-inputs">
+								<input type="number" id="timerange-from-year" min="2015" max="2017" value="2017" />
+								<span>-</span>
+								<input type="number" id="timerange-from-month" min="1" max="12" value="5" />
+								<span>-</span>
+								<input type="number" id="timerange-from-day" min="1" max="31" value="16" />
+								<span>&nbsp;</span>
+								<input type="number" id="timerange-from-hours" min="0" max="23" value="18" />
+								<span>:</span>
+								<input type="number" id="timerange-from-minutes" min="0" max="59" value="30" />
+							</div>
+						</div>
+						<div class="eoos-property-timerange">
+							To
+							<div class="eoos-property-timerange-inputs">
+								<input type="number" id="timerange-to-year" min="2015" max="2017" value="2017" />
+								<span>-</span>
+								<input type="number" id="timerange-to-month" min="1" max="12" value="5" />
+								<span>-</span>
+								<input type="number" id="timerange-to-day" min="1" max="31" value="16" />
+								<span>&nbsp;</span>
+								<input type="number" id="timerange-to-hours" min="0" max="23" value="18" />
+								<span>:</span>
+								<input type="number" id="timerange-to-minutes" min="0" max="59" value="30" />
+							</div>
 						</div>
 					</div>
 					<div class="eoos-property-indicator"></div>
