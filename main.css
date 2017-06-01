@@ -30,8 +30,7 @@ body {
 .eoos-provider {
 	cursor: pointer;
 }
-.eoos-provider,
-.eoos-property-content {
+.eoos-provider{
 	padding: 1.6rem 1rem 2rem 1rem;
 }
 .eoos-provider:hover {
@@ -90,9 +89,14 @@ body {
 }
 .eoos-property-content {
 	flex-grow: 1;
+	padding: .5rem .5rem .8rem .5rem;
+}
+.eoos-property-content > h2 {
+	font-size: 1rem;
+	margin: 0;
 }
 .eoos-property-indicator {
-	width: 7rem;
+	width: 4rem;
 	position: relative;
 }
 
@@ -104,7 +108,7 @@ body {
 /*}*/
 .eoos-property.used .eoos-property-indicator::after {
 	font-family: FontAwesome, sans-serif;
-	font-size: 2rem;
+	font-size: 1.3rem;
 	content: "\f00c";
 	text-align: center;
 	width: 3rem;
@@ -119,11 +123,16 @@ body {
 
 
 .eoos-property-timerange {
-	display: flex;
-	justify-content: space-between;
+/* 	display: flex;
+	justify-content: space-between; */
 }
 .eoos-property-timerange > label {
-	width: 46%;
+	display: flex;
+	justify-content: space-between;
+	line-height: 2.7rem;
+}
+.eoos-property-timerange > label > input {
+	width: calc(30vw - 8rem);
 }
 
 
