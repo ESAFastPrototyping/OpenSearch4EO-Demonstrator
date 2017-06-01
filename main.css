@@ -44,6 +44,10 @@ body {
 .eoos-property:first-of-type {
 	border-top: 1px solid #bbb;
 }
+.eoos-property,
+.eoos-property:first-of-type {
+	border-color: #ddd;
+}
 .eoos-provider-custom-input {
 	width: calc(100% - 10rem);
 }
