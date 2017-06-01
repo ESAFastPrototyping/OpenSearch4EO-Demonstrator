@@ -87,6 +87,7 @@ $(function() {
 		var wwd = new WorldWind.WorldWindow("wwd-results");
 
 		var bingLayer = new WorldWind.BingAerialLayer(null);
+		bingLayer.detailControl = 1.0;
 		bingLayer.enabled = true;
 
 		wwd.addLayer(bingLayer);
