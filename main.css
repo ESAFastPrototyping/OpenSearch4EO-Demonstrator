@@ -130,7 +130,7 @@ body {
 	display: flex;
 	justify-content: space-between;
 	line-height: 3.7rem;
-	margin-top: .5rem
+	margin-top: 1rem;
 }
 .eoos-property-timerange-inputs {
 	width: calc(30vw - 8rem);
