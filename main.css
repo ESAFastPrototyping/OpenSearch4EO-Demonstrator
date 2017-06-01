@@ -16,6 +16,16 @@ body {
 	overflow: hidden;
 }
 
+button {
+	height: 2rem;
+	background: #eee;
+	border: 1px solid #ddd;
+	cursor: pointer;
+}
+button:not(:disabled):hover {
+	background: #d4eeff;
+}
+
 .eoos-content-column {
 	margin: 10rem auto 0 auto;
 	width: 50rem;
@@ -97,7 +107,7 @@ body {
 }
 .eoos-property-content > h2 {
 	font-size: 1rem;
-	margin: 0;
+	margin: .4rem 0 .8rem 0;
 }
 .eoos-property-indicator {
 	width: 4rem;
@@ -105,7 +115,7 @@ body {
 }
 
 .eoos-property.used {
-	background: #e0f1ff;
+	background: #eef7ff;
 }
 /*.eoos-property.used:hover {*/
 	/*background: #d7ecff;*/
