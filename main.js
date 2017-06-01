@@ -4,7 +4,7 @@ var handleProviderClick = function(e) {
 	if (target.hasClass('custom')) {
 		target.find('#provider-connector-url').focus();
 	} else {
-		window.location.href = "2.html";
+		window.location.href = "3.html";
 	}
 };
 var handleUrlInputChange = function() {
@@ -13,7 +13,7 @@ var handleUrlInputChange = function() {
 var handleUrlInputKeyPress = function(e) {
 	if ( e.which == 13 ) {
 		e.preventDefault();
-		window.location.href = "2.html";
+		window.location.href = "3.html";
 	}
 };
 var handlePropertyUse = function(e) {
