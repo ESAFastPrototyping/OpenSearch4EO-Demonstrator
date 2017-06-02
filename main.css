@@ -98,6 +98,11 @@ button:not(:disabled):hover {
 	background: #9cf;
 }
 
+#search-properties {
+	flex-grow: 1;
+	overflow-x: hidden;
+}
+
 .eoos-property {
 	display: flex;
 }
@@ -243,6 +248,11 @@ button:not(:disabled):hover {
 #timerange-to-time {
 	color: transparent;
 }
+
+#property-location-find {
+	margin-bottom: 1rem;
+}
+
 
 
 #provider-search-controls {
