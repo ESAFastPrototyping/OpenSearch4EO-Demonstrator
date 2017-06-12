@@ -697,8 +697,8 @@ body.eoos-index {
 	background: rgba(255, 255, 255, .5);
 }
 .eoos-collection.active {
-	background: rgb(211, 239, 251);
-	background: #ddd;
+	background: rgb(224, 244, 253);
+/* 	background: #ddd; */
 }
 .eoos-collection:not(.active):hover {
 	background: #eee;
@@ -716,8 +716,8 @@ body.eoos-index {
 	padding: .5rem 0 .5rem .5rem;
 }
 #searches {
-	background: rgb(211, 239, 251);
-	background: #ddd;
+	background: rgb(224, 244, 253);
+/* 	background: #ddd; */
 	padding: .5rem 0 .5rem .5rem;
 }
 
@@ -745,7 +745,14 @@ body.eoos-index {
 #shortcuts > div h2 {
 	margin: 1rem;
 }
-.eoos-index-description {
+.eoos-index-description,
+.eoos-index-properties {
 	margin: 1rem;
 	font-size: .85rem;
+}
+.eoos-index-properties > div {
+	margin: .2rem 0;
+}
+.eoos-index-properties > div > b {
+	margin-right: .3rem;
 }
