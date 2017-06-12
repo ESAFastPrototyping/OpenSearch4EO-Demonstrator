@@ -670,7 +670,7 @@ body.eoos-index {
 	width: 40%;
 }
 
-#shortcuts h2 {
+#shortcuts h3 {
 	font-size: .85rem;
 	font-weight: 100;
 	text-transform: uppercase;
@@ -684,9 +684,9 @@ body.eoos-index {
 	border: 0;
 	cursor: pointer;
 }
-.eoos-provider > h3,
-.eoos-collection > h3,
-.eoos-search > h3 {
+.eoos-provider > h4,
+.eoos-collection > h4,
+.eoos-search > h4 {
 	margin: 0;
 	font-size: 1rem;
 }
@@ -740,4 +740,12 @@ body.eoos-index {
 	cursor: pointer;
 
 	background: #badcfd;
+}
+
+#shortcuts > div h2 {
+	margin: 1rem;
+}
+.eoos-index-description {
+	margin: 1rem;
+	font-size: .85rem;
 }
