@@ -9,36 +9,74 @@
 	<link rel="stylesheet" type="text/css" href="fa/css/font-awesome.min.css" />
 	<link rel="stylesheet" type="text/css" href="main.css" />
 </head>
-<body>
-	<div class="eoos-content-column">
-		<div id="provider-list">
-			<h1>Choose collection</h1>
+<body class="eoos-index">
 
-			<div class="eoos-provider custom">
-				<h2>Custom</h2>
-				<div class="eoos-provider-custom-input">
-					<label for="provider-connector-url">
-						OpenSearch connector url (collection or provider)
-						<input type="url" id="provider-connector-url" />
-					</label>
-				</div>
+	<div id="header">
+		<h1>OpenSearch for Earth Observation</h1>
+	</div>
+
+	<div id="add-connector">
+		<div class="eoos-provider-custom-input">
+			<label for="provider-connector-url">
+				OpenSearch description document address (collection or provider)
+				<input type="url" id="provider-connector-url" />
 				<div class="eoos-provider-go"></div>
+			</label>
+		</div>
+	</div>
+
+	<div id="shortcuts">
+		<div id="providers">
+			<h2>Providers</h2>
+
+			<div class="eoos-provider">
+				<h3>Provider One</h3>
+			</div>
+
+			<div class="eoos-provider active">
+				<h3>Provider Two</h3>
 			</div>
 
 			<div class="eoos-provider">
-				<h2>Collection One</h2>
-				<div class="eoos-provider-description">
-					desc
-				</div>
-				<div class="eoos-provider-go"></div>
+				<h3>Provider Three</h3>
 			</div>
 
-			<div class="eoos-provider">
-				<h2>Collection Two</h2>
-				<div class="eoos-provider-description">
-					desc
+		</div>
+		<div id="collections">
+
+			<div class="eoos-index-go-button">Search for collections</div>
+
+			<div class="eoos-index-list">
+
+				<h2>Collections</h2>
+
+				<div class="eoos-collection active">
+					<h3>Collection One</h3>
 				</div>
-				<div class="eoos-provider-go"></div>
+
+				<div class="eoos-collection">
+					<h3>Collection Two</h3>
+				</div>
+
+			</div>
+
+		</div>
+		<div id="searches">
+
+			<div class="eoos-index-go-button">New search</div>
+
+			<div class="eoos-index-list">
+				<h2>Searches</h2>
+
+				<div class="eoos-search">
+					<h3>Search One</h3>
+					<div class="eoos-provider-go"></div>
+				</div>
+
+				<div class="eoos-search">
+					<h3>Search Two</h3>
+					<div class="eoos-provider-go"></div>
+				</div>
 			</div>
 
 		</div>

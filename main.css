@@ -41,7 +41,7 @@ button:not(:disabled):hover {
 	cursor: pointer;
 }
 .eoos-provider{
-	padding: 1.6rem 1rem 2rem 1rem;
+	/* padding: 1.6rem 1rem 2rem 1rem; */
 }
 .eoos-provider:hover {
 	background: #f0faff;
@@ -74,29 +74,6 @@ button:not(:disabled):hover {
 	border: 1px solid #ccc;
 }
 
-.eoos-provider-go {
-	position: absolute;
-	top: 50%;
-	right: 2rem;
-	transform: translateY(-50%);
-	width: 3rem;
-	height: 3rem;
-}
-.eoos-provider-go::after {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 3rem;
-	height: 3rem;
-	line-height: 3rem;
-	font-family: FontAwesome, sans-serif;
-	content: "\f105";
-	text-align: center;
-	font-size: 2rem;
-}
-.eoos-provider-go.highlighted {
-	background: #9cf;
-}
 
 #search-properties {
 	flex-grow: 1;
@@ -611,4 +588,156 @@ button:not(:disabled):hover {
 	background: #c0dbff;
 	/*background: #273c4e;*/
 	/*background: #fff;*/
+}
+
+
+
+body.eoos-index {
+	background: #eee;
+}
+#header h1 {
+	font-size: .85rem;
+	font-weight: 100;
+	text-transform: uppercase;
+	letter-spacing: .07rem;
+	padding: 0 1rem;
+	color: #666;
+}
+
+#add-connector {
+	background: #fff;
+	padding: 3rem 1rem;
+}
+.eoos-provider-custom-input {
+	width: 50vw;
+	min-width: 30rem;
+	margin: 0 auto;
+}
+.eoos-provider-custom-input > label {
+	display: block;
+	position: relative;
+}
+.eoos-provider-custom-input input {
+	display: block;
+	margin: .5rem 0;
+	width: 100%;
+	height: 3rem;
+	padding: .2rem .5rem;
+	font-size: 1rem;
+}
+
+.eoos-provider-go {
+	position: absolute;
+	bottom: 0;
+	right: 0rem;
+	width: 3rem;
+	height: 3rem;
+	cursor: pointer;
+}
+.eoos-provider-go::after {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 3rem;
+	height: 3rem;
+	line-height: 2.9rem;
+	font-family: FontAwesome, sans-serif;
+	content: "\f105";
+	text-align: center;
+	font-size: 2rem;
+}
+.eoos-provider-go.highlighted {
+	background: rgba(153, 204, 255, .4);
+}
+
+#shortcuts {
+	max-width: 90rem;
+	margin: 0 auto;
+	padding-top: 3rem;
+	display: flex;
+	justify-content: space-between;
+}
+#shortcuts > div {
+	flex-grow: 1;
+}
+#providers {
+	width: 20%;
+}
+#collections {
+	width: 40%;
+}
+#searches {
+	width: 40%;
+}
+
+#shortcuts h2 {
+	font-size: .85rem;
+	font-weight: 100;
+	text-transform: uppercase;
+	letter-spacing: .07rem;
+	padding: 0 1rem;
+	color: #666;
+}
+
+.eoos-provider, .eoos-collection, .eoos-search {
+	padding: .7rem;
+	border: 0;
+	cursor: pointer;
+}
+.eoos-provider > h3,
+.eoos-collection > h3,
+.eoos-search > h3 {
+	margin: 0;
+	font-size: 1rem;
+}
+.eoos-provider.active {
+	background: #fff;
+}
+.eoos-provider:not(.active):hover {
+	background: rgba(255, 255, 255, .5);
+}
+.eoos-collection.active {
+	background: rgb(211, 239, 251);
+	background: #ddd;
+}
+.eoos-collection:not(.active):hover {
+	background: #eee;
+}
+.eoos-search:not(.active):hover {
+	background: rgba(255, 255, 255, .5);
+}
+
+.eoos-search.active {
+
+}
+
+#collections {
+	background: #fff;
+	padding: .5rem 0 .5rem .5rem;
+}
+#searches {
+	background: rgb(211, 239, 251);
+	background: #ddd;
+	padding: .5rem 0 .5rem .5rem;
+}
+
+
+.eoos-index-list {
+	padding-left: .5rem;
+}
+
+
+.eoos-index-go-button {
+	margin: 1rem auto 2rem auto;
+	width: 20rem;
+	height: 2.5rem;
+	line-height: 2.5rem;
+	padding: 0 1rem;
+	text-align: center;
+	text-transform: uppercase;
+	font-size: .85rem;
+	letter-spacing: .07rem;
+	cursor: pointer;
+
+	background: #badcfd;
 }
