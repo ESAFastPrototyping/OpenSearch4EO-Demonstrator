@@ -253,6 +253,21 @@ button:not(:disabled):hover {
 	margin-bottom: 1rem;
 }
 
+.eoos-property-input.select {
+	position: relative;
+}
+.eoos-property-input.select::after {
+	display: block;
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 2rem;
+	line-height: 1.9rem;
+	height: 100%;
+	font-family: FontAwesome;
+	text-align: center;
+	content: "\f0d7";
+}
 
 
 #provider-search-controls {
