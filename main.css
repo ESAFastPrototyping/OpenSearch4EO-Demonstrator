@@ -264,7 +264,7 @@ button:not(:disabled):hover {
 	width: 2rem;
 	line-height: 1.9rem;
 	height: 100%;
-	font-family: FontAwesome;
+	font-family: FontAwesome, sans-serif;
 	text-align: center;
 	content: "\f0d7";
 }
