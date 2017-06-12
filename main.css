@@ -701,7 +701,7 @@ body.eoos-index {
 /* 	background: #ddd; */
 }
 .eoos-collection:not(.active):hover {
-	background: #eee;
+	background: rgba(224, 244, 253, .5);
 }
 .eoos-search:not(.active):hover {
 	background: rgba(255, 255, 255, .5);
