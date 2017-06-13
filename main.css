@@ -687,10 +687,10 @@ body.eoos-index {
 	cursor: pointer;
 	border-bottom: 1px solid rgba(183, 183, 183, 0.3);
 }
-.eoos-provider:first-of-type, 
-.eoos-collection:first-of-type, 
-.eoos-search:first-of-type {
-	border-top: 1px solid rgba(183, 183, 183, 0.3);
+.eoos-provider:last-of-type, 
+.eoos-collection:last-of-type, 
+.eoos-search:last-of-type {
+	border: 0;
 }
 .eoos-provider > h4,
 .eoos-collection > h4,
@@ -755,6 +755,12 @@ body.eoos-index {
 	margin: 1rem;
 	font-weight: 400;
 }
+#shortcuts > div h2.general {
+	text-transform: uppercase;
+	font-size: 1rem;
+	color: #666;
+	letter-spacing: .07rem;
+}
 .eoos-index-description,
 .eoos-index-properties {
 	margin: 1rem;
@@ -762,8 +768,16 @@ body.eoos-index {
 }
 .eoos-index-properties > div {
 	margin: .2rem 0;
+	/* color:  #000; */
 }
 .eoos-index-properties > div > b {
 	margin-right: .3rem;
+	font-weight: 400;
+	color: #999;
+}
+
+.eoos-collection .eoos-index-properties,
+.eoos-search .eoos-index-properties {
+	margin: 0;
 }
 
