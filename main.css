@@ -795,3 +795,15 @@ body.eoos-index {
 	margin: 0;
 }
 
+.eoos-collection-properties {
+	font-size: .85rem;
+}
+.eoos-collection-properties > span {
+	padding: 0 .5rem;
+	border-left: 1px solid #e2e2e2;
+}
+.eoos-collection-properties > span:first-child {
+	padding-left: 0;
+	border: 0;
+}
+
