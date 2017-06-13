@@ -634,7 +634,17 @@ body.eoos-index {
 	height: 3rem;
 	cursor: pointer;
 }
-.eoos-provider-go::after {
+.eoos-search-go {
+	position: absolute;
+	top: 50%;
+	right: 0;
+	width: 3rem;
+	height: 3rem;
+	transform: translateY(-50%);
+	cursor: pointer;
+}
+.eoos-provider-go::after,
+.eoos-search-go::after {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -645,6 +655,9 @@ body.eoos-index {
 	content: "\f105";
 	text-align: center;
 	font-size: 2rem;
+}
+.eoos-search-go::after {
+	color: #9fbdd8;
 }
 .eoos-provider-go.highlighted {
 	background: rgba(153, 204, 255, .4);
@@ -679,13 +692,14 @@ body.eoos-index {
 	color: #666;
 }
 
-.eoos-provider, 
-.eoos-collection, 
+.eoos-provider,
+.eoos-collection,
 .eoos-search {
 	padding: .7rem;
 	border: 0;
 	cursor: pointer;
 	border-bottom: 1px solid rgba(183, 183, 183, 0.3);
+	position: relative;
 }
 .eoos-provider:last-of-type, 
 .eoos-collection:last-of-type, 
