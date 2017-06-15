@@ -19,7 +19,7 @@ var handleUrlInputKeyPress = function(e) {
 var handlePropertyUse = function(e) {
 	var target = $(e.currentTarget).closest('.eoos-property');
 	target.addClass('used');
-	$('#search-submit').text('Search');
+	//$('#search-submit').text('Search');
 };
 var handleSearchClick = function() {
 	window.location.href = "3.html";
