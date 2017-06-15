@@ -27,6 +27,9 @@ var handleSearchClick = function() {
 var handleSearchBackClick = function() {
 	window.location.href = "1.html";
 };
+var handleCollectionsClick = function() {
+	window.location.href = "2.html";
+};
 
 
 var handleResultsExpandClick = function() {
@@ -67,12 +70,15 @@ $(function() {
 	$('.eoos-provider-go').on('click.eoos', handleProviderClick);
 	$('#provider-connector-url').on('input.eoos', handleUrlInputChange);
 	$('#provider-connector-url').on('keypress.eoos', handleUrlInputKeyPress);
+	$('#go-collections').on('click.eoos', handleCollectionsClick);
+	$('#go-search').on('click.eoos', handleSearchClick);
 
 
 	$('#property-fulltext').on('input.eoos', handlePropertyUse);
 	$('#property-location-select-in-map').on('click.eoos', handlePropertyUse);
 	$('#property-timerange-start').on('change.eoos', handlePropertyUse);
 	$('#property-timerange-end').on('change.eoos', handlePropertyUse);
+	$('#search-back').on('click.eoos', handleSearchBackClick);
 
 	$('#search-submit').on('click.eoos', handleSearchClick);
 	$('#breadcrumbs').on('click.eoos', 'a', handleSearchBackClick);
