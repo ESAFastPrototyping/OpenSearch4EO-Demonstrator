@@ -64,6 +64,17 @@ var handleTabClick = function(e) {
 
 };
 
+var handleProviderListClick = function(e) {
+	var target = $(e.currentTarget).closest('.eoos-provider');
+	target.addClass('active');
+	$('#collections').removeClass('hidden');
+};
+var handleCollectionListClick = function(e) {
+	var target = $(e.currentTarget).closest('.eoos-collection');
+	target.addClass('active');
+	$('#searches').removeClass('hidden');
+};
+
 $(function() {
 
 	$('#provider-list').on('click.eoos', '.eoos-provider, .eoos-provider-go', handleProviderClick);
@@ -72,6 +83,9 @@ $(function() {
 	$('#provider-connector-url').on('keypress.eoos', handleUrlInputKeyPress);
 	$('#go-collections').on('click.eoos', handleCollectionsClick);
 	$('#go-search').on('click.eoos', handleSearchClick);
+	$('.eoos-provider').on('click.eoos', handleProviderListClick);
+	$('.eoos-collection').on('click.eoos', handleCollectionListClick);
+	$('.eoos-search').on('click.eoos', handleProviderClick);
 
 
 	$('#property-fulltext').on('input.eoos', handlePropertyUse);

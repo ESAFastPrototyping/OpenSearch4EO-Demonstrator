@@ -743,6 +743,15 @@ body.eoos-index {
 	/* 	background: #ddd; */
 	padding: .5rem 0 .5rem .5rem;
 }
+#collections.hidden,
+#searches.hidden {
+	background: transparent;
+}
+#collections.hidden > div,
+#searches.hidden > div {
+	display: none;
+}
+
 
 
 .eoos-index-list {
