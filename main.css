@@ -16,6 +16,10 @@ body {
 	overflow: hidden;
 }
 
+body.collection-discovery {
+	overflow: auto;
+}
+
 button {
 	height: 2rem;
 	background: #eee;
@@ -629,7 +633,7 @@ body.eoos-index {
 .eoos-provider-go {
 	position: absolute;
 	bottom: 0;
-	right: 0rem;
+	right: 0;
 	width: 3rem;
 	height: 3rem;
 	cursor: pointer;

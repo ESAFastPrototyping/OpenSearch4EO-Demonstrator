@@ -9,7 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="fa/css/font-awesome.min.css" />
 	<link rel="stylesheet" type="text/css" href="main.css" />
 </head>
-<body>
+<body class="collection-discovery">
 	<div class="eoos-content-column">
 		<div id="provider-search">
 			<h1>Provider Two: Search for collections</h1>
@@ -36,8 +36,10 @@
 				<div class="eoos-property-content">
 					<h2>Search area</h2>
 					<div class="eoos-property-input">
-						<button id="property-location-select-in-map">Draw in map</button>
+						<input type="text" id="property-location-find" />
 					</div>
+					<button id="property-location-select-in-map">Draw in map</button>
+					<button id="property-location-load-file">Load from file</button>
 				</div>
 				<div class="eoos-property-indicator"></div>
 			</div>
@@ -129,6 +131,36 @@
 				</div>
 				<div class="eoos-property-indicator"></div>
 			</div>
+
+				<div class="eoos-property">
+					<div class="eoos-property-content">
+						<h2>Platform</h2>
+						<div class="eoos-property-input select">
+							<input type="text" id="property-platform" />
+						</div>
+					</div>
+					<div class="eoos-property-indicator"></div>
+				</div>
+
+				<div class="eoos-property">
+					<div class="eoos-property-content">
+						<h2>Instrument</h2>
+						<div class="eoos-property-input select">
+							<input type="text" id="property-instrument" />
+						</div>
+					</div>
+					<div class="eoos-property-indicator"></div>
+				</div>
+
+				<div class="eoos-property">
+					<div class="eoos-property-content">
+						<h2>Organisation</h2>
+						<div class="eoos-property-input select">
+							<input type="text" id="property-organisation" />
+						</div>
+					</div>
+					<div class="eoos-property-indicator"></div>
+				</div>
 
 			</div>
 
