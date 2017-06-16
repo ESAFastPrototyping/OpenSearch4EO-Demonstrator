@@ -1,11 +1,7 @@
 
-var handleProviderClick = function(e) {
-	var target = $(e.currentTarget);
-	if (target.hasClass('custom')) {
-		target.find('#provider-connector-url').focus();
-	} else {
-		window.location.href = "3.html";
-	}
+
+var handleProviderGoClick = function() {
+	window.location.href = "2.html";
 };
 var handleUrlInputChange = function() {
 	$('#add-connector').find('.eoos-provider-go').addClass('highlighted');
@@ -77,15 +73,14 @@ var handleCollectionListClick = function(e) {
 
 $(function() {
 
-	$('#provider-list').on('click.eoos', '.eoos-provider, .eoos-provider-go', handleProviderClick);
-	$('.eoos-provider-go').on('click.eoos', handleProviderClick);
+	$('.eoos-provider-go').on('click.eoos', handleProviderGoClick);
 	$('#provider-connector-url').on('input.eoos', handleUrlInputChange);
 	$('#provider-connector-url').on('keypress.eoos', handleUrlInputKeyPress);
 	$('#go-collections').on('click.eoos', handleCollectionsClick);
 	$('#go-search').on('click.eoos', handleSearchClick);
 	$('.eoos-provider').on('click.eoos', handleProviderListClick);
 	$('.eoos-collection').on('click.eoos', handleCollectionListClick);
-	$('.eoos-search').on('click.eoos', handleProviderClick);
+	$('.eoos-search').on('click.eoos', handleSearchClick);
 
 
 	$('#property-fulltext').on('input.eoos', handlePropertyUse);
