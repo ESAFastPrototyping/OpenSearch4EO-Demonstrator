@@ -9,7 +9,7 @@ var handleUrlInputChange = function() {
 var handleUrlInputKeyPress = function(e) {
 	if ( e.which == 13 ) {
 		e.preventDefault();
-		window.location.href = "3.html";
+		window.location.href = "index.html";
 	}
 };
 var handlePropertyUse = function(e) {
@@ -18,7 +18,7 @@ var handlePropertyUse = function(e) {
 	//$('#search-submit').text('Search');
 };
 var handleSearchClick = function() {
-	window.location.href = "3.html";
+	window.location.href = "index.html";
 };
 var handleSearchBackClick = function() {
 	window.location.href = "1.html";
