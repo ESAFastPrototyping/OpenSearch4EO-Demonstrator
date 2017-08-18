@@ -348,6 +348,14 @@ button:not(:disabled):hover {
 }
 
 
+.sidebar-block-screen {
+	display: none;
+}
+.sidebar-block-screen.active {
+	display: block;
+}
+
+
 .sidebar-tab {
 	flex-grow: 1;
 	display: none;
