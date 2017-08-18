@@ -72,13 +72,37 @@ var handleCollectionListClick = function(e) {
 };
 
 
+
+
+
+var setProvider = function() {
+	$('#provider-header').removeClass('unset');
+};
+var setCollection = function() {
+	setProvider();
+	$('#collection-header').removeClass('unset');
+};
+
+var switchSidebarBlock = function(id) {
+	$('.sidebar-block').removeClass('active');
+	$('#' + id + '-header').addClass('active');
+	$('#' + id + '-content').addClass('active');
+};
+
 var handleSidebarBlockClick = function(e) {
 	var target = $(e.currentTarget).closest('.sidebar-block');
-	var headerId = target.attr("id");
-	var contentId = headerId.replace(/-header/, '-content');
-	$('.sidebar-block').removeClass('active');
-	target.addClass('active');
-	$('#' + contentId).addClass('active');
+	var id = target.attr("id").split('-')[0];
+	switchSidebarBlock(id);
+};
+
+var handleSidebarProviderClick = function(e) {
+	setProvider();
+	switchSidebarBlock('provider');
+};
+
+var handleSidebarCollectionClick = function(e) {
+	setCollection();
+	switchSidebarBlock('collection');
 };
 
 
@@ -123,5 +147,7 @@ $(function() {
 
 
 	$('.sidebar-block.header').on('click.eoos', handleSidebarBlockClick);
+	$('.sidebar-block').on('click.eoos', '.sidebar-list-item.provider', handleSidebarProviderClick);
+	$('.sidebar-block').on('click.eoos', '.sidebar-list-item.collection', handleSidebarCollectionClick);
 
 });
