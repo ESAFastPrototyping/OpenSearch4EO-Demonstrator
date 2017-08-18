@@ -449,36 +449,28 @@ button:not(:disabled):hover {
 	display: flex;
 }
 
-#breadcrumbs, #sidebar-tabs {
-	background: #eee;
+.sidebar-tabs {
+/* 	background: #eee; */
 	height: 2rem;
 	line-height: 2rem;
 	padding: 0 .5rem;
 	font-size: .85rem;
-}
-#breadcrumbs > a {
-	text-decoration: none;
-	color: #666;
-}
-#breadcrumbs > a:hover {
-	text-decoration: underline;
-}
-#breadcrumbs > span {
-	padding: 0 .2rem;
-	color: #888;
+	margin-top: .3rem;
+	border-bottom: 1px solid #eee;
 }
 
-#sidebar-tabs > a {
+.sidebar-tabs > a {
 	display: inline-block;
 	padding: 0 1rem;
 	margin: 0 .1rem;
 	cursor: pointer;
-	background: rgba(255,255,255,.4);
+	border: 1px solid #eee;
+	border-bottom: 0;
 }
-#sidebar-tabs > a:hover {
-	background: rgba(255,255,255,.7);
+.sidebar-tabs > a:hover {
+	background: rgba(231, 244, 255, 0.3);
 }
-#sidebar-tabs > a.active {
+.sidebar-tabs > a.active {
 	background: #fff;
 }
 

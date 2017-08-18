@@ -43,20 +43,21 @@ var handleResultsExpandClick = function() {
 
 
 var handleTabClick = function(e) {
-	var target = $(e.currentTarget).closest('#sidebar-tabs > a');
+	var target = $(e.currentTarget).closest('.sidebar-tabs > a');
 	var tab = target.attr('data-for');
-	$('.sidebar-tab').removeClass('active');
-	$('#sidebar-tabs').find('a').removeClass('active');
+	var parent = target.closest('.sidebar-tabs').parent();
+	parent.find('.sidebar-tab').removeClass('active');
+	parent.find('.sidebar-tabs').find('a').removeClass('active');
 	$('#' + tab).addClass('active');
 	target.addClass('active');
 
-	if (tab == "tab-results") {
-		$('#timeline').show();
-	} else {
-		$('#timeline').hide();
-		$('#sidebar').removeClass('expanded');
-		$('#results-expand-button').text('Expand »');
-	}
+	//if (tab == "tab-results") {
+	//	$('#timeline').show();
+	//} else {
+	//	$('#timeline').hide();
+	//	$('#sidebar').removeClass('expanded');
+	//	$('#results-expand-button').text('Expand »');
+	//}
 
 };
 
@@ -128,7 +129,7 @@ $(function() {
 	$('#breadcrumbs').on('click.eoos', 'a', handleSearchBackClick);
 
 
-	$('#sidebar-tabs').on('click.eoos', 'a', handleTabClick);
+	$('.sidebar-tabs').on('click.eoos', 'a', handleTabClick);
 
 
 	$('#results-expand-button').on('click.eoos', handleResultsExpandClick);
