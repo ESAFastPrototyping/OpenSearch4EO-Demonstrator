@@ -71,6 +71,17 @@ var handleCollectionListClick = function(e) {
 	$('#searches').removeClass('hidden');
 };
 
+
+var handleSidebarBlockClick = function(e) {
+	var target = $(e.currentTarget).closest('.sidebar-block');
+	var headerId = target.attr("id");
+	var contentId = headerId.replace(/-header/, '-content');
+	$('.sidebar-block').removeClass('active');
+	target.addClass('active');
+	$('#' + contentId).addClass('active');
+};
+
+
 $(function() {
 
 	$('.eoos-provider-go').on('click.eoos', handleProviderGoClick);
@@ -109,5 +120,8 @@ $(function() {
 		wwd.addLayer(bingLayer);
 
 	}
+
+
+	$('.sidebar-block.header').on('click.eoos', handleSidebarBlockClick);
 
 });

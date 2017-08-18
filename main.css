@@ -312,6 +312,42 @@ button:not(:disabled):hover {
 	width: 100vw;
 }
 
+.sidebar-block {
+	flex-grow: 0;
+	background: #eee;
+}
+.sidebar-block.active {
+	background: #fff;
+}
+.sidebar-block.header {
+	border-top: 1px solid #ccc;
+}
+.sidebar-block.content {
+	height: 0;
+	overflow: hidden;
+}
+.sidebar-block.content.active {
+	height: auto;
+	flex-grow: 1;
+	overflow-y: auto;
+}
+
+.sidebar-block.header:not(.active) {
+	cursor: pointer;
+}
+
+.sidebar-block#eoos-header {
+	background: #cdf;
+	height: 1.75rem;
+}
+.sidebar-block#eoos-header span {
+	display: block;
+	height: 100%;
+	line-height: 1.75rem;
+	padding: 0 1rem;
+}
+
+
 .sidebar-tab {
 	flex-grow: 1;
 	display: none;
@@ -819,4 +855,5 @@ body.eoos-index {
 	padding-left: 0;
 	border: 0;
 }
+
 
