@@ -415,8 +415,25 @@ button:not(:disabled):hover {
 	border: 0;
 }
 
-
-
+.sidebar-block h3 {
+	font-weight: 400;
+	text-transform: uppercase;
+	font-size: .75rem;
+	letter-spacing: .03rem;
+	padding: 0 .5rem;
+	color: #666;
+	margin: 1.5rem 0 .2rem 0;
+}
+.sidebar-list-more {
+	margin-left: 1.25rem;
+	font-size: .75rem;
+	color: #888;
+	cursor: pointer;
+	text-decoration: none;
+}
+.sidebar-list-more:hover {
+	text-decoration: underline;
+}
 
 
 
@@ -777,25 +794,6 @@ body.eoos-index {
 	background: rgba(153, 204, 255, .4);
 }
 
-#shortcuts {
-	max-width: 90rem;
-	margin: 0 auto;
-	padding-top: 3rem;
-	display: flex;
-	justify-content: space-between;
-}
-#shortcuts > div {
-	flex-grow: 1;
-}
-#providers {
-	width: 20%;
-}
-#collections {
-	width: 40%;
-}
-#searches {
-	width: 40%;
-}
 
 #shortcuts h3 {
 	font-size: .85rem;
@@ -806,65 +804,33 @@ body.eoos-index {
 	color: #666;
 }
 
-.eoos-provider,
-.eoos-collection,
-.eoos-search {
+.sidebar-list {
+	padding: 0 .5rem;
+}
+
+.sidebar-list-item {
 	padding: .7rem;
 	border: 0;
 	cursor: pointer;
-	border-bottom: 1px solid rgba(183, 183, 183, 0.3);
+	border-bottom: 1px solid rgba(183, 183, 183, 0.2);
 	position: relative;
 }
-.eoos-provider:last-of-type, 
-.eoos-collection:last-of-type, 
-.eoos-search:last-of-type {
+.sidebar-list-item:last-of-type {
 	border: 0;
 }
-.eoos-provider > h4,
-.eoos-collection > h4,
-.eoos-search > h4 {
+.sidebar-list-item > h4 {
 	margin: 0;
 	font-size: 1rem;
 	font-weight: 400;
 }
-.eoos-provider.active {
-	background: #fff;
-}
-.eoos-provider:not(.active):hover {
-	background: rgba(255, 255, 255, .5);
-}
-.eoos-collection.active {
+.sidebar-list-item.active {
 	background: rgb(244, 247, 249);
 	/* 	background: #ddd; */
 }
-.eoos-collection:not(.active):hover {
+.sidebar-list-item:not(.active):hover {
 	background: rgba(244, 247, 249, 0.66);
 }
-.eoos-search:not(.active):hover {
-	background: rgba(255, 255, 255, .5);
-}
 
-.eoos-search.active {
-
-}
-
-#collections {
-	background: #fff;
-	padding: .5rem 0 .5rem .5rem;
-}
-#searches {
-	background: rgb(244, 247, 249);
-	/* 	background: #ddd; */
-	padding: .5rem 0 .5rem .5rem;
-}
-#collections.hidden,
-#searches.hidden {
-	background: transparent;
-}
-#collections.hidden > div,
-#searches.hidden > div {
-	display: none;
-}
 
 
 
