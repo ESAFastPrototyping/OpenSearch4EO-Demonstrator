@@ -1,10 +1,8 @@
-import WorldWind from './worldwind/worldwind';
+// import WorldWind from './worldwind/worldwind';
+let WorldWind = undefined;
 import $ from 'jquery';
 
 export default function Old(){
-	var handleProviderGoClick = function() {
-		window.location.href = "2.html";
-	};
 	var handleUrlInputChange = function() {
 		$('#add-connector').find('.eoos-provider-go').addClass('highlighted');
 	};
@@ -24,9 +22,6 @@ export default function Old(){
 	};
 	var handleSearchBackClick = function() {
 		window.location.href = "1.html";
-	};
-	var handleCollectionsClick = function() {
-		window.location.href = "2.html";
 	};
 
 
@@ -111,10 +106,8 @@ export default function Old(){
 
 	$(function() {
 
-		$('.eoos-provider-go').on('click.eoos', handleProviderGoClick);
 		$('#provider-connector-url').on('input.eoos', handleUrlInputChange);
 		$('#provider-connector-url').on('keypress.eoos', handleUrlInputKeyPress);
-		$('#go-collections').on('click.eoos', handleCollectionsClick);
 		$('#go-search').on('click.eoos', handleSearchClick);
 		$('.eoos-provider').on('click.eoos', handleProviderListClick);
 		$('.eoos-collection').on('click.eoos', handleCollectionListClick);
@@ -136,7 +129,7 @@ export default function Old(){
 
 		$('#results-expand-button').on('click.eoos', handleResultsExpandClick);
 
-		if($('#wwd-results').length) {
+		if(WorldWind !== undefined) {
 
 			var wwd = new WorldWind.WorldWindow("wwd-results");
 

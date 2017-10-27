@@ -1,6 +1,18 @@
 import React, {Component} from 'react';
+import Connector from './components/Connector';
+
 
 export default class App extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            searchService: {}
+        }
+        this.connect = this.connect.bind(this);
+    }
+    connect(searchService){
+        this.setState({searchService: searchService});
+    }
     render(){
         return (
             <div>
@@ -10,8 +22,6 @@ export default class App extends Component {
 
                 	<div id="sidebar">
 
-
-
                 		<div className="sidebar-block header active" id="eoos-header">
                 			<span>EO OpenSearch</span>
                 		</div>
@@ -19,14 +29,7 @@ export default class App extends Component {
 
                 		<div className="sidebar-block content active" id="eoos-content">
 
-                			<div className="sidebar-connector">
-                				<label htmlFor="provider-connector-url">
-                					Address of the OpenSearch Description Document <br/>
-                					(Collection or Product Search)
-                					<input type="url" id="provider-connector-url" />
-                					<div className="eoos-provider-go"></div>
-                				</label>
-                			</div>
+                			<Connector connect = {this.connect}/>
 
                 			<div>
                 				<h3>Saved providers</h3>
