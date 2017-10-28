@@ -374,7 +374,6 @@ button:not(:disabled):hover {
 	margin-right: 10rem;
 }
 .sidebar-header-change {
-	display: none;
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -394,6 +393,10 @@ button:not(:disabled):hover {
 	display: block;
 	padding: 0 .5rem .5rem .5rem;
 	font-weight: bold;
+}
+.sidebar-text{
+	display: block;
+	padding: 0 .5rem .5rem .5rem;
 }
 
 .sidebar-block-screen {
@@ -890,5 +893,3 @@ body.eoos-index {
 	padding-left: 0;
 	border: 0;
 }
-
-

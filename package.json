@@ -6,7 +6,8 @@
   "scripts": {
     "babel": "babel --presets es2015 js/main.js -o build/main.bundle.js",
     "build": "webpack",
-    "start": "http-server"
+    "start": "http-server",
+    "watch": "webpack --progress --colors --watch"
   },
   "keywords": [],
   "author": "",
