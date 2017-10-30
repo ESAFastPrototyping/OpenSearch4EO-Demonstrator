@@ -7,10 +7,12 @@ export default class App extends Component {
     constructor(props){
         super(props);
         this.state = {
-            searchService: {}
+            searchService: {},
+            currentResult : {}
         }
         this.connect = this.connect.bind(this);
         this.resetService = this.resetService.bind(this);
+        this.updateResult = this.updateResult.bind(this);
     }
     connect(searchService){
         this.setState({searchService: searchService});
@@ -18,11 +20,15 @@ export default class App extends Component {
     resetService(){
         this.setState({searchService: {}});
     }
+    updateResult(result){
+        this.setState({currentResult: result});
+    }
     render(){
         return (
             <div>
-                <Map/>
-                <Sidebar connect = {this.connect} searchService = {this.state.searchService} resetService = {this.resetService}/>
+                <Map currentResult = {this.state.currentResult}/>
+                <Sidebar connect = {this.connect} searchService = {this.state.searchService}
+                    resetService = {this.resetService} updateResult = {this.updateResult}/>
 
                     {/*
                 	<div id="timeline" style="display: none">

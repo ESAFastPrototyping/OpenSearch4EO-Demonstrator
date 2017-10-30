@@ -3,7 +3,7 @@ import Connector from './Connector';
 import SidebarHeader from './SidebarHeader';
 import CollectionSearch from './CollectionSearch';
 
-export default class  extends Component {
+export default class SideBar extends Component {
     constructor(props){
         super(props);
     }
@@ -14,7 +14,7 @@ export default class  extends Component {
 
                 <div className="sidebar-block content active" id="eoos-content">
                     {this.props.searchService.descriptionDocument ?
-                        <CollectionSearch searchService = {this.props.searchService}/>
+                        <CollectionSearch searchService = {this.props.searchService} updateResult = {this.props.updateResult}/>
                         :
                         <Connector connect = {this.props.connect}/>
                     }
