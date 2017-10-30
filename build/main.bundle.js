@@ -65,6 +65,21 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+if (process.env.NODE_ENV === 'production') {
+  module.exports = __webpack_require__(18);
+} else {
+  module.exports = __webpack_require__(19);
+}
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ }),
+/* 1 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -254,21 +269,6 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-if (process.env.NODE_ENV === 'production') {
-  module.exports = __webpack_require__(18);
-} else {
-  module.exports = __webpack_require__(19);
-}
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -368,7 +368,7 @@ function invariant(condition, format, a, b, c, d, e, f) {
 }
 
 module.exports = invariant;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 4 */
@@ -700,7 +700,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 module.exports = emptyObject;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 7 */
@@ -769,7 +769,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 module.exports = warning;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 8 */
@@ -836,7 +836,7 @@ function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
 
 module.exports = checkPropTypes;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 9 */
@@ -1011,7 +1011,7 @@ var EventListener = {
 };
 
 module.exports = EventListener;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 13 */
@@ -1206,7 +1206,7 @@ module.exports = getActiveElement;
 "use strict";
 
 
-var _react = __webpack_require__(1);
+var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -2958,7 +2958,7 @@ module.exports = ReactEntry;
 })();
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 20 */
@@ -3004,7 +3004,7 @@ if (process.env.NODE_ENV === 'production') {
   module.exports = __webpack_require__(24);
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 21 */
@@ -3021,7 +3021,7 @@ if (process.env.NODE_ENV === 'production') {
  LICENSE file in the root directory of this source tree.
  Modernizr 3.0.0pre (Custom Build) | MIT
 */
-var aa=__webpack_require__(1);__webpack_require__(3);var l=__webpack_require__(10),n=__webpack_require__(4),ba=__webpack_require__(12),ca=__webpack_require__(2),da=__webpack_require__(6),ea=__webpack_require__(13),fa=__webpack_require__(14),ha=__webpack_require__(15),ia=__webpack_require__(16);
+var aa=__webpack_require__(0);__webpack_require__(3);var l=__webpack_require__(10),n=__webpack_require__(4),ba=__webpack_require__(12),ca=__webpack_require__(2),da=__webpack_require__(6),ea=__webpack_require__(13),fa=__webpack_require__(14),ha=__webpack_require__(15),ia=__webpack_require__(16);
 function w(a){for(var b=arguments.length-1,c="Minified React error #"+a+"; visit http://facebook.github.io/react/docs/error-decoder.html?invariant\x3d"+a,d=0;d<b;d++)c+="\x26args[]\x3d"+encodeURIComponent(arguments[d+1]);b=Error(c+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings.");b.name="Invariant Violation";b.framesToPop=1;throw b;}aa?void 0:w("227");
 function ja(a){switch(a){case "svg":return"http://www.w3.org/2000/svg";case "math":return"http://www.w3.org/1998/Math/MathML";default:return"http://www.w3.org/1999/xhtml"}}
 var ka={Namespaces:{html:"http://www.w3.org/1999/xhtml",mathml:"http://www.w3.org/1998/Math/MathML",svg:"http://www.w3.org/2000/svg"},getIntrinsicNamespace:ja,getChildNamespace:function(a,b){return null==a||"http://www.w3.org/1999/xhtml"===a?ja(b):"http://www.w3.org/2000/svg"===a&&"foreignObject"===b?"http://www.w3.org/1999/xhtml":a}},la=null,oa={};
@@ -3346,7 +3346,7 @@ if (process.env.NODE_ENV !== "production") {
 
 'use strict';
 
-var react = __webpack_require__(1);
+var react = __webpack_require__(0);
 var invariant = __webpack_require__(3);
 var ExecutionEnvironment = __webpack_require__(10);
 var _assign = __webpack_require__(4);
@@ -20552,7 +20552,7 @@ module.exports = ReactDOMFiberEntry;
 })();
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 25 */
@@ -20806,7 +20806,7 @@ if (process.env.NODE_ENV !== 'production') {
   module.exports = __webpack_require__(33)();
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 32 */
@@ -21356,7 +21356,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
   return ReactPropTypes;
 };
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 33 */
@@ -21436,7 +21436,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(1);
+var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -21512,7 +21512,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(1);
+var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -21562,7 +21562,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(1);
+var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -22184,7 +22184,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(1);
+var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -23510,7 +23510,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
                         this.relation = options.relation || defaultOptions.relation;
 
                         //A flag to indicate if the request should include credentials.
-                        this.witchCredentials = options.witchCredentials || defaultOptions.witchCredentials;
+                        this.withCredentials = options.withCredentials || defaultOptions.withCredentials;
 
                         //A timeout in milliseconds for the ajax request
                         this.timeout = options.timeout || defaultOptions.timeout;
@@ -23545,7 +23545,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
                         encType: 'application/x-www-form-urlencoded',
                         type: '',
                         relation: 'results',
-                        witchCredentials: false,
+                        withCredentials: false,
                         timeout: 0,
                         headers: {},
                         body: null,
@@ -23625,7 +23625,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(1);
+var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -23671,7 +23671,7 @@ var SidebarHeader = function (_Component) {
                         "EO OpenSearch"
                     )
                 ),
-                this.props.searchService.descriptionDocument && _react2.default.createElement(
+                dd && _react2.default.createElement(
                     "div",
                     { className: "sidebar-block header", id: "provider-header" },
                     _react2.default.createElement(
@@ -23712,7 +23712,451 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(1);
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Search = __webpack_require__(48);
+
+var _Search2 = _interopRequireDefault(_Search);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var CollectionSearch = function (_Component) {
+    _inherits(CollectionSearch, _Component);
+
+    function CollectionSearch(props) {
+        _classCallCheck(this, CollectionSearch);
+
+        var _this = _possibleConstructorReturn(this, (CollectionSearch.__proto__ || Object.getPrototypeOf(CollectionSearch)).call(this, props));
+
+        _this.state = {
+            selected: "provider-base"
+        };
+        _this.handleClick = _this.handleClick.bind(_this);
+        return _this;
+    }
+
+    _createClass(CollectionSearch, [{
+        key: 'handleClick',
+        value: function handleClick(id) {
+            this.setState({
+                selected: id
+            });
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var description = "";
+            var longName = "";
+            if (this.props.searchService.descriptionDocument) {
+                description = this.props.searchService.descriptionDocument.description;
+                longName = this.props.searchService.descriptionDocument.longName;
+            }
+            return _react2.default.createElement(
+                'div',
+                { className: 'sidebar-block content active', id: 'provider-content' },
+                _react2.default.createElement(
+                    'div',
+                    { className: 'sidebar-tabs' },
+                    _react2.default.createElement(
+                        'a',
+                        { 'data-for': 'provider-base', className: this.state.selected === "provider-base" ? "active" : "", onClick: this.handleClick.bind(this, "provider-base") },
+                        'Provider'
+                    ),
+                    _react2.default.createElement(
+                        'a',
+                        { 'data-for': 'provider-search', className: this.state.selected === "provider-search" ? "active" : "", onClick: this.handleClick.bind(this, "provider-search") },
+                        'Collection search'
+                    ),
+                    _react2.default.createElement(
+                        'a',
+                        { 'data-for': 'provider-results', className: this.state.selected === "provider-results" ? "active" : "", onClick: this.handleClick.bind(this, "provider-results") },
+                        'Search results'
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: "sidebar-tab " + (this.state.selected === "provider-base" ? "active" : ""), id: 'provider-base' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'sidebar-base-description' },
+                        _react2.default.createElement(
+                            'span',
+                            { className: 'sidebar-header-content-name' },
+                            longName
+                        ),
+                        _react2.default.createElement(
+                            'span',
+                            { className: 'sidebar-text' },
+                            description
+                        )
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: "sidebar-tab " + (this.state.selected === "provider-search" ? "active" : ""), id: 'provider-search' },
+                    _react2.default.createElement(_Search2.default, { searchService: this.props.searchService })
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: "sidebar-tab " + (this.state.selected === "provider-results" ? "active" : ""), id: 'provider-results' },
+                    _react2.default.createElement(
+                        'h3',
+                        null,
+                        'Found collections'
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'sidebar-list' },
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'sidebar-list-item collection' },
+                            _react2.default.createElement(
+                                'span',
+                                null,
+                                'Collection One'
+                            )
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'sidebar-list-item collection' },
+                            _react2.default.createElement(
+                                'span',
+                                null,
+                                'Collection Two'
+                            )
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'sidebar-list-item collection' },
+                            _react2.default.createElement(
+                                'span',
+                                null,
+                                'Collection Three'
+                            )
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return CollectionSearch;
+}(_react.Component);
+
+exports.default = CollectionSearch;
+
+/***/ }),
+/* 48 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _InputText = __webpack_require__(49);
+
+var _InputText2 = _interopRequireDefault(_InputText);
+
+var _InputArea = __webpack_require__(50);
+
+var _InputArea2 = _interopRequireDefault(_InputArea);
+
+var _InputTimeRange = __webpack_require__(51);
+
+var _InputTimeRange2 = _interopRequireDefault(_InputTimeRange);
+
+var _InputSelector = __webpack_require__(52);
+
+var _InputSelector2 = _interopRequireDefault(_InputSelector);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Search = function (_Component) {
+    _inherits(Search, _Component);
+
+    function Search(props) {
+        _classCallCheck(this, Search);
+
+        var _this = _possibleConstructorReturn(this, (Search.__proto__ || Object.getPrototypeOf(Search)).call(this, props));
+
+        _this.state = {
+            text: ""
+        };
+        _this.changeText = _this.changeText.bind(_this);
+        _this.search = _this.search.bind(_this);
+        return _this;
+    }
+
+    _createClass(Search, [{
+        key: 'changeText',
+        value: function changeText(text) {
+            this.setState({ text: text });
+        }
+    }, {
+        key: 'search',
+        value: function search() {
+            var service = this.props.searchService;
+            service.search([{ name: 'query', value: this.state.text }], { relation: 'collection' }).then(function (result) {
+                return console.log(result);
+            }).catch(function (err) {
+                return console.log(err);
+            });
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'div',
+                { className: 'search-properties' },
+                _react2.default.createElement(
+                    'button',
+                    { onClick: this.search },
+                    'Search'
+                ),
+                _react2.default.createElement(_InputText2.default, { text: this.state.text, changeText: this.changeText }),
+                _react2.default.createElement(_InputArea2.default, null),
+                _react2.default.createElement(_InputTimeRange2.default, null),
+                _react2.default.createElement(_InputSelector2.default, { category: 'platform' }),
+                _react2.default.createElement(_InputSelector2.default, { category: 'instrument' }),
+                _react2.default.createElement(_InputSelector2.default, { category: 'organization' })
+            );
+        }
+    }]);
+
+    return Search;
+}(_react.Component);
+
+exports.default = Search;
+
+/***/ }),
+/* 49 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var InputText = function (_Component) {
+    _inherits(InputText, _Component);
+
+    function InputText(props) {
+        _classCallCheck(this, InputText);
+
+        var _this = _possibleConstructorReturn(this, (InputText.__proto__ || Object.getPrototypeOf(InputText)).call(this, props));
+
+        _this.handleChange = _this.handleChange.bind(_this);
+        return _this;
+    }
+
+    _createClass(InputText, [{
+        key: "handleChange",
+        value: function handleChange(event) {
+            this.props.changeText(event.target.value);
+        }
+    }, {
+        key: "render",
+        value: function render() {
+            return _react2.default.createElement(
+                "div",
+                { className: "eoos-property" },
+                _react2.default.createElement(
+                    "div",
+                    { className: "eoos-property-content" },
+                    _react2.default.createElement(
+                        "h2",
+                        null,
+                        "Text"
+                    ),
+                    _react2.default.createElement(
+                        "div",
+                        { className: "eoos-property-input" },
+                        _react2.default.createElement("input", { type: "text", id: "collection-fulltext", onChange: this.handleChange, value: this.props.text })
+                    )
+                ),
+                _react2.default.createElement("div", { className: "eoos-property-indicator" })
+            );
+        }
+    }]);
+
+    return InputText;
+}(_react.Component);
+
+exports.default = InputText;
+
+/***/ }),
+/* 50 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var InputArea = function (_Component) {
+    _inherits(InputArea, _Component);
+
+    function InputArea(props) {
+        _classCallCheck(this, InputArea);
+
+        return _possibleConstructorReturn(this, (InputArea.__proto__ || Object.getPrototypeOf(InputArea)).call(this, props));
+    }
+
+    _createClass(InputArea, [{
+        key: "render",
+        value: function render() {
+            return _react2.default.createElement(
+                "div",
+                { className: "eoos-property" },
+                _react2.default.createElement(
+                    "div",
+                    { className: "eoos-property-content" },
+                    _react2.default.createElement(
+                        "h2",
+                        null,
+                        "Search area"
+                    ),
+                    _react2.default.createElement(
+                        "div",
+                        { className: "eoos-property-input" },
+                        _react2.default.createElement("input", { type: "text", id: "collection-location-find" })
+                    ),
+                    _react2.default.createElement(
+                        "button",
+                        { id: "collection-location-draw-in-map" },
+                        "Draw in map"
+                    ),
+                    _react2.default.createElement(
+                        "button",
+                        { id: "collection-location-load-file" },
+                        "Load from file"
+                    )
+                ),
+                _react2.default.createElement("div", { className: "eoos-property-indicator" })
+            );
+        }
+    }]);
+
+    return InputArea;
+}(_react.Component);
+
+exports.default = InputArea;
+
+/***/ }),
+/* 51 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var InputTimeRange = function (_Component) {
+    _inherits(InputTimeRange, _Component);
+
+    function InputTimeRange(props) {
+        _classCallCheck(this, InputTimeRange);
+
+        return _possibleConstructorReturn(this, (InputTimeRange.__proto__ || Object.getPrototypeOf(InputTimeRange)).call(this, props));
+    }
+
+    _createClass(InputTimeRange, [{
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement('div', null);
+        }
+    }]);
+
+    return InputTimeRange;
+}(_react.Component);
+
+exports.default = InputTimeRange;
+
+/***/ }),
+/* 52 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -23736,209 +24180,24 @@ var _class = function (_Component) {
     _createClass(_class, [{
         key: "render",
         value: function render() {
-            var description = "";
-            var longName = "";
-            if (this.props.searchService.descriptionDocument) {
-                description = this.props.searchService.descriptionDocument.description;
-                longName = this.props.searchService.descriptionDocument.longName;
-            }
             return _react2.default.createElement(
                 "div",
-                { className: "sidebar-block content active", id: "provider-content" },
+                { className: "eoos-property" },
                 _react2.default.createElement(
                     "div",
-                    { className: "sidebar-tabs" },
+                    { className: "eoos-property-content" },
                     _react2.default.createElement(
-                        "a",
-                        { "data-for": "provider-base", className: "active" },
-                        "Provider"
-                    ),
-                    _react2.default.createElement(
-                        "a",
-                        { "data-for": "provider-search" },
-                        "Collection search"
-                    ),
-                    _react2.default.createElement(
-                        "a",
-                        { "data-for": "provider-results" },
-                        "Search results"
-                    )
-                ),
-                _react2.default.createElement(
-                    "div",
-                    { className: "sidebar-tab active", id: "provider-base" },
-                    _react2.default.createElement(
-                        "div",
-                        { className: "sidebar-base-description" },
-                        _react2.default.createElement(
-                            "span",
-                            { className: "sidebar-header-content-name" },
-                            longName
-                        ),
-                        _react2.default.createElement(
-                            "span",
-                            { className: "sidebar-text" },
-                            description
-                        )
-                    )
-                ),
-                _react2.default.createElement(
-                    "div",
-                    { className: "sidebar-tab", id: "provider-search" },
-                    _react2.default.createElement(
-                        "div",
-                        { className: "search-properties" },
-                        _react2.default.createElement(
-                            "div",
-                            { className: "eoos-property" },
-                            _react2.default.createElement(
-                                "div",
-                                { className: "eoos-property-content" },
-                                _react2.default.createElement(
-                                    "h2",
-                                    null,
-                                    "Text"
-                                ),
-                                _react2.default.createElement(
-                                    "div",
-                                    { className: "eoos-property-input" },
-                                    _react2.default.createElement(
-                                        "label",
-                                        null,
-                                        _react2.default.createElement("input", { type: "text", id: "collection-fulltext" })
-                                    )
-                                )
-                            ),
-                            _react2.default.createElement("div", { className: "eoos-property-indicator" })
-                        ),
-                        _react2.default.createElement(
-                            "div",
-                            { className: "eoos-property" },
-                            _react2.default.createElement(
-                                "div",
-                                { className: "eoos-property-content" },
-                                _react2.default.createElement(
-                                    "h2",
-                                    null,
-                                    "Search area"
-                                ),
-                                _react2.default.createElement(
-                                    "div",
-                                    { className: "eoos-property-input" },
-                                    _react2.default.createElement("input", { type: "text", id: "collection-location-find" })
-                                ),
-                                _react2.default.createElement(
-                                    "button",
-                                    { id: "collection-location-draw-in-map" },
-                                    "Draw in map"
-                                ),
-                                _react2.default.createElement(
-                                    "button",
-                                    { id: "collection-location-load-file" },
-                                    "Load from file"
-                                )
-                            ),
-                            _react2.default.createElement("div", { className: "eoos-property-indicator" })
-                        ),
-                        _react2.default.createElement(
-                            "div",
-                            { className: "eoos-property" },
-                            _react2.default.createElement(
-                                "div",
-                                { className: "eoos-property-content" },
-                                _react2.default.createElement(
-                                    "h2",
-                                    null,
-                                    "Platform"
-                                ),
-                                _react2.default.createElement(
-                                    "div",
-                                    { className: "eoos-property-input select" },
-                                    _react2.default.createElement("input", { type: "text", id: "collection-platform" })
-                                )
-                            ),
-                            _react2.default.createElement("div", { className: "eoos-property-indicator" })
-                        ),
-                        _react2.default.createElement(
-                            "div",
-                            { className: "eoos-property" },
-                            _react2.default.createElement(
-                                "div",
-                                { className: "eoos-property-content" },
-                                _react2.default.createElement(
-                                    "h2",
-                                    null,
-                                    "Instrument"
-                                ),
-                                _react2.default.createElement(
-                                    "div",
-                                    { className: "eoos-property-input select" },
-                                    _react2.default.createElement("input", { type: "text", id: "collection-instrument" })
-                                )
-                            ),
-                            _react2.default.createElement("div", { className: "eoos-property-indicator" })
-                        ),
-                        _react2.default.createElement(
-                            "div",
-                            { className: "eoos-property" },
-                            _react2.default.createElement(
-                                "div",
-                                { className: "eoos-property-content" },
-                                _react2.default.createElement(
-                                    "h2",
-                                    null,
-                                    "Organisation"
-                                ),
-                                _react2.default.createElement(
-                                    "div",
-                                    { className: "eoos-property-input select" },
-                                    _react2.default.createElement("input", { type: "text", id: "collection-organisation" })
-                                )
-                            ),
-                            _react2.default.createElement("div", { className: "eoos-property-indicator" })
-                        )
-                    )
-                ),
-                _react2.default.createElement(
-                    "div",
-                    { className: "sidebar-tab", id: "provider-results" },
-                    _react2.default.createElement(
-                        "h3",
+                        "h2",
                         null,
-                        "Found collections"
+                        this.props.category.charAt(0).toUpperCase() + this.props.category.slice(1)
                     ),
                     _react2.default.createElement(
                         "div",
-                        { className: "sidebar-list" },
-                        _react2.default.createElement(
-                            "div",
-                            { className: "sidebar-list-item collection" },
-                            _react2.default.createElement(
-                                "span",
-                                null,
-                                "Collection One"
-                            )
-                        ),
-                        _react2.default.createElement(
-                            "div",
-                            { className: "sidebar-list-item collection" },
-                            _react2.default.createElement(
-                                "span",
-                                null,
-                                "Collection Two"
-                            )
-                        ),
-                        _react2.default.createElement(
-                            "div",
-                            { className: "sidebar-list-item collection" },
-                            _react2.default.createElement(
-                                "span",
-                                null,
-                                "Collection Three"
-                            )
-                        )
+                        { className: "eoos-property-input select" },
+                        _react2.default.createElement("input", { type: "text", id: "collection-" + this.props.category })
                     )
-                )
+                ),
+                _react2.default.createElement("div", { className: "eoos-property-indicator" })
             );
         }
     }]);

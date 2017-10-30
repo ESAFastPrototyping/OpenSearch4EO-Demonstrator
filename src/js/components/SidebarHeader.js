@@ -16,7 +16,7 @@ export default class SidebarHeader extends Component {
         		<div className={"sidebar-block header " + (dd ? "" : "active" )} id="eoos-header" onClick = {this.handleClick}>
         			<span>EO OpenSearch</span>
         		</div>
-                {this.props.searchService.descriptionDocument &&
+                {dd &&
                     <div className="sidebar-block header" id="provider-header">
                         <span className="sidebar-header-name">Provider</span>
                         <a className="sidebar-header-change" onClick = {this.handleClick}>change</a>
