@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import OpenSearchService from '../openSearch/OpenSearchService';
+import OpenSearchService from '../WorldWind/ogc/openSearch/OpenSearchService';
 
 export default class Connector extends Component {
     constructor(props){
