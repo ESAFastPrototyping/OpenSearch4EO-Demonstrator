@@ -20,7 +20,6 @@ export default class Search extends Component {
         let service = this.props.searchService;
         service.search([{name: 'query', value: this.state.text}], {relation: 'collection'})
         .then(result => {
-            console.log(result);
             this.props.updateResult(result);
         })
         .catch(err => console.log(err));

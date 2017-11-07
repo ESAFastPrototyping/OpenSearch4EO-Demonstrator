@@ -4,21 +4,26 @@ import WorldWind from '../WorldWind/WorldWind';
 export default class Map extends Component {
     constructor(props){
         super(props);
+        this.state = {
+            wwd: null
+        }
     }
     componentDidMount(){
-        console.log(WorldWind);
-        var worldwind = new WorldWind.WorldWindow("wwd-results");
-        var bingLayer = new WorldWind.BingAerialLayer(null);
+        let wwd = new WorldWind.WorldWindow("wwd-results");
+        let bingLayer = new WorldWind.BingAerialLayer(null);
 		bingLayer.detailControl = 1.0;
 		bingLayer.enabled = true;
 
-		worldwind.addLayer(bingLayer);
+		wwd.addLayer(bingLayer);
+        wwd.addLayer(new WorldWind.CompassLayer());
+        wwd.addLayer(new WorldWind.ViewControlsLayer(wwd));
+
+        wwd.redraw();
+
+        this.setState({wwd: wwd});
     }
-    componentWillUpdate(){
-        if (!isEmpty(this.props.currentResult)){
-            var geo = new WorldWind.GeoJSONParser(this.props.currentResult);
-            console.log(geo);
-        }
+    componentDidUpdate(){
+        let myLayer = new WorldWind.RenderableLayer();
     }
     render(){
         return (
@@ -30,7 +35,7 @@ export default class Map extends Component {
 }
 
 function isEmpty(obj) {
-    for(var key in obj) {
+    for(let key in obj) {
         if(obj.hasOwnProperty(key))
             return false;
     }
