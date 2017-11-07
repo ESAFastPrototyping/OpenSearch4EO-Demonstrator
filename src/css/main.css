@@ -170,8 +170,7 @@ button:not(:disabled):hover {
 	width: 2.3rem;
 	margin: 0;
 }
-#timerange-from-year,
-#timerange-to-year {
+#timerange-year {
 	width: 3.45rem
 }
 .eoos-property-timerange-inputs > span {
