@@ -10,16 +10,9 @@ export default class InputText extends Component {
     }
     render(){
         return (
-            <div className="eoos-property">
-                <div className="eoos-property-content">
-                    <h2>Text</h2>
-                    <div className="eoos-property-input">
-                        <input type="text" id="collection-fulltext" onChange = {this.handleChange} value = {this.props.text}/>
-                    </div>
-                </div>
-                <div className="eoos-property-indicator"></div>
+            <div className="eoos-property-input">
+                <input type="text" id="collection-fulltext" onChange = {this.handleChange} value = {this.props.text}/>
             </div>
         )
     }
-
 }

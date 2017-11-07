@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import InputText from './InputText';
 import InputArea from './InputArea';
-import InputTimeRange from './InputTimeRange';
+import InputTime from './InputTime';
 import InputSelector from './InputSelector';
+import ContentBox from './ContentBox';
 
 export default class Search extends Component {
     constructor(props){
@@ -28,12 +29,25 @@ export default class Search extends Component {
         return (
             <div className="search-properties">
                 <button onClick = {this.search}>Search</button>
-                <InputText text = {this.state.text} changeText = {this.changeText} />
-                <InputArea />
-                <InputTimeRange />
-                <InputSelector category = "platform"/>
-                <InputSelector category = "instrument"/>
-                <InputSelector category = "organization"/>
+                <ContentBox title = "Text">
+                    <InputText text = {this.state.text} changeText = {this.changeText} />
+                </ContentBox>
+                <ContentBox title = "Search area">
+                    <InputArea />
+                </ContentBox>
+                <ContentBox title = "Time range">
+                    <InputTime label = "From"/>
+                    <InputTime label = "To"/>
+                </ContentBox>
+                <ContentBox title = "Platform">
+                    <InputSelector />
+                </ContentBox>
+                <ContentBox title = "Instrument">
+                    <InputSelector />
+                </ContentBox>
+                <ContentBox title = "Organization">
+                    <InputSelector/>
+                </ContentBox>
             </div>
         )
     }
