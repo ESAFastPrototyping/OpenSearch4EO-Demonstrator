@@ -12,12 +12,18 @@ export default class Search extends Component {
         this.state = {
             text: "",
             startDate: moment().subtract(1, 'years'),
-            endDate: moment()
+            endDate: moment(),
+            platform: "",
+            instrument: "",
+            organisation: ""
         };
 
         this.changeText = this.changeText.bind(this);
         this.changeStartDate = this.changeStartDate.bind(this);
         this.changeEndDate = this.changeEndDate.bind(this);
+        this.changePlatform = this.changePlatform.bind(this);
+        this.changeInstrument = this.changeInstrument.bind(this);
+        this.changeOrganisation = this.changeOrganisation.bind(this);
         this.search = this.search.bind(this);
     }
     changeText(text){
@@ -29,12 +35,24 @@ export default class Search extends Component {
     changeEndDate(date){
         this.setState({endDate: date});
     }
+    changePlatform(platform){
+        this.setState({platform: platform});
+    }
+    changeInstrument(instrument){
+        this.setState({instrument: instrument});
+    }
+    changeOrganisation(organisation){
+        this.setState({organisation: organisation});
+    }
     search(){
         let service = this.props.searchService;
         let searchParams = [
             {name: 'query', value: this.state.text},
             {name: 'startDate', value: this.state.startDate.toISOString()},
-            {name: 'endDate', value: this.state.endDate.toISOString()}
+            {name: 'endDate', value: this.state.endDate.toISOString()},
+            {name: 'platform', value: this.state.platform},
+            {name: 'instrument', value: this.state.instrument},
+            {name: 'organisationName', value: this.state.organisation}
         ];
         service.search(searchParams, {relation: 'collection'})
         .then(result => {
@@ -58,13 +76,13 @@ export default class Search extends Component {
                     <InputTime label = "To" changeDate = {this.changeEndDate} date = {this.state.endDate}/>
                 </ContentBox>
                 <ContentBox title = "Platform">
-                    <InputSelector />
+                    <InputSelector text = {this.state.platform} change = {this.state.changePlatform}/>
                 </ContentBox>
                 <ContentBox title = "Instrument">
-                    <InputSelector />
+                    <InputSelector text = {this.state.instrument} change = {this.state.changeInstrument}/>
                 </ContentBox>
-                <ContentBox title = "Organization">
-                    <InputSelector/>
+                <ContentBox title = "Organisation">
+                    <InputSelector text = {this.state.organisation} change = {this.state.changeOrganisation}/>
                 </ContentBox>
             </div>
         )
