@@ -42,8 +42,11 @@ export default class InputTime extends Component {
         this.props.changeDate(date);
     }
     changeMonths(event){
-        let val = event.target.value % 100;
-        let date = moment(this.props.date).month(val>12 ? 0 : (val < 1 ? 0 : val - 1));
+        let val = event.target.value;
+        const max = 12;
+        val = val>max ? val % 10 - 1 : val - 1;
+        val = val<0 ? 0 : val;
+        let date = moment(this.props.date).month(val);
         this.props.changeDate(date);
     }
     incrementDays(){
@@ -55,9 +58,11 @@ export default class InputTime extends Component {
         this.props.changeDate(date);
     }
     changeDays(event){
-        let val = event.target.value % 100;
-        let daysInMonth = moment(this.props.date).daysInMonth();
-        let date = moment(this.props.date).date(val>daysInMonth ? daysInMonth : (val < 1 ? 1 : val));
+        let val = event.target.value;
+        const max = moment(this.props.date).daysInMonth();
+        val = val>max ? val % 10 : val;
+        val = val<1 ? 1 : val;
+        let date = moment(this.props.date).date(val);
         this.props.changeDate(date);
     }
     incrementHours(){
