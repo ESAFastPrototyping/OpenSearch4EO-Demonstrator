@@ -36,7 +36,7 @@ define([
          *  - search used for querying the search engine
          *
          * By default this service can handle Atom for EO and geoJSON responses.
-         * Other types of response formats can by added with the registerParser method.
+         * Other types of response formats can be added with the registerParser method.
          *
          * @alias OpenSearchService
          * @constructor

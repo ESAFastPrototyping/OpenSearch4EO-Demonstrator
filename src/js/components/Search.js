@@ -76,13 +76,13 @@ export default class Search extends Component {
                     <InputTime label = "To" changeDate = {this.changeEndDate} date = {this.state.endDate}/>
                 </ContentBox>
                 <ContentBox title = "Platform">
-                    <InputSelector text = {this.state.platform} change = {this.state.changePlatform}/>
+                    <InputSelector text = {this.state.platform} change = {this.changePlatform}/>
                 </ContentBox>
                 <ContentBox title = "Instrument">
-                    <InputSelector text = {this.state.instrument} change = {this.state.changeInstrument}/>
+                    <InputSelector text = {this.state.instrument} change = {this.changeInstrument}/>
                 </ContentBox>
                 <ContentBox title = "Organisation">
-                    <InputSelector text = {this.state.organisation} change = {this.state.changeOrganisation}/>
+                    <InputSelector text = {this.state.organisation} change = {this.changeOrganisation}/>
                 </ContentBox>
             </div>
         )
