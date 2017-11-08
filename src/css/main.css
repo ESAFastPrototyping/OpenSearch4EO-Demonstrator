@@ -892,3 +892,10 @@ body.eoos-index {
 	padding-left: 0;
 	border: 0;
 }
+
+#collection-search-go {
+	width: 80%;
+	margin: 0.5rem 0 0.5rem 10%;
+	font-size: 1.3rem;
+	font-weight: bold;
+}

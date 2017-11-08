@@ -64,7 +64,7 @@ export default class Search extends Component {
     render(){
         return (
             <div className="search-properties">
-                <button onClick = {this.search}>Search</button>
+                <button onClick = {this.search} id = "collection-search-go">Search</button>
                 <ContentBox title = "Text">
                     <InputText text = {this.state.text} changeText = {this.changeText} />
                 </ContentBox>
