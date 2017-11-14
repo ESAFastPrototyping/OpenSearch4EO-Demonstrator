@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Search from './Search';
+import FoundCollections from './FoundCollections';
 
 export default class CollectionSearch extends Component {
     constructor(props){
@@ -41,24 +42,7 @@ export default class CollectionSearch extends Component {
                 </div>
 
                 <div className={"sidebar-tab " + (this.state.selected === "provider-results" ? "active": "")} id="provider-results">
-
-                    <h3>Found collections</h3>
-                    <div className="sidebar-list">
-
-                        <div className="sidebar-list-item collection">
-                            <span>Collection One</span>
-                        </div>
-
-                        <div className="sidebar-list-item collection">
-                            <span>Collection Two</span>
-                        </div>
-
-                        <div className="sidebar-list-item collection">
-                            <span>Collection Three</span>
-                        </div>
-
-                    </div>
-
+                    <FoundCollections collectionsResult = {this.props.collectionsResult}/>
                 </div>
 
             </div>

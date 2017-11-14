@@ -8,7 +8,7 @@ export default class App extends Component {
         super(props);
         this.state = {
             searchService: {},
-            currentResult : {}
+            collectionsResult: {}
         }
         this.connect = this.connect.bind(this);
         this.resetService = this.resetService.bind(this);
@@ -21,14 +21,15 @@ export default class App extends Component {
         this.setState({searchService: {}});
     }
     updateResult(result){
-        this.setState({currentResult: result});
+        this.setState({collectionsResult: result});
     }
     render(){
         return (
             <div>
-                <Map currentResult = {this.state.currentResult}/>
+                <Map collectionsResult = {this.state.collectionsResult}/>
                 <Sidebar connect = {this.connect} searchService = {this.state.searchService}
-                    resetService = {this.resetService} updateResult = {this.updateResult}/>
+                    resetService = {this.resetService} updateResult = {this.updateResult}
+                    collectionsResult = {this.state.collectionsResult}/>
             </div>
         );
     }

@@ -24,8 +24,8 @@ export default class Map extends Component {
     }
     componentDidUpdate(){
         let myLayer = new WorldWind.RenderableLayer();
-        if(!isEmpty(this.props.currentResult)){
-            let geoJSON = new WorldWind.GeoJSONParser(JSON.stringify(this.props.currentResult));
+        if(!isEmpty(this.props.collectionsResult)){
+            let geoJSON = new WorldWind.GeoJSONParser(JSON.stringify(this.props.collectionsResult));
             geoJSON.load(null, null, myLayer);
             console.log(geoJSON);
             this.state.wwd.addLayer(myLayer);
