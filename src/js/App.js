@@ -9,32 +9,38 @@ export default class App extends Component {
         this.state = {
             searchService: {},
             collectionsResult: {},
-            selectedCollection: {}
+            selectedCollection: {},
+            productsResult: {}
         }
         this.connect = this.connect.bind(this);
         this.resetService = this.resetService.bind(this);
-        this.updateResult = this.updateResult.bind(this);
+        this.updateCollections = this.updateCollections.bind(this);
+        this.updateProducts = this.updateProducts.bind(this);
         this.selectCollection = this.selectCollection.bind(this);
     }
     connect(searchService){
         this.setState({searchService: searchService});
     }
     resetService(){
-        this.setState({searchService: {}});
+        this.setState({searchService: {}, selectedCollection: {}, collectionResult: {}});
     }
-    updateResult(result){
+    updateCollections(result){
         this.setState({collectionsResult: result});
+    }
+    updateProducts(result){
+        this.setState({productsResult: result});
     }
     selectCollection(collection){
         this.setState({selectedCollection: collection});
     }
     render(){
-        console.log(this.state.selectedCollection);
+        console.log("collections", this.state.collectionsResult);
+        console.log("products", this.state.productsResult);
         return (
             <div>
                 <Map collectionsResult = {this.state.collectionsResult}/>
                 <Sidebar connect = {this.connect} resetService = {this.resetService}
-                    updateResult = {this.updateResult} selectCollection = {this.selectCollection}
+                    updateCollections = {this.updateCollections} updateProducts = {this.updateProducts} selectCollection = {this.selectCollection}
                     searchService = {this.state.searchService} collectionsResult = {this.state.collectionsResult}
                     selectedCollection = {this.state.selectedCollection}/>
             </div>

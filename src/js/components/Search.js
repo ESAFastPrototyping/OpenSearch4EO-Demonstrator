@@ -52,7 +52,8 @@ export default class Search extends Component {
             {name: 'endDate', value: this.state.endDate.toISOString()},
             {name: 'platform', value: this.state.platform},
             {name: 'instrument', value: this.state.instrument},
-            {name: 'organisationName', value: this.state.organisation}
+            {name: 'organisationName', value: this.state.organisation},
+            {name: 'parentIdentifier', value: this.props.parentIdentifier}
         ];
         service.search(searchParams, {relation: 'collection'})
         .then(result => {

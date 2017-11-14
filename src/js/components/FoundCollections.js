@@ -12,7 +12,7 @@ export default class FoundCollections extends Component {
         if (this.props.collectionsResult.features && this.props.collectionsResult.features.length > 0){
             collections = this.props.collectionsResult.features.map(collection => {
                     return (
-                        <div className="sidebar-list-item collection" key = {collection.identifier}
+                        <div className="sidebar-list-item collection" key = {collection.properties.identifier}
                             onClick = {this.handleClick.bind(this, collection)}>
                             <h4>{collection.properties.title}</h4>
                         </div>

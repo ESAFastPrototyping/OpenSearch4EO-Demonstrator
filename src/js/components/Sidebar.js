@@ -2,26 +2,33 @@ import React, { Component } from 'react';
 import Connector from './Connector';
 import SidebarHeader from './SidebarHeader';
 import CollectionSearch from './CollectionSearch';
+import ProductSearch from './ProductSearch';
 
 export default class SideBar extends Component {
     constructor(props){
         super(props);
     }
     render(){
+        let body;
+        if (this.props.selectedCollection.id && this.props.searchService.descriptionDocument){
+            body = <ProductSearch selectedCollection = {this.props.selectedCollection} updateResult = {this.props.updateProducts}
+                searchService = {this.props.searchService}/>;
+        }
+        else if (this.props.searchService.descriptionDocument){
+            body = <CollectionSearch updateResult = {this.props.updateCollections} selectCollection = {this.props.selectCollection}
+                searchService = {this.props.searchService} collectionsResult = {this.props.collectionsResult}/>;
+        }
+        else {
+            body = <Connector connect = {this.props.connect}/>
+        }
         return (
             <div id="sidebar">
                 <SidebarHeader searchService = {this.props.searchService} resetService = {this.props.resetService}/>
 
                 <div className="sidebar-block content active" id="eoos-content">
-                    {this.props.searchService.descriptionDocument ?
-                        <CollectionSearch updateResult = {this.props.updateResult} selectCollection = {this.props.selectCollection}
-                            searchService = {this.props.searchService} collectionsResult = {this.props.collectionsResult}/>
-                        :
-                        <Connector connect = {this.props.connect}/>
-                    }
+                    {body}
                 </div>
             </div>
         )
     }
-
 }
