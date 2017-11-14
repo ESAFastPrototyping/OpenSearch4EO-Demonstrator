@@ -42,7 +42,7 @@ export default class CollectionSearch extends Component {
                 </div>
 
                 <div className={"sidebar-tab " + (this.state.selected === "provider-results" ? "active": "")} id="provider-results">
-                    <FoundCollections collectionsResult = {this.props.collectionsResult}/>
+                    <FoundCollections collectionsResult = {this.props.collectionsResult} selectCollection = {this.props.selectCollection}/>
                 </div>
 
             </div>

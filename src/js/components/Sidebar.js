@@ -14,8 +14,8 @@ export default class SideBar extends Component {
 
                 <div className="sidebar-block content active" id="eoos-content">
                     {this.props.searchService.descriptionDocument ?
-                        <CollectionSearch searchService = {this.props.searchService} updateResult = {this.props.updateResult}
-                            collectionsResult = {this.props.collectionsResult}/>
+                        <CollectionSearch updateResult = {this.props.updateResult} selectCollection = {this.props.selectCollection}
+                            searchService = {this.props.searchService} collectionsResult = {this.props.collectionsResult}/>
                         :
                         <Connector connect = {this.props.connect}/>
                     }
