@@ -22,7 +22,7 @@ export default class App extends Component {
         this.setState({searchService: searchService});
     }
     resetService(){
-        this.setState({searchService: {}, selectedCollection: {}, collectionResult: {}});
+        this.setState({searchService: {}, selectedCollection: {}, collectionsResult: {}, productsResult: {}});
     }
     updateCollections(result){
         this.setState({collectionsResult: result});
@@ -38,7 +38,7 @@ export default class App extends Component {
         console.log("products", this.state.productsResult);
         return (
             <div>
-                <Map collectionsResult = {this.state.collectionsResult}/>
+                <Map productsResult = {this.state.productsResult}/>
                 <Sidebar connect = {this.connect} resetService = {this.resetService}
                     updateCollections = {this.updateCollections} updateProducts = {this.updateProducts} selectCollection = {this.selectCollection}
                     searchService = {this.state.searchService} collectionsResult = {this.state.collectionsResult}

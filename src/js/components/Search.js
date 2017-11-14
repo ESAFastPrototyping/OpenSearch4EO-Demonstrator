@@ -57,7 +57,6 @@ export default class Search extends Component {
         ];
         service.search(searchParams, {relation: 'collection'})
         .then(result => {
-            console.log(result);
             this.props.updateResult(result);
         })
         .catch(err => console.log(err));
