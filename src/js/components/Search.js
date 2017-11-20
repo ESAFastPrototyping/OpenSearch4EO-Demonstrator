@@ -25,6 +25,10 @@ export default class Search extends Component {
         this.changeInstrument = this.changeInstrument.bind(this);
         this.changeOrganisation = this.changeOrganisation.bind(this);
         this.search = this.search.bind(this);
+        this.getX = this.getX.bind(this);
+        this.getPlatforms = this.getPlatforms.bind(this);
+        this.getInstruments = this.getInstruments.bind(this);
+        this.getOrganisations = this.getOrganisations.bind(this);
     }
     changeText(text){
         this.setState({text: text}, this.search);
@@ -43,6 +47,26 @@ export default class Search extends Component {
     }
     changeOrganisation(organisation){
         this.setState({organisation: organisation}, this.search);
+    }
+    getPlatforms(){
+        return this.getX('platform');
+    }
+    getInstruments(){
+        return this.getX('instrument');
+    }
+    getOrganisations(){
+        return this.getX('organisationName');
+    }
+    getX(name){
+        let dd = this.props.searchService.descriptionDocument;
+        if(dd){
+            let atomUrl = dd.urls.find(url => url.type == 'application/atom+xml');
+            let options = atomUrl.parameters.find(parameter => parameter.name == name).options;
+            return options;
+        }
+        else {
+            return [];
+        }
     }
     search(){
         let service = this.props.searchService;
@@ -75,13 +99,16 @@ export default class Search extends Component {
                     <InputTime label = "To" changeDate = {this.changeEndDate} date = {this.state.endDate}/>
                 </ContentBox>
                 <ContentBox title = "Platform">
-                    <InputSelector text = {this.state.platform} change = {this.changePlatform}/>
+                    <InputSelector text = {this.state.platform} change = {this.changePlatform}
+                        options = {this.getPlatforms()} listName = 'platform'/>
                 </ContentBox>
                 <ContentBox title = "Instrument">
-                    <InputSelector text = {this.state.instrument} change = {this.changeInstrument}/>
-                </ContentBox>
+                    <InputSelector text = {this.state.instrument} change = {this.changeInstrument}
+                        options = {this.getInstruments()} listName = 'instrument'/>
+                </ContentBox>l
                 <ContentBox title = "Organisation">
-                    <InputSelector text = {this.state.organisation} change = {this.changeOrganisation}/>
+                    <InputSelector text = {this.state.organisation} change = {this.changeOrganisation}
+                    options = {this.getOrganisations()} listName = 'organisation'/>
                 </ContentBox>
             </div>
         )
