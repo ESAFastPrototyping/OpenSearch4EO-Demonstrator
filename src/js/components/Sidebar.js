@@ -24,7 +24,8 @@ export default class SideBar extends Component {
         }
         return (
             <div id="sidebar">
-                <SidebarHeader searchService = {this.props.searchService} resetService = {this.props.resetService}/>
+                <SidebarHeader searchService = {this.props.searchService} resetProvider = {this.props.resetProvider}
+                    resetCollection = {this.props.resetCollection} selectedCollection = {this.props.selectedCollection}/>
 
                 <div className="sidebar-block content active" id="eoos-content">
                     {body}

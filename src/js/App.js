@@ -14,7 +14,8 @@ export default class App extends Component {
             selectedProduct: {}
         }
         this.connect = this.connect.bind(this);
-        this.resetService = this.resetService.bind(this);
+        this.resetProvider = this.resetProvider.bind(this);
+        this.resetCollection = this.resetCollection.bind(this);
         this.updateCollections = this.updateCollections.bind(this);
         this.updateProducts = this.updateProducts.bind(this);
         this.selectCollection = this.selectCollection.bind(this);
@@ -23,10 +24,17 @@ export default class App extends Component {
     connect(searchService){
         this.setState({searchService: searchService});
     }
-    resetService(){
+    resetProvider(){
         this.setState({
             searchService: {},
             collectionsResult: {},
+            productsResult: {},
+            selectedCollection: {},
+            selectedProduct: {}
+        });
+    }
+    resetCollection(){
+        this.setState({
             productsResult: {},
             selectedCollection: {},
             selectedProduct: {}
@@ -50,7 +58,7 @@ export default class App extends Component {
         return (
             <div>
                 <Map productsResult = {this.state.productsResult}/>
-                <Sidebar connect = {this.connect} resetService = {this.resetService}
+                <Sidebar connect = {this.connect} resetProvider = {this.resetProvider} resetCollection = {this.resetCollection}
                     updateCollections = {this.updateCollections} updateProducts = {this.updateProducts}
                     selectCollection = {this.selectCollection} selectProduct = {this.selectProduct}
                     searchService = {this.state.searchService} collectionsResult = {this.state.collectionsResult}
