@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Search from './Search';
+import FoundProducts from './FoundProducts';
 
 export default class ProductSearch extends Component {
     constructor(props){
@@ -40,7 +41,7 @@ export default class ProductSearch extends Component {
                 </div>
 
                 <div className={"sidebar-tab " + (this.state.selected === "collection-results" ? "active": "")} id="collection-results">
-                    <h3>Results here</h3>
+                    <FoundProducts productsResult = {this.props.productsResult} selectProduct = {this.props.selectProduct} />
                 </div>
 
             </div>

@@ -27,22 +27,22 @@ export default class Search extends Component {
         this.search = this.search.bind(this);
     }
     changeText(text){
-        this.setState({text: text});
+        this.setState({text: text}, this.search);
     }
     changeStartDate(date){
-        this.setState({startDate: date});
+        this.setState({startDate: date}, this.search);
     }
     changeEndDate(date){
-        this.setState({endDate: date});
+        this.setState({endDate: date}, this.search);
     }
     changePlatform(platform){
-        this.setState({platform: platform});
+        this.setState({platform: platform}, this.search);
     }
     changeInstrument(instrument){
-        this.setState({instrument: instrument});
+        this.setState({instrument: instrument}, this.search);
     }
     changeOrganisation(organisation){
-        this.setState({organisation: organisation});
+        this.setState({organisation: organisation}, this.search);
     }
     search(){
         let service = this.props.searchService;
@@ -55,7 +55,7 @@ export default class Search extends Component {
             {name: 'organisationName', value: this.state.organisation},
             {name: 'parentIdentifier', value: this.props.parentIdentifier}
         ];
-        service.search(searchParams, {relation: 'collection'})
+        service.search(searchParams)
         .then(result => {
             this.props.updateResult(result);
         })
@@ -64,7 +64,6 @@ export default class Search extends Component {
     render(){
         return (
             <div className="search-properties">
-                <button onClick = {this.search} id = "collection-search-go">Search</button>
                 <ContentBox title = "Text">
                     <InputText text = {this.state.text} changeText = {this.changeText} />
                 </ContentBox>

@@ -9,20 +9,28 @@ export default class App extends Component {
         this.state = {
             searchService: {},
             collectionsResult: {},
+            productsResult: {},
             selectedCollection: {},
-            productsResult: {}
+            selectedProduct: {}
         }
         this.connect = this.connect.bind(this);
         this.resetService = this.resetService.bind(this);
         this.updateCollections = this.updateCollections.bind(this);
         this.updateProducts = this.updateProducts.bind(this);
         this.selectCollection = this.selectCollection.bind(this);
+        this.selectProduct = this.selectProduct.bind(this);
     }
     connect(searchService){
         this.setState({searchService: searchService});
     }
     resetService(){
-        this.setState({searchService: {}, selectedCollection: {}, collectionsResult: {}, productsResult: {}});
+        this.setState({
+            searchService: {},
+            collectionsResult: {},
+            productsResult: {},
+            selectedCollection: {},
+            selectedProduct: {}
+        });
     }
     updateCollections(result){
         this.setState({collectionsResult: result});
@@ -33,6 +41,9 @@ export default class App extends Component {
     selectCollection(collection){
         this.setState({selectedCollection: collection});
     }
+    selectProduct(product){
+        this.setState({selectedProduct: product});
+    }
     render(){
         console.log("collections", this.state.collectionsResult);
         console.log("products", this.state.productsResult);
@@ -40,9 +51,10 @@ export default class App extends Component {
             <div>
                 <Map productsResult = {this.state.productsResult}/>
                 <Sidebar connect = {this.connect} resetService = {this.resetService}
-                    updateCollections = {this.updateCollections} updateProducts = {this.updateProducts} selectCollection = {this.selectCollection}
+                    updateCollections = {this.updateCollections} updateProducts = {this.updateProducts}
+                    selectCollection = {this.selectCollection} selectProduct = {this.selectProduct}
                     searchService = {this.state.searchService} collectionsResult = {this.state.collectionsResult}
-                    selectedCollection = {this.state.selectedCollection}/>
+                    productsResult = {this.state.productsResult} selectedCollection = {this.state.selectedCollection}/>
             </div>
         );
     }

@@ -11,8 +11,9 @@ export default class SideBar extends Component {
     render(){
         let body;
         if (this.props.selectedCollection.id && this.props.searchService.descriptionDocument){
-            body = <ProductSearch selectedCollection = {this.props.selectedCollection} updateResult = {this.props.updateProducts}
-                searchService = {this.props.searchService}/>;
+            body = <ProductSearch selectedCollection = {this.props.selectedCollection} selectProduct = {this.props.selectProduct}
+                updateResult = {this.props.updateProducts} searchService = {this.props.searchService}
+                productsResult = {this.props.productsResult}/>;
         }
         else if (this.props.searchService.descriptionDocument){
             body = <CollectionSearch updateResult = {this.props.updateCollections} selectCollection = {this.props.selectCollection}
