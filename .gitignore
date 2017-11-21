@@ -1,5 +1,6 @@
 #build
-build/
+build/main.bundle.js
+build/main.bundle.js.map
 
 # Logs
 logs
