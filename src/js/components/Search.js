@@ -5,6 +5,7 @@ import InputTime from './InputTime';
 import InputSelector from './InputSelector';
 import ContentBox from './ContentBox';
 import moment from 'moment';
+import _ from 'underscore';
 
 export default class Search extends Component {
     constructor(props){
@@ -18,13 +19,13 @@ export default class Search extends Component {
             organisation: ""
         };
 
+        this.search = _.debounce(this.search.bind(this), 1000);
         this.changeText = this.changeText.bind(this);
         this.changeStartDate = this.changeStartDate.bind(this);
         this.changeEndDate = this.changeEndDate.bind(this);
         this.changePlatform = this.changePlatform.bind(this);
         this.changeInstrument = this.changeInstrument.bind(this);
         this.changeOrganisation = this.changeOrganisation.bind(this);
-        this.search = this.search.bind(this);
         this.getX = this.getX.bind(this);
         this.getPlatforms = this.getPlatforms.bind(this);
         this.getInstruments = this.getInstruments.bind(this);
