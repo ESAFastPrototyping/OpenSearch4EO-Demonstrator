@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Search from './Search';
 import FoundCollections from './FoundCollections';
+import PageControls from './PageControls';
 
 export default class CollectionSearch extends Component {
     constructor(props){
@@ -43,6 +44,9 @@ export default class CollectionSearch extends Component {
 
                 <div className={"sidebar-tab " + (this.state.selected === "provider-results" ? "active": "")} id="provider-results">
                     <FoundCollections collectionsResult = {this.props.collectionsResult} selectCollection = {this.props.selectCollection}/>
+                    {this.props.collectionsResult.properties &&
+                    <PageControls currentResult = {this.props.collectionsResult} updateResult = {this.props.updateResult}/>
+                    }
                 </div>
 
             </div>

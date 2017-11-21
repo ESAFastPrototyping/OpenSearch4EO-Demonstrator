@@ -62,8 +62,16 @@ export default class Search extends Component {
         let dd = this.props.searchService.descriptionDocument;
         if(dd){
             let atomUrl = dd.urls.find(url => url.type == 'application/atom+xml');
-            let options = atomUrl.parameters.find(parameter => parameter.name == name).options;
-            return options;
+            let parameter;
+            if (atomUrl && atomUrl.parameters){
+                parameter = atomUrl.parameters.find(parameter => parameter.name == name);
+            }
+            if (parameter){
+                return parameter.options || [];
+            }
+            else {
+                return [];
+            }
         }
         else {
             return [];

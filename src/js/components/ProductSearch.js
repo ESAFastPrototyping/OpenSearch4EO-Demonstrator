@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Search from './Search';
 import FoundProducts from './FoundProducts';
+import PageControls from './PageControls';
 
 export default class ProductSearch extends Component {
     constructor(props){
@@ -17,8 +18,18 @@ export default class ProductSearch extends Component {
     }
     render(){
         let description = "";
-        if (this.props.selectedCollection.properties) {
+        let parentIdentifier;
+        let properties = this.props.selectedCollection.properties;
+        if (properties) {
             description =  this.props.selectedCollection.properties.title;
+            if (properties.links && properties.links.search && properties.links.search[0] && properties.links.search[0].href) {
+                let link = properties.links.search[0].href;
+                parentIdentifier = link.match(/parentIdentifier=(.*)/)[1];
+            }
+        }
+        //TODO: what if it's not there?
+        if (!parentIdentifier){
+            parentIdentifier = "";
         }
         return (
             <div className="sidebar-block content active" id="collection-content">
@@ -37,11 +48,14 @@ export default class ProductSearch extends Component {
 
                 <div className={"sidebar-tab " + (this.state.selected === "collection-search" ? "active": "")} id="collection-search">
                     <Search searchService = {this.props.searchService} updateResult = {this.props.updateResult}
-                        parentIdentifier = {this.props.selectedCollection.properties.identifier}/>
+                        parentIdentifier = {parentIdentifier}/>
                 </div>
 
                 <div className={"sidebar-tab " + (this.state.selected === "collection-results" ? "active": "")} id="collection-results">
                     <FoundProducts productsResult = {this.props.productsResult} selectProduct = {this.props.selectProduct} />
+                    {this.props.productsResult.properties &&
+                    <PageControls currentResult = {this.props.productsResult} updateResult = {this.props.updateResult}/>
+                    }
                 </div>
 
             </div>
