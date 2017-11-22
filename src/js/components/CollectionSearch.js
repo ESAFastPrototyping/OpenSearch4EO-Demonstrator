@@ -39,7 +39,8 @@ export default class CollectionSearch extends Component {
                 </div>
 
                 <div className={"sidebar-tab " + (this.state.selected === "provider-search" ? "active": "")} id="provider-search">
-                    <Search searchService = {this.props.searchService} updateResult = {this.props.updateResult} parentIdentifier = ""/>
+                    <Search searchService = {this.props.searchService} updateResult = {this.props.updateResult} parentIdentifier = ""
+                        relation = 'collection'/>
                 </div>
 
                 <div className={"sidebar-tab " + (this.state.selected === "provider-results" ? "active": "")} id="provider-results">

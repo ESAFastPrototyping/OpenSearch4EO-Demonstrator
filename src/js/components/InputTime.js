@@ -96,19 +96,19 @@ export default class InputTime extends Component {
                 <div className="eoos-property-timerange-inputs">
                     <div className="eoos-property-timerange-input">
                         <a className="eoos-property-timerange-spinner top" onClick = {this.incrementYears}></a>
-                        <input type="number" min="2015" max="2017" id = "timerange-year" value={this.props.date.format('YYYY')} onChange = {this.changeYears} />
+                        <input type="number" min="2015" max="2017" id = "timerange-year" value={moment(this.props.date).format('YYYY')} onChange = {this.changeYears} />
                         <a className="eoos-property-timerange-spinner bottom" onClick = {this.decrementYears}></a>
                     </div>
                     <span>-</span>
                     <div className="eoos-property-timerange-input">
                         <a className="eoos-property-timerange-spinner top" onClick = {this.incrementMonths}></a>
-                        <input type="number" min="1" max="12" value={this.props.date.format('MM')} onChange = {this.changeMonths}/>
+                        <input type="number" min="1" max="12" value={moment(this.props.date).format('MM')} onChange = {this.changeMonths}/>
                         <a className="eoos-property-timerange-spinner bottom" onClick = {this.decrementMonths}></a>
                     </div>
                     <span>-</span>
                     <div className="eoos-property-timerange-input">
                         <a className="eoos-property-timerange-spinner top" onClick = {this.incrementDays}></a>
-                        <input type="number" min="1" max="31" value={this.props.date.format('DD')} onChange = {this.changeDays}/>
+                        <input type="number" min="1" max="31" value={moment(this.props.date).format('DD')} onChange = {this.changeDays}/>
                         <a className="eoos-property-timerange-spinner bottom" onClick = {this.decrementDays}></a>
                     </div>
 
@@ -116,13 +116,13 @@ export default class InputTime extends Component {
 
                     <div className="eoos-property-timerange-input">
                         <a className="eoos-property-timerange-spinner top" onClick = {this.incrementHours}></a>
-                        <input type="number" min="0" max="23" value={this.props.date.format('HH')} onChange = {this.changeHours}/>
+                        <input type="number" min="0" max="23" value={moment(this.props.date).format('HH')} onChange = {this.changeHours}/>
                         <a className="eoos-property-timerange-spinner bottom" onClick = {this.decrementHours}></a>
                     </div>
                     <span>:</span>
                     <div className="eoos-property-timerange-input">
                         <a className="eoos-property-timerange-spinner top" onClick = {this.incrementMinutes}></a>
-                        <input type="number" min="0" max="59" value={this.props.date.format('mm')} onChange = {this.changeMinutes}/>
+                        <input type="number" min="0" max="59" value={moment(this.props.date).format('mm')} onChange = {this.changeMinutes}/>
                         <a className="eoos-property-timerange-spinner bottom" onClick = {this.decrementMinutes}></a>
                     </div>
                 </div>
