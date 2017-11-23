@@ -31,10 +31,10 @@ export default class PageControls extends Component {
         let lastLink = links && links.last && links.last.href;
         return (
             <div>
-                <button onClick = {this.navigate.bind(this, firstLink)}>First</button>
-                <button onClick = {this.navigate.bind(this, previousLink)}>Previous</button>
-                <button onClick = {this.navigate.bind(this, nextLink)}>Next</button>
-                <button onClick = {this.navigate.bind(this, lastLink)}>Last</button>
+                <button onClick = {this.navigate.bind(this, firstLink)} disabled = {!firstLink}>First</button>
+                <button onClick = {this.navigate.bind(this, previousLink)} disabled = {!previousLink}>Previous</button>
+                <button onClick = {this.navigate.bind(this, nextLink)} disabled = {!nextLink}>Next</button>
+                <button onClick = {this.navigate.bind(this, lastLink)} disabled = {!lastLink}>Last</button>
             </div>
         );
     }
