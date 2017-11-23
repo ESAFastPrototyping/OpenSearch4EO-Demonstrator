@@ -95,7 +95,30 @@ export default class Search extends Component {
         .then(result => {
             this.props.updateResult(result);
         })
-        .catch(err => console.log(err));
+        .catch(err => this.handleError(err));
+    }
+    handleError(err){
+        if(err.toString().indexOf('400') > -1){
+            alert('400 Bad Request\nPlease try a different search');
+        }
+        else if(err.toString().indexOf('413') > -1){
+            alert('413 Request Entity Too Large\nPlease narrow down the search');
+        }
+        else if(err.toString().indexOf('500') > -1){
+            alert('500 Internal Server Error\nAn error occured on the server, try later');
+        }
+        else if(err.toString().indexOf('501') > -1){
+            alert('501 Not Implemented\nAn error occured on the server');
+        }
+        else if(err.toString().indexOf('503') > -1){
+            alert('503 Service Unavailable\nTemporarily unavailable, try again later');
+        }
+        else if(err.toString().indexOf('504') > -1){
+            alert('504 Gateway Timeout\nUnavailable, try again later');
+        }
+        else {
+            alert('An unknown error occured, sorry. Try later');
+        }
     }
     render(){
         return (

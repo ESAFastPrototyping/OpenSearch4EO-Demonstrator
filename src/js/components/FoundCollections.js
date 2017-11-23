@@ -5,7 +5,18 @@ export default class FoundCollections extends Component {
         super(props);
     }
     handleClick(collection){
-        this.props.selectCollection(collection);
+        let links = collection.links;
+        let parentIdentifier;
+        if (links && links.search && links.search[0] && links.search[0].href) {
+                let url = links.search[0].href;
+                parentIdentifier = url.match(/parentIdentifier=(.*)/)[1];
+        }
+        if(!parentIdentifier){
+            alert("No search link, select a different collection");
+        }
+        else{
+            this.props.selectCollection(collection);
+        }
     }
     render(){
         let collections;
