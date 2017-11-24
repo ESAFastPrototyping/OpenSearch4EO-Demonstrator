@@ -81,7 +81,7 @@ export default class Search extends Component {
         let service = this.props.searchService;
         //TODO: why is accepted date somehow different for collection and product search?
         let startDate = this.props.relation == "collection" ? moment(this.state.startDate).format("YYYY-MM-DD[T]HH:mm:ssZ") : moment(this.state.startDate).format("YYYY-MM-DD");
-        let endDate = this.props.relation == "collection" ? moment(this.state.startDate).format("YYYY-MM-DD[T]HH:mm:ssZ") : moment(this.state.startDate).format("YYYY-MM-DD");
+        let endDate = this.props.relation == "collection" ? moment(this.state.endDate).format("YYYY-MM-DD[T]HH:mm:ssZ") : moment(this.state.endDate).format("YYYY-MM-DD");
         let searchParams = [
             {name: 'query', value: this.state.text},
             {name: 'startDate', value: startDate},

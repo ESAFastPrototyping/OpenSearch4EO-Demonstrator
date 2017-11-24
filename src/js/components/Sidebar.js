@@ -10,14 +10,15 @@ export default class SideBar extends Component {
     }
     render(){
         let body;
-        if (this.props.selectedCollection.id && this.props.searchService.descriptionDocument){
+        if (this.props.selectedCollection.id && this.props.collectionSearchService.descriptionDocument){
             body = <ProductSearch selectedCollection = {this.props.selectedCollection} selectProduct = {this.props.selectProduct}
-                updateResult = {this.props.updateProducts} searchService = {this.props.searchService}
+                updateResult = {this.props.updateProducts} searchService = {this.props.collectionSearchService}
                 productsResult = {this.props.productsResult}/>;
         }
         else if (this.props.searchService.descriptionDocument){
             body = <CollectionSearch updateResult = {this.props.updateCollections} selectCollection = {this.props.selectCollection}
-                searchService = {this.props.searchService} collectionsResult = {this.props.collectionsResult}/>;
+                searchService = {this.props.searchService} collectionsResult = {this.props.collectionsResult}
+                connectCollection = {this.props.connectCollection}/>;
         }
         else {
             body = <Connector connect = {this.props.connect}/>

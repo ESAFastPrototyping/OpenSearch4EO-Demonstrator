@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import OpenSearchService from '../WorldWind/ogc/openSearch/OpenSearchService';
 
 export default class FoundCollections extends Component {
     constructor(props){
@@ -6,16 +7,17 @@ export default class FoundCollections extends Component {
     }
     handleClick(collection){
         let links = collection.links;
-        let parentIdentifier;
         if (links && links.search && links.search[0] && links.search[0].href) {
-                let url = links.search[0].href;
-                parentIdentifier = url.match(/parentIdentifier=(.*)/)[1];
-        }
-        if(!parentIdentifier){
-            alert("No search link, select a different collection");
-        }
-        else{
-            this.props.selectCollection(collection);
+            let service = new OpenSearchService(links.search[0].href)
+            service.discover()
+            .then(result => {
+                console.log(result);
+                this.props.connectCollection(result);
+                this.props.selectCollection(collection);
+            })
+            .catch(err => console.log(err));
+        } else {
+            alert("No search link found, please select a different collection");
         }
     }
     render(){

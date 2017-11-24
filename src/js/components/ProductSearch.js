@@ -17,20 +17,7 @@ export default class ProductSearch extends Component {
         });
     }
     render(){
-        let description = "";
-        let parentIdentifier;
-        let links = this.props.selectedCollection.links;
-        if (links) {
-            description =  this.props.selectedCollection.properties.title;
-            if (links.search && links.search[0] && links.search[0].href) {
-                let url = links.search[0].href;
-                parentIdentifier = url.match(/parentIdentifier=(.*)/)[1];
-            }
-        }
-        //TODO: what exactly do we do here when there is no parentId?
-        if(!parentIdentifier){
-            alert("No search link, select a different collection");
-        }
+        let description = this.props.selectedCollection.properties && this.props.selectedCollection.properties.title;
         return (
             <div className="sidebar-block content active" id="collection-content">
                 <div className="sidebar-tabs">
@@ -47,8 +34,7 @@ export default class ProductSearch extends Component {
                 </div>
 
                 <div className={"sidebar-tab " + (this.state.selected === "collection-search" ? "active": "")} id="collection-search">
-                    <Search searchService = {this.props.searchService} updateResult = {this.props.updateResult}
-                        parentIdentifier = {parentIdentifier} relation = 'results'/>
+                    <Search searchService = {this.props.searchService} updateResult = {this.props.updateResult} relation = 'results'/>
                 </div>
 
                 <div className={"sidebar-tab " + (this.state.selected === "collection-results" ? "active": "")} id="collection-results">
