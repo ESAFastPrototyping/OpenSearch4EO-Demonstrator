@@ -22,7 +22,7 @@ export default class Connector extends Component {
             this.props.connect(result);
             console.log(result);
         })
-        .catch(err => console.log(err));
+        .catch(err => alert("There was an issue with the provided link.\nTry again later or try a different provider."));
 
         this.setState({url: ""});
     }
@@ -32,7 +32,7 @@ export default class Connector extends Component {
             <div className="sidebar-connector">
                 <label htmlFor="provider-connector-url">
                     Address of the OpenSearch Description Document <br/>
-                    (Collection or Product Search)
+                    (Collection Search)
                     <input type="url" id="provider-connector-url" value = {this.state.url} onChange = {this.handleChange}/>
                     <div className="eoos-provider-go" onClick = {this.handleClick}></div>
                 </label>

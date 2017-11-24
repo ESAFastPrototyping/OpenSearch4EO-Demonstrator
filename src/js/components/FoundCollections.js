@@ -15,7 +15,7 @@ export default class FoundCollections extends Component {
                 this.props.connectCollection(result);
                 this.props.selectCollection(collection);
             })
-            .catch(err => console.log(err));
+            .catch(err => alert("There was an issue with the selected collection.\nTry again later or try a different collection."));
         } else {
             alert("No search link found, please select a different collection");
         }
