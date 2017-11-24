@@ -26,10 +26,11 @@ export default class Search extends Component {
         this.changePlatform = this.changePlatform.bind(this);
         this.changeInstrument = this.changeInstrument.bind(this);
         this.changeOrganisation = this.changeOrganisation.bind(this);
-        this.getX = this.getX.bind(this);
+        this.getOptions = this.getOptions.bind(this);
         this.getPlatforms = this.getPlatforms.bind(this);
         this.getInstruments = this.getInstruments.bind(this);
         this.getOrganisations = this.getOrganisations.bind(this);
+        this.isInParameters = this.isInParameters.bind(this);
     }
     changeText(text){
         this.setState({text: text}, this.search);
@@ -50,38 +51,37 @@ export default class Search extends Component {
         this.setState({organisation: organisation}, this.search);
     }
     getPlatforms(){
-        return this.getX('platform');
+        return this.getOptions('platform');
     }
     getInstruments(){
-        return this.getX('instrument');
+        return this.getOptions('instrument');
     }
     getOrganisations(){
-        return this.getX('organisationName');
+        return this.getOptions('organisationName');
     }
-    getX(name){
-        let dd = this.props.searchService.descriptionDocument;
-        if(dd){
-            let atomUrl = dd.urls.find(url => url.type == 'application/atom+xml');
-            let parameter;
-            if (atomUrl && atomUrl.parameters){
-                parameter = atomUrl.parameters.find(parameter => parameter.name == name);
-            }
-            if (parameter){
-                return parameter.options || [];
-            }
-            else {
-                return [];
-            }
+    getOptions(name){
+        let atomUrl = this.props.searchService.descriptionDocument.urls.find(url => url.type == 'application/atom+xml');
+        let parameter;
+        if (atomUrl && atomUrl.parameters){
+            parameter = atomUrl.parameters.find(parameter => parameter.name == name);
+        }
+        if (parameter){
+            return parameter.options || [];
         }
         else {
             return [];
         }
+    }
+    isInParameters(parameter){
+        let parameters = this.props.searchService.descriptionDocument.urls.find(url => url.type == 'application/atom+xml')._paramsByName;
+        return !!parameters[parameter];
     }
     search(){
         let service = this.props.searchService;
         //TODO: why is accepted date somehow different for collection and product search?
         let startDate = this.props.relation == "collection" ? moment(this.state.startDate).format("YYYY-MM-DD[T]HH:mm:ssZ") : moment(this.state.startDate).format("YYYY-MM-DD");
         let endDate = this.props.relation == "collection" ? moment(this.state.endDate).format("YYYY-MM-DD[T]HH:mm:ssZ") : moment(this.state.endDate).format("YYYY-MM-DD");
+
         let searchParams = [
             {name: 'query', value: this.state.text},
             {name: 'startDate', value: startDate},
@@ -91,6 +91,8 @@ export default class Search extends Component {
             {name: 'organisationName', value: this.state.organisation},
             {name: 'parentIdentifier', value: this.props.parentIdentifier}
         ];
+        searchParams = searchParams.filter((param) => this.isInParameters(param.name));
+
         service.search(searchParams, {relation: this.props.relation})
         .then(result => {
             this.props.updateResult(result);
@@ -123,28 +125,39 @@ export default class Search extends Component {
     render(){
         return (
             <div className="search-properties">
+                {this.isInParameters('query') &&
                 <ContentBox title = "Text">
                     <InputText text = {this.state.text} changeText = {this.changeText} />
-                </ContentBox>
+                </ContentBox> }
+
+                {this.isInParameters('bbox') &&
                 <ContentBox title = "Search area">
                     <InputArea />
-                </ContentBox>
+                </ContentBox> }
+
+                {this.isInParameters('startDate') && this.isInParameters('endDate') &&
                 <ContentBox title = "Time range">
                     <InputTime label = "From" changeDate = {this.changeStartDate} date = {this.state.startDate}/>
                     <InputTime label = "To" changeDate = {this.changeEndDate} date = {this.state.endDate}/>
-                </ContentBox>
+                </ContentBox> }
+
+                {this.isInParameters('platform') &&
                 <ContentBox title = "Platform">
                     <InputSelector text = {this.state.platform} change = {this.changePlatform}
                         options = {this.getPlatforms()} listName = 'platform'/>
-                </ContentBox>
+                </ContentBox> }
+
+                {this.isInParameters('instrument') &&
                 <ContentBox title = "Instrument">
                     <InputSelector text = {this.state.instrument} change = {this.changeInstrument}
                         options = {this.getInstruments()} listName = 'instrument'/>
-                </ContentBox>l
+                </ContentBox> }
+
+                {this.isInParameters('organisationName') &&
                 <ContentBox title = "Organisation">
                     <InputSelector text = {this.state.organisation} change = {this.changeOrganisation}
                     options = {this.getOrganisations()} listName = 'organisation'/>
-                </ContentBox>
+                </ContentBox> }
             </div>
         )
     }
