@@ -9,13 +9,22 @@ export default class Connector extends Component {
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleClick = this.handleClick.bind(this);
+        this.handleKeyPress = this.handleKeyPress.bind(this);
+        this.connect = this.connect.bind(this);
     }
 
     handleChange(event){
         this.setState({url: event.target.value});
     }
-
+    handleKeyPress(event){
+        if(event.key == 'Enter'){
+            this.connect();
+        }
+    }
     handleClick(){
+        this.connect();
+    }
+    connect(){
         let service = new OpenSearchService(this.state.url);
         service.discover()
         .then(result => {
@@ -33,7 +42,7 @@ export default class Connector extends Component {
                 <label htmlFor="provider-connector-url">
                     Address of the OpenSearch Description Document <br/>
                     (Collection Search)
-                    <input type="url" id="provider-connector-url" value = {this.state.url} onChange = {this.handleChange}/>
+                    <input type="url" id="provider-connector-url" value = {this.state.url} onChange = {this.handleChange} onKeyPress = {this.handleKeyPress}/>
                     <div className="eoos-provider-go" onClick = {this.handleClick}></div>
                 </label>
             </div>
