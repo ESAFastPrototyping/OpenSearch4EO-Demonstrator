@@ -18,7 +18,6 @@ export default class FoundProducts extends Component {
         requestOptions.url = metadataLink.href;
         requestOptions.method = 'GET';
 
-        console.log(this.state.info);
         OpenSearchUtils.fetch(requestOptions)
         .then(result => {
         	parseString(result, (err, json) => {
@@ -27,7 +26,6 @@ export default class FoundProducts extends Component {
         		str = str.replace(/[{"]/g, "");
         		str = str.replace(/\t*},?\n?/g, "");
         		str = str.replace(/\t{2}/g, "\t");
-                console.log(this.state.info);
         	    this.setState({info: str});
         	});
         })

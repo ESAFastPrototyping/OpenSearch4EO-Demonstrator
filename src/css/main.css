@@ -907,3 +907,11 @@ body.eoos-index {
 #close-info-panel:hover{
 	cursor: pointer;
 }
+
+.page-controls {
+	text-align: center;
+}
+
+.button-navigation {
+	width: 5rem;
+}
