@@ -879,3 +879,31 @@ body.eoos-index {
 	padding-left: 0;
 	border: 0;
 }
+
+#info-panel {
+	position: fixed;
+	left: 30vw;
+	top: 10vh;
+	height: 80vh;
+	width: 40vw;
+	white-space: pre;
+	overflow-y: auto;
+	overflow-x: auto;
+	border: 1px #CCC solid;
+}
+
+#close-info-panel {
+	position: fixed;
+	top: 10vh;
+	left: 30vw;
+	width: 2rem;
+	height: 2rem;
+	line-height: 1.9rem;
+	font-family: FontAwesome, sans-serif;
+	text-align: center;
+	font-size: 1.5rem;
+}
+
+#close-info-panel:hover{
+	cursor: pointer;
+}

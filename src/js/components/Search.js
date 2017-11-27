@@ -73,7 +73,8 @@ export default class Search extends Component {
         }
     }
     isInParameters(parameter){
-        let parameters = this.props.searchService.descriptionDocument.urls.find(url => url.type == 'application/atom+xml')._paramsByName;
+        let atomUrl = this.props.searchService.descriptionDocument.urls.find(url => url.type == 'application/atom+xml');
+        let parameters = atomUrl ? atomUrl._paramsByName : {};
         return !!parameters[parameter];
     }
     search(){
@@ -89,7 +90,8 @@ export default class Search extends Component {
             {name: 'platform', value: this.state.platform},
             {name: 'instrument', value: this.state.instrument},
             {name: 'organisationName', value: this.state.organisation},
-            {name: 'parentIdentifier', value: this.props.parentIdentifier}
+            {name: 'parentIdentifier', value: this.props.parentIdentifier},
+            {name: 'recordSchema', value: 'server-choice'}
         ];
         searchParams = searchParams.filter((param) => this.isInParameters(param.name));
 
