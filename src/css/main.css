@@ -890,6 +890,7 @@ body.eoos-index {
 	overflow-y: auto;
 	overflow-x: auto;
 	border: 1px #CCC solid;
+	background-color: #FFF;
 }
 
 #close-info-panel {

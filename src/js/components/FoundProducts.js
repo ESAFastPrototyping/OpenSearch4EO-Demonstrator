@@ -9,10 +9,10 @@ export default class FoundProducts extends Component {
         this.state = {
             info: ""
         };
-        this.handleClick = this.handleClick.bind(this);
+        this.showInfo = this.showInfo.bind(this);
         this.closeInfo = this.closeInfo.bind(this);
     }
-    handleClick(product){
+    showInfo(product){
         let requestOptions = new OpenSearchRequest();
         let metadataLink;
         if (product.properties && product.properties.links && product.properties.links.via){
@@ -52,7 +52,7 @@ export default class FoundProducts extends Component {
 							</div>
 						</div>
 						<div className="eoos-result-controls">
-							<div className="eoos-result-detail-button" title="Show details…" onClick = {this.handleClick.bind(this, product)}></div>
+							<div className="eoos-result-detail-button" title="Show details…" onClick = {this.showInfo.bind(this, product)}></div>
 						</div>
 					</div>
                 );
