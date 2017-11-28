@@ -14,22 +14,27 @@ export default class FoundProducts extends Component {
     }
     handleClick(product){
         let requestOptions = new OpenSearchRequest();
-        let metadataLink = product.properties.links.via.find(link => link.title == 'Product metadata');
-        requestOptions.url = metadataLink.href;
-        requestOptions.method = 'GET';
+        let metadataLink;
+        if (product.properties && product.properties.links && product.properties.links.via){
+        metadataLink = product.properties.links.via.find(link => link.title == 'Product metadata');
+        }
+        if (metadataLink && metadataLink.href){
+            requestOptions.url = metadataLink.href;
+            requestOptions.method = 'GET';
 
-        OpenSearchUtils.fetch(requestOptions)
-        .then(result => {
-        	parseString(result, (err, json) => {
-        		let str = JSON.stringify(json['Granule'], null, '\t');
-        		str = str.replace(/[\[\]],?\n?\t*/g, "");
-        		str = str.replace(/[{"]/g, "");
-        		str = str.replace(/\t*},?\n?/g, "");
-        		str = str.replace(/\t{2}/g, "\t");
-        	    this.setState({info: str});
-        	});
-        })
-        .catch(err => console.log(err));
+            OpenSearchUtils.fetch(requestOptions)
+            .then(result => {
+            	parseString(result, (err, json) => {
+            		let str = JSON.stringify(json['Granule'], null, '\t');
+            		str = str.replace(/[\[\]],?\n?\t*/g, "");
+            		str = str.replace(/[{"]/g, "");
+            		str = str.replace(/\t*},?\n?/g, "");
+            		str = str.replace(/\t{2}/g, "\t");
+            	    this.setState({info: str});
+            	});
+            })
+            .catch(err => console.log(err));
+        }
     }
     closeInfo(){
         this.setState({info: ""});
@@ -37,9 +42,9 @@ export default class FoundProducts extends Component {
     render(){
         let products;
         if (this.props.productsResult.features && this.props.productsResult.features.length > 0){
-            products = this.props.productsResult.features.map(product => {
+            products = this.props.productsResult.features.map((product, index) => {
                 return (
-                    <div className="eoos-result" key = {product.properties.title}>
+                    <div className="eoos-result" key = {index}>
 						<div className="eoos-result-properties">
 							<div className="eoos-result-name-time">
 								<span className="eoos-result-name">{product.properties.title}</span>

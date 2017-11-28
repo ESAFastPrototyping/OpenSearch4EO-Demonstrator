@@ -64,7 +64,7 @@ export default class App extends Component {
         console.log("products", this.state.productsResult);
         return (
             <div>
-                {/*<Map productsResult = {this.state.productsResult}/>*/}
+                <Map productsResult = {this.state.productsResult}/>
                 <Sidebar connect = {this.connect} connectCollection = {this.connectCollection}
                     collectionSearchService = {this.state.collectionSearchService}
                     resetProvider = {this.resetProvider} resetCollection = {this.resetCollection}
