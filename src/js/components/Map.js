@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import WorldWind from '../WorldWind/WorldWind';
+import WorldWind from '../WorldWind/worldwind';
 
 export default class Map extends Component {
     constructor(props){
