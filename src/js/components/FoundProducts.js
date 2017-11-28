@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import OpenSearchUtils from '../worldwind/ogc/openSearch/OpenSearchUtils';
-import OpenSearchRequest from '../worldwind/ogc/openSearch/OpenSearchRequest';
+import OpenSearchUtils from '../WorldWind/ogc/openSearch/OpenSearchUtils';
+import OpenSearchRequest from '../WorldWind/ogc/openSearch/OpenSearchRequest';
 import {parseString} from 'xml2js';
 
 export default class FoundProducts extends Component {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import OpenSearchUtils from '../worldwind/ogc/openSearch/OpenSearchUtils';
-import OpenSearchRequest from '../worldwind/ogc/openSearch/OpenSearchRequest';
-import AtomParser from '../worldwind/ogc/openSearch/responseFormats/atomParser/OpenSearchAtomParser';
+import OpenSearchUtils from '../WorldWind/ogc/openSearch/OpenSearchUtils';
+import OpenSearchRequest from '../WorldWind/ogc/openSearch/OpenSearchRequest';
+import AtomParser from '../WorldWind/ogc/openSearch/responseFormats/atomParser/OpenSearchAtomParser';
 
 export default class PageControls extends Component {
     constructor(props){
