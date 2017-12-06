@@ -1,18 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class ContentBox extends Component {
-    constructor(props){
-        super(props);
-    }
-    render(){
-        return (
-            <div className="eoos-property">
-                <div className="eoos-property-content">
-                    <h2>{this.props.title}</h2>
-                    {this.props.children}
-                </div>
+const ContentBox = ({ title, children }) => {
+    return (
+        <div className="eoos-property">
+            <div className="eoos-property-content">
+                <h2>{title}</h2>
+                {children}
             </div>
-        )
-    }
-
+        </div>
+    );
 }
+
+export default ContentBox;

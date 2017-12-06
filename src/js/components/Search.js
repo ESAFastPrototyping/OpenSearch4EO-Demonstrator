@@ -10,57 +10,68 @@ import _ from 'underscore';
 export default class Search extends Component {
     constructor(props){
         super(props);
+        this.selectors = [
+            {parameter: "platform", title: "Platform"},
+            {parameter: "instrument", title: "Instrument"},
+            {parameter: "organisationName", title: "Organisation"}
+        ];
+
         this.state = {
             text: "",
             startDate: moment().subtract(1, 'years'),
-            endDate: moment(),
-            platform: "",
-            instrument: "",
-            organisation: ""
+            endDate: moment()
         };
+
+        this.selectors.forEach(selector => {
+            this.state[selector.parameter] = "";
+        });
 
         this.search = _.debounce(this.search.bind(this), 1000);
         this.changeText = this.changeText.bind(this);
         this.changeStartDate = this.changeStartDate.bind(this);
         this.changeEndDate = this.changeEndDate.bind(this);
-        this.changePlatform = this.changePlatform.bind(this);
-        this.changeInstrument = this.changeInstrument.bind(this);
-        this.changeOrganisation = this.changeOrganisation.bind(this);
+        this.changeParameter = this.changeParameter.bind(this);
         this.getOptions = this.getOptions.bind(this);
-        this.getPlatforms = this.getPlatforms.bind(this);
-        this.getInstruments = this.getInstruments.bind(this);
-        this.getOrganisations = this.getOrganisations.bind(this);
         this.isInParameters = this.isInParameters.bind(this);
     }
+
+    createSelectorInputs(){
+        return this.selectors.reduce((accumulator, selector) => {
+            if (this.isInParameters(selector.parameter)) {
+                return accumulator.concat(
+                    <ContentBox title = {selector.title} key = {selector.title}>
+                        <InputSelector text = {this.state[selector.parameter]}
+                            change = {this.changeParameter}
+                            options = {this.getOptions(selector.parameter)}
+                            parameter = {selector.parameter}
+                        />
+                    </ContentBox>
+                );
+            }
+            else {
+                return accumulator;
+            }
+        }, []);
+    }
+
     changeText(text){
         this.setState({text: text}, this.search);
     }
+
     changeStartDate(date){
         this.setState({startDate: date}, this.search);
     }
+
     changeEndDate(date){
         this.setState({endDate: date}, this.search);
     }
-    changePlatform(platform){
-        this.setState({platform: platform}, this.search);
+
+    changeParameter(parameter, value){
+        this.setState({[parameter]: value}, this.search);
     }
-    changeInstrument(instrument){
-        this.setState({instrument: instrument}, this.search);
-    }
-    changeOrganisation(organisation){
-        this.setState({organisation: organisation}, this.search);
-    }
-    getPlatforms(){
-        return this.getOptions('platform');
-    }
-    getInstruments(){
-        return this.getOptions('instrument');
-    }
-    getOrganisations(){
-        return this.getOptions('organisationName');
-    }
+
     getOptions(name){
-        let atomUrl = this.props.searchService.descriptionDocument.urls.find(url => url.type == 'application/atom+xml');
+        let atomUrl = this.props.searchService.descriptionDocument.urls.find(url => url.type == 'application/atom+xml' && url.relations[0] == this.props.relation);
         let parameter;
         if (atomUrl && atomUrl.parameters){
             parameter = atomUrl.parameters.find(parameter => parameter.name == name);
@@ -72,11 +83,13 @@ export default class Search extends Component {
             return [];
         }
     }
+
     isInParameters(parameter){
-        let atomUrl = this.props.searchService.descriptionDocument.urls.find(url => url.type == 'application/atom+xml');
+        let atomUrl = this.props.searchService.descriptionDocument.urls.find(url => url.type == 'application/atom+xml' && url.relations[0] == this.props.relation);
         let parameters = atomUrl ? atomUrl._paramsByName : {};
         return !!parameters[parameter];
     }
+
     search(){
         let service = this.props.searchService;
         //TODO: why is accepted date somehow different for collection and product search?
@@ -87,11 +100,12 @@ export default class Search extends Component {
             {name: 'query', value: this.state.text},
             {name: 'startDate', value: startDate},
             {name: 'endDate', value: endDate},
-            {name: 'platform', value: this.state.platform},
-            {name: 'instrument', value: this.state.instrument},
-            {name: 'organisationName', value: this.state.organisation},
             {name: 'recordSchema', value: 'server-choice'}
         ];
+        this.selectors.forEach(selector => {
+            searchParams.push({name: selector.parameter, value: this.state[selector.parameter]});
+        });
+
         searchParams = searchParams.filter((param) => this.isInParameters(param.name));
 
         service.search(searchParams, {relation: this.props.relation})
@@ -100,6 +114,7 @@ export default class Search extends Component {
         })
         .catch(err => this.handleError(err));
     }
+
     handleError(err){
         if(err.toString().indexOf('400') > -1){
             alert('400 Bad Request\nPlease try a different search');
@@ -123,6 +138,7 @@ export default class Search extends Component {
             alert('An unknown error occured, sorry. Try later');
         }
     }
+
     render(){
         return (
             <div className="search-properties">
@@ -142,23 +158,7 @@ export default class Search extends Component {
                     <InputTime label = "To" changeDate = {this.changeEndDate} date = {this.state.endDate}/>
                 </ContentBox> }
 
-                {this.isInParameters('platform') &&
-                <ContentBox title = "Platform">
-                    <InputSelector text = {this.state.platform} change = {this.changePlatform}
-                        options = {this.getPlatforms()} listName = 'platform'/>
-                </ContentBox> }
-
-                {this.isInParameters('instrument') &&
-                <ContentBox title = "Instrument">
-                    <InputSelector text = {this.state.instrument} change = {this.changeInstrument}
-                        options = {this.getInstruments()} listName = 'instrument'/>
-                </ContentBox> }
-
-                {this.isInParameters('organisationName') &&
-                <ContentBox title = "Organisation">
-                    <InputSelector text = {this.state.organisation} change = {this.changeOrganisation}
-                    options = {this.getOrganisations()} listName = 'organisation'/>
-                </ContentBox> }
+                {this.createSelectorInputs()}
             </div>
         )
     }
