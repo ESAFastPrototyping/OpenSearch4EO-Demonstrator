@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import Search from './Search';
+import Search from './common/Search';
+import PageControls from './common/PageControls';
+import TabHeaders from './common/TabHeaders';
 import FoundCollections from './FoundCollections';
-import PageControls from './PageControls';
-import TabHeaders from './TabHeaders';
+
 
 export default class CollectionSearch extends Component {
     constructor(props){

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Search from './Search';
+import Search from './common/Search';
+import PageControls from './common/PageControls';
+import TabHeaders from './common/TabHeaders';
 import FoundProducts from './FoundProducts';
-import PageControls from './PageControls';
-import TabHeaders from './TabHeaders';
 
 export default class ProductSearch extends Component {
     constructor(props){
@@ -38,7 +38,7 @@ export default class ProductSearch extends Component {
                 </div>
 
                 <div className={"sidebar-tab " + (this.state.selected === "collection-search" ? "active": "")} id="collection-search">
-                    <Search searchService = {this.props.searchService} 
+                    <Search searchService = {this.props.searchService}
                         updateResult = {this.props.updateResult}
                         relation = 'results'
                     />
