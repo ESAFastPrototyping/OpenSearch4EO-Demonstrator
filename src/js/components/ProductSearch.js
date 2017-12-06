@@ -48,7 +48,7 @@ export default class ProductSearch extends Component {
                     <FoundProducts productsResult = {this.props.productsResult}
                         selectProduct = {this.props.selectProduct}
                     />
-                    {this.props.productsResult.properties &&
+                    {this.props.productsResult.properties && this.props.productsResult.properties.totalResults > 0 &&
                     <PageControls currentResult = {this.props.productsResult}
                         updateResult = {this.props.updateResult}
                     />

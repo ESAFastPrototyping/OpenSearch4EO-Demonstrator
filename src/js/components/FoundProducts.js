@@ -56,22 +56,24 @@ export default class FoundProducts extends Component {
 
     render() {
         let products;
+        let resultsCount = 0;
         if (this.props.productsResult.features && this.props.productsResult.features.length > 0){
             products = this.props.productsResult.features.map((product, index) => {
                 return (
                     <Product key = {index} product = {product} showInfo = {this.showInfo} />
                 );
             });
+            resultsCount = this.props.productsResult.properties.totalResults;
         }
-        else {
-            products = ( <h4>No products found</h4> );
-        }
+
         return (
             <div>
-                <h3>Found products</h3>
-				<div id="results-list-header">
-					<div id="results-list-header-name-time">Name / time</div>
-				</div>
+                <h3>{"Found products - " + resultsCount + " results"}</h3>
+                {resultsCount > 0 &&
+                    <div id="results-list-header">
+    					<div id="results-list-header-name-time">Name / time</div>
+    				</div>
+                }   
                 <div id="results-list">
                     {products}
                 </div>

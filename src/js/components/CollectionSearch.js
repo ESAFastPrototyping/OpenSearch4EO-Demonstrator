@@ -54,7 +54,7 @@ export default class CollectionSearch extends Component {
                         selectCollection = {this.props.selectCollection}
                         connectCollection = {this.props.connectCollection}
                     />
-                    {this.props.collectionsResult.properties &&
+                    {this.props.collectionsResult.properties && this.props.collectionsResult.properties.totalResults > 0 &&
                     <PageControls currentResult = {this.props.collectionsResult}
                         updateResult = {this.props.updateResult}
                     />

@@ -22,6 +22,7 @@ export default class FoundCollections extends Component {
     }
     render(){
         let collections;
+        let resultsCount = 0;
         if (this.props.collectionsResult.features && this.props.collectionsResult.features.length > 0){
             collections = this.props.collectionsResult.features.map(collection => {
                     return (
@@ -31,13 +32,11 @@ export default class FoundCollections extends Component {
                         </div>
                         );
                 });
-        }
-        else {
-            collections = (<h4>No collections found</h4>);
+            resultsCount = this.props.collectionsResult.properties.totalResults;
         }
         return (
             <div>
-                <h3>Found collections</h3>
+                <h3>{"Found collections - " + resultsCount + " results"}</h3>
                 {collections}
             </div>
         )
