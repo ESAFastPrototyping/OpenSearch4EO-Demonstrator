@@ -30,8 +30,12 @@ export default class FoundProducts extends Component {
     showInfo(product) {
         let requestOptions = new OpenSearchRequest();
 
-        if (product.properties && product.properties.links && product.properties.links.via){
-            var infoLink = product.properties.links.via.find(link => link.title == 'Product metadata');
+        let infoLink;
+        if (product.links && product.links.via){
+            infoLink = product.links.via.find(link => link.title == 'Product metadata');
+        }
+        else if (product.properties && product.properties.links && product.properties.links.via){
+            infoLink = product.properties.links.via.find(link => link.title == 'Product metadata');
         }
         if (infoLink && infoLink.href){
             requestOptions.url = infoLink.href;
