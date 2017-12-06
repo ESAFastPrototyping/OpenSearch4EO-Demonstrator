@@ -80,7 +80,7 @@ export default class FoundProducts extends Component {
             <div>
                 <h3>{"Found products - " + resultsCount + " results"}</h3>
                 {resultsCount > 0 && !this.productsHaveGeoData() &&
-                    <h3><strong>These products do not contain geographic data</strong></h3>
+                    <h3><strong>These products can't be displayed on the globe</strong></h3>
                 }
                 {resultsCount > 0 &&
                     <div id="results-list-header">
