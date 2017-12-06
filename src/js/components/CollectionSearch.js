@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Search from './Search';
 import FoundCollections from './FoundCollections';
 import PageControls from './PageControls';
+import TabHeaders from './TabHeaders';
 
 export default class CollectionSearch extends Component {
     constructor(props){
@@ -9,9 +10,9 @@ export default class CollectionSearch extends Component {
         this.state = {
             selected: "provider-base"
         }
-        this.handleClick = this.handleClick.bind(this);
+        this.select = this.select.bind(this);
     }
-    handleClick(id){
+    select(id){
         this.setState({
             selected: id
         });
@@ -23,13 +24,16 @@ export default class CollectionSearch extends Component {
             description =  this.props.searchService.descriptionDocument.description;
             longName =  this.props.searchService.descriptionDocument.longName;
         }
+
+        let tabs = [
+            {id: "provider-base", title: "Provider"},
+            {id: "provider-search", title: "Collection Search"},
+            {id: "provider-results", title: "Search results"}
+        ];
+
         return (
             <div className="sidebar-block content active" id="provider-content">
-                <div className="sidebar-tabs">
-                    <a data-for="provider-base" className={this.state.selected === "provider-base" ? "active": ""} onClick = {this.handleClick.bind(this, "provider-base")}>Provider</a>
-                    <a data-for="provider-search" className={this.state.selected === "provider-search" ? "active": ""} onClick = {this.handleClick.bind(this, "provider-search")}>Collection search</a>
-                    <a data-for="provider-results" className={this.state.selected === "provider-results" ? "active": ""} onClick = {this.handleClick.bind(this, "provider-results")}>Search results</a>
-                </div>
+                <TabHeaders tabs = {tabs} select = {this.select} selected = {this.state.selected} />
 
                 <div className={"sidebar-tab " + (this.state.selected === "provider-base" ? "active": "")} id="provider-base">
                     <div className="sidebar-base-description">
@@ -39,14 +43,21 @@ export default class CollectionSearch extends Component {
                 </div>
 
                 <div className={"sidebar-tab " + (this.state.selected === "provider-search" ? "active": "")} id="provider-search">
-                    <Search searchService = {this.props.searchService} updateResult = {this.props.updateResult} parentIdentifier = ""
-                        relation = 'collection'/>
+                    <Search searchService = {this.props.searchService}
+                        updateResult = {this.props.updateResult}
+                        relation = 'collection'
+                    />
                 </div>
 
                 <div className={"sidebar-tab " + (this.state.selected === "provider-results" ? "active": "")} id="provider-results">
-                    <FoundCollections collectionsResult = {this.props.collectionsResult} selectCollection = {this.props.selectCollection} connectCollection = {this.props.connectCollection}/>
+                    <FoundCollections collectionsResult = {this.props.collectionsResult}
+                        selectCollection = {this.props.selectCollection}
+                        connectCollection = {this.props.connectCollection}
+                    />
                     {this.props.collectionsResult.properties &&
-                    <PageControls currentResult = {this.props.collectionsResult} updateResult = {this.props.updateResult}/>
+                    <PageControls currentResult = {this.props.collectionsResult}
+                        updateResult = {this.props.updateResult}
+                    />
                     }
                 </div>
 

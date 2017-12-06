@@ -90,7 +90,6 @@ export default class Search extends Component {
             {name: 'platform', value: this.state.platform},
             {name: 'instrument', value: this.state.instrument},
             {name: 'organisationName', value: this.state.organisation},
-            {name: 'parentIdentifier', value: this.props.parentIdentifier},
             {name: 'recordSchema', value: 'server-choice'}
         ];
         searchParams = searchParams.filter((param) => this.isInParameters(param.name));

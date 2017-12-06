@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Search from './Search';
 import FoundProducts from './FoundProducts';
 import PageControls from './PageControls';
+import TabHeaders from './TabHeaders';
 
 export default class ProductSearch extends Component {
     constructor(props){
@@ -9,41 +10,50 @@ export default class ProductSearch extends Component {
         this.state = {
             selected: "collection-base"
         }
-        this.handleClick = this.handleClick.bind(this);
+        this.select = this.select.bind(this);
     }
-    handleClick(id){
+    select(id){
         this.setState({
             selected: id
         });
     }
     render(){
         let description = this.props.selectedCollection.properties && this.props.selectedCollection.properties.title;
+
+        let tabs = [
+            {id: "collection-base", title: "Collection"},
+            {id: "collection-search", title: "Product Search"},
+            {id: "collection-results", title: "Search results"}
+        ];
+
         return (
             <div className="sidebar-block content active" id="collection-content">
-                <div className="sidebar-tabs">
-                    <a data-for="collection-base" className={this.state.selected === "collection-base" ? "active": ""} onClick = {this.handleClick.bind(this, "collection-base")}>Collection</a>
-                    <a data-for="collection-search" className={this.state.selected === "collection-search" ? "active": ""} onClick = {this.handleClick.bind(this, "collection-search")}>Product search</a>
-                    <a data-for="collection-results" className={this.state.selected === "collection-results" ? "active": ""} onClick = {this.handleClick.bind(this, "collection-results")}>Search results</a>
-                </div>
+                <TabHeaders tabs = {tabs} select = {this.select} selected = {this.state.selected} />
 
                 <div className={"sidebar-tab " + (this.state.selected === "collection-base" ? "active": "")} id="collection-base">
                     <div className="sidebar-base-description">
                         <span className = "sidebar-header-content-name">Collection</span>
-                        <span className = "sidebar-text">{description}</span>
+                        <span className = "sidebar-text">{description || "No description available"}</span>
                     </div>
                 </div>
 
                 <div className={"sidebar-tab " + (this.state.selected === "collection-search" ? "active": "")} id="collection-search">
-                    <Search searchService = {this.props.searchService} updateResult = {this.props.updateResult} relation = 'results'/>
+                    <Search searchService = {this.props.searchService} 
+                        updateResult = {this.props.updateResult}
+                        relation = 'results'
+                    />
                 </div>
 
                 <div className={"sidebar-tab " + (this.state.selected === "collection-results" ? "active": "")} id="collection-results">
-                    <FoundProducts productsResult = {this.props.productsResult} selectProduct = {this.props.selectProduct} />
+                    <FoundProducts productsResult = {this.props.productsResult}
+                        selectProduct = {this.props.selectProduct}
+                    />
                     {this.props.productsResult.properties &&
-                    <PageControls currentResult = {this.props.productsResult} updateResult = {this.props.updateResult}/>
+                    <PageControls currentResult = {this.props.productsResult}
+                        updateResult = {this.props.updateResult}
+                    />
                     }
                 </div>
-
             </div>
         )
     }
