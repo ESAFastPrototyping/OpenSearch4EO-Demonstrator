@@ -50,7 +50,7 @@ export default class FoundProducts extends Component {
             .catch(err => console.log(err));
         }
         else {
-            alert("No more information available, sorry");
+            this.setState({info: "\n\nNo more information available, sorry"});
         }
     }
 
@@ -73,7 +73,7 @@ export default class FoundProducts extends Component {
                     <div id="results-list-header">
     					<div id="results-list-header-name-time">Name / time</div>
     				</div>
-                }   
+                }
                 <div id="results-list">
                     {products}
                 </div>
