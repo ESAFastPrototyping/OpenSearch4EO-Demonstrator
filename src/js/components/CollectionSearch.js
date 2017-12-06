@@ -4,7 +4,6 @@ import PageControls from './common/PageControls';
 import TabHeaders from './common/TabHeaders';
 import FoundCollections from './FoundCollections';
 
-
 export default class CollectionSearch extends Component {
     constructor(props){
         super(props);
@@ -61,9 +60,7 @@ export default class CollectionSearch extends Component {
                     />
                     }
                 </div>
-
             </div>
         )
     }
-
 }

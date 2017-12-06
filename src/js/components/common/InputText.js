@@ -1,18 +1,15 @@
 import React, { Component } from 'react';
 
-export default class InputText extends Component {
-    constructor(props){
-        super(props);
-        this.handleChange = this.handleChange.bind(this);
+const InputText = ({ text, changeText }) => {
+    function handleChange(event) {
+        changeText(event.target.value);
     }
-    handleChange(event){
-        this.props.changeText(event.target.value);
-    }
-    render(){
-        return (
-            <div className="eoos-property-input">
-                <input type="text" id="collection-fulltext" onChange = {this.handleChange} value = {this.props.text}/>
-            </div>
-        )
-    }
+
+    return (
+        <div className="eoos-property-input">
+            <input type="text" id="collection-fulltext" onChange = {handleChange} value = {text}/>
+        </div>
+    );
 }
+
+export default InputText;
