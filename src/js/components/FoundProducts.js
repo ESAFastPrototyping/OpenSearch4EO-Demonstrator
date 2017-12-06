@@ -27,6 +27,16 @@ export default class FoundProducts extends Component {
         return str.replace(/\t{2}/g, "\t");
     }
 
+    productsHaveGeoData(){
+        let productsWithGeoData = false;
+        this.props.productsResult.features.forEach(product => {
+            if(product.geometry) {
+                productsWithGeoData = true;
+            }
+        });
+        return productsWithGeoData;
+    }
+
     showInfo(product) {
         let requestOptions = new OpenSearchRequest();
 
@@ -69,6 +79,9 @@ export default class FoundProducts extends Component {
         return (
             <div>
                 <h3>{"Found products - " + resultsCount + " results"}</h3>
+                {resultsCount > 0 && !this.productsHaveGeoData() &&
+                    <h3><strong>These products do not contain geographic data</strong></h3>
+                }
                 {resultsCount > 0 &&
                     <div id="results-list-header">
     					<div id="results-list-header-name-time">Name / time</div>
