@@ -26,6 +26,10 @@ export default class ProductSearch extends Component {
             {id: "collection-results", title: "Search results"}
         ];
 
+        let defaultParams = this.props.productsResult.properties ?
+            this.props.productsResult.searchParams
+            : this.props.selectedCollection.searchParams;
+
         return (
             <div className="sidebar-block content active" id="collection-content">
                 <TabHeaders tabs = {tabs} select = {this.select} selected = {this.state.selected} />
@@ -41,6 +45,7 @@ export default class ProductSearch extends Component {
                     <Search searchService = {this.props.searchService}
                         updateResult = {this.props.updateResult}
                         relation = 'results'
+                        defaultParams = {defaultParams}
                     />
                 </div>
 

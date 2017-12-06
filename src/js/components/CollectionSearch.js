@@ -31,6 +31,9 @@ export default class CollectionSearch extends Component {
             {id: "provider-results", title: "Search results"}
         ];
 
+        let defaultParams = this.props.collectionsResult.properties ?
+            this.props.collectionsResult.searchParams : "";
+
         return (
             <div className="sidebar-block content active" id="provider-content">
                 <TabHeaders tabs = {tabs} select = {this.select} selected = {this.state.selected} />
@@ -46,6 +49,7 @@ export default class CollectionSearch extends Component {
                     <Search searchService = {this.props.searchService}
                         updateResult = {this.props.updateResult}
                         relation = 'collection'
+                        defaultParams = {defaultParams}
                     />
                 </div>
 

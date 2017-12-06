@@ -17,13 +17,13 @@ export default class Search extends Component {
         ];
 
         this.state = {
-            text: "",
-            startDate: moment().subtract(1, 'years'),
-            endDate: moment()
+            text: this.props.defaultParams.text || "",
+            startDate: this.props.defaultParams.startDate || moment().subtract(1, 'years'),
+            endDate: this.props.defaultParams.endDate || moment()
         };
 
         this.selectors.forEach(selector => {
-            this.state[selector.parameter] = "";
+            this.state[selector.parameter] = this.props.defaultParams[selector.parameter] || "";
         });
 
         this.search = _.debounce(this.search.bind(this), 1000);
@@ -35,23 +35,8 @@ export default class Search extends Component {
         this.isInParameters = this.isInParameters.bind(this);
     }
 
-    createSelectorInputs(){
-        return this.selectors.reduce((accumulator, selector) => {
-            if (this.isInParameters(selector.parameter)) {
-                return accumulator.concat(
-                    <ContentBox title = {selector.title} key = {selector.title}>
-                        <InputSelector text = {this.state[selector.parameter]}
-                            change = {this.changeParameter}
-                            options = {this.getOptions(selector.parameter)}
-                            parameter = {selector.parameter}
-                        />
-                    </ContentBox>
-                );
-            }
-            else {
-                return accumulator;
-            }
-        }, []);
+    componentDidMount(){
+        this.search();
     }
 
     changeText(text){
@@ -110,6 +95,8 @@ export default class Search extends Component {
 
         service.search(searchParams, {relation: this.props.relation})
         .then(result => {
+            //keep the search parameters on the result object
+            result.searchParams = this.state;
             this.props.updateResult(result);
         })
         .catch(err => this.handleError(err));
@@ -137,6 +124,25 @@ export default class Search extends Component {
         else {
             alert('An unknown error occured, sorry. Try later');
         }
+    }
+
+    createSelectorInputs(){
+        return this.selectors.reduce((accumulator, selector) => {
+            if (this.isInParameters(selector.parameter)) {
+                return accumulator.concat(
+                    <ContentBox title = {selector.title} key = {selector.title}>
+                        <InputSelector text = {this.state[selector.parameter]}
+                            change = {this.changeParameter}
+                            options = {this.getOptions(selector.parameter)}
+                            parameter = {selector.parameter}
+                        />
+                    </ContentBox>
+                );
+            }
+            else {
+                return accumulator;
+            }
+        }, []);
     }
 
     render(){

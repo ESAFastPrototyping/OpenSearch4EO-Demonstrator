@@ -11,7 +11,7 @@ export default class FoundCollections extends Component {
             let service = new OpenSearchService(links.search[0].href)
             service.discover()
             .then(result => {
-                console.log(result);
+                collection.searchParams = this.props.collectionsResult.searchParams;
                 this.props.connectCollection(result);
                 this.props.selectCollection(collection);
             })
