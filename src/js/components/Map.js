@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import WorldWind from '../WorldWind/worldwind';
+import MapControls from './MapControls';
 
 export default class Map extends Component {
     constructor(props){
@@ -46,6 +47,7 @@ export default class Map extends Component {
         return (
             <div id="map">
                 <canvas id="wwd-results"></canvas>
+                <MapControls />
             </div>
         )
     }
