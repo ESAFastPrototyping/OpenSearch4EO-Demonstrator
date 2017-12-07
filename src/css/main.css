@@ -916,3 +916,80 @@ body.eoos-index {
 .button-navigation {
 	width: 5rem;
 }
+
+/* A loader
+Apache license 2.0, Copyright (c) 2015 Tom Adamec */
+.a-loader-container, .a-loader-container * {
+	box-sizing: border-box;
+}
+.a-loader-container {
+	width: 35px;
+	height: 35px;
+	font-size: 35px;
+
+	/*position: relative;*/
+
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+}
+.a-loader-container.small {
+	width: 40px;
+	height: 40px;
+	font-size: 40px;
+}
+@keyframes a-loader {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+.a-loader-container i {
+	width: 1em;
+	height: 1em;
+
+	position: absolute;
+	transform-origin: 50% 50%;
+
+	border-style: solid;
+	border-width: 4px;
+	border-color: transparent;
+	border-radius: 999%;
+}
+.a-loader-container i.i1 {
+	animation: a-loader 1500ms linear infinite;
+	border-top-color: rgba(255,80,60,.4);
+	/*border-top-color: rgba(0,0,0,.2);*/
+}
+.a-loader-container i.i2 {
+	animation: a-loader 1300ms linear infinite;
+	border-top-color: rgba(50,255,50,.7);
+	/*border-top-color: rgba(255,255,255,.35);*/
+}
+.a-loader-container i.i3 {
+	animation: a-loader 1100ms linear infinite;
+	border-top-color: rgba(100,160,255,.5);
+	/*border-top-color: rgba(0,0,0,.3);*/
+}
+.a-loader-container i.i4 {
+	animation: a-loader 1700ms linear infinite;
+	/*border-top-color: rgba(255,255,0,.6);*/
+	border-top-color: rgba(245,245,0,.6);
+	/*border-top-color: rgba(255,255,255,.45);*/
+}
+.a-loader-container.blackandwhite i.i1 {
+	border-top-color: rgba(0,0,0,.2);
+}
+.a-loader-container.blackandwhite i.i2 {
+	border-top-color: rgba(255,255,255,.35);
+}
+.a-loader-container.blackandwhite i.i3 {
+	border-top-color: rgba(0,0,0,.3);
+}
+.a-loader-container.blackandwhite i.i4 {
+	border-top-color: rgba(255,255,255,.45);
+}
+/* A loader end */

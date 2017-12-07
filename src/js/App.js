@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Map from './components/Map';
 import Sidebar from './components/Sidebar';
-
+import Loader from './components/common/Loader';
 
 export default class App extends Component {
     constructor(props){
@@ -72,6 +72,7 @@ export default class App extends Component {
                     selectCollection = {this.selectCollection} selectProduct = {this.selectProduct}
                     searchService = {this.state.searchService} collectionsResult = {this.state.collectionsResult}
                     productsResult = {this.state.productsResult} selectedCollection = {this.state.selectedCollection}/>
+                <Loader />
             </div>
         );
     }
