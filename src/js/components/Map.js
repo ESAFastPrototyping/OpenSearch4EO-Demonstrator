@@ -4,41 +4,44 @@ import WorldWind from '../WorldWind/worldwind';
 export default class Map extends Component {
     constructor(props){
         super(props);
-        this.state = {
-            wwd: null
-        }
     }
+
     componentDidMount(){
-        let wwd = new WorldWind.WorldWindow("wwd-results");
+        this.wwd = new WorldWind.WorldWindow("wwd-results");
         let bingLayer = new WorldWind.BingAerialLayer(null);
-		bingLayer.detailControl = 1.0;
 		bingLayer.enabled = true;
 
-		wwd.addLayer(bingLayer);
-        wwd.addLayer(new WorldWind.CompassLayer());
-        wwd.addLayer(new WorldWind.ViewControlsLayer(wwd));
+        this.productLayer = new WorldWind.RenderableLayer();
 
-        wwd.redraw();
-
-        this.setState({wwd: wwd});
+		this.wwd.addLayer(bingLayer);
+        this.wwd.addLayer(this.productLayer);
+        this.wwd.redraw();
     }
+
     componentDidUpdate(){
-        let myLayer = new WorldWind.RenderableLayer();
-        if(!isEmpty(this.props.productsResult)){
-            let geometryExists = true;
-            this.props.productsResult.features.forEach(feature => {
-                if (!feature.geometry){
-                    geometryExists = false;
-                }
-            });
-            if (!geometryExists){
-                return;
-            }
+        this.productLayer.removeAllRenderables();
+
+        if (this.productsHaveGeometry()){
             let geoJSON = new WorldWind.GeoJSONParser(JSON.stringify(this.props.productsResult));
-            geoJSON.load(null, null, myLayer);
-            this.state.wwd.addLayer(myLayer);
+            geoJSON.load(null, null, this.productLayer);
         }
+
+        this.wwd.redraw();
     }
+
+    productsHaveGeometry(){
+        if (!this.props.productsResult.features || this.props.productsResult.features.length === 0) {
+            return false;
+        }
+        let geometryExists = true;
+        this.props.productsResult.features.forEach(feature => {
+            if (!feature.geometry){
+                geometryExists = false;
+            }
+        });
+        return geometryExists;
+    }
+
     render(){
         return (
             <div id="map">
