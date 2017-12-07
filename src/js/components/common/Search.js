@@ -16,14 +16,16 @@ export default class Search extends Component {
             {parameter: "organisationName", title: "Organisation"}
         ];
 
+        let defaultParams = this.props.defaultParams || {};
+
         this.state = {
-            text: this.props.defaultParams.text || "",
-            startDate: this.props.defaultParams.startDate || moment().subtract(1, 'years'),
-            endDate: this.props.defaultParams.endDate || moment()
+            text: defaultParams.text || "",
+            startDate: defaultParams.startDate || moment().subtract(1, 'years'),
+            endDate: defaultParams.endDate || moment()
         };
 
         this.selectors.forEach(selector => {
-            this.state[selector.parameter] = this.props.defaultParams[selector.parameter] || "";
+            this.state[selector.parameter] = defaultParams[selector.parameter] || "";
         });
 
         this.search = _.debounce(this.search.bind(this), 1000);
@@ -93,13 +95,18 @@ export default class Search extends Component {
 
         searchParams = searchParams.filter((param) => this.isInParameters(param.name));
 
+        this.props.startedSearchRequest();
         service.search(searchParams, {relation: this.props.relation})
         .then(result => {
             //keep the search parameters on the result object
             result.searchParams = this.state;
             this.props.updateResult(result);
+            this.props.finishedSearchRequest();
         })
-        .catch(err => this.handleError(err));
+        .catch(err => {
+            this.handleError(err);
+            this.props.finishedSearchRequest();
+        });
     }
 
     handleError(err){

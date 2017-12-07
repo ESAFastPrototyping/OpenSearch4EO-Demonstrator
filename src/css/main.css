@@ -923,16 +923,15 @@ Apache license 2.0, Copyright (c) 2015 Tom Adamec */
 	box-sizing: border-box;
 }
 .a-loader-container {
-	width: 35px;
-	height: 35px;
-	font-size: 35px;
+	width: 30px;
+	height: 30px;
+	font-size: 30px;
 
 	/*position: relative;*/
 
 	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%,-50%);
+	top: 45px;
+	right: 20px;
 }
 .a-loader-container.small {
 	width: 40px;

@@ -1,21 +1,31 @@
 import React, { Component } from 'react';
-import Search from './common/Search';
-import PageControls from './common/PageControls';
-import TabHeaders from './common/TabHeaders';
 import FoundProducts from './FoundProducts';
+import Loader from './common/Loader';
+import PageControls from './common/PageControls';
+import Search from './common/Search';
+import TabHeaders from './common/TabHeaders';
 
 export default class ProductSearch extends Component {
     constructor(props){
         super(props);
         this.state = {
-            selected: "collection-base"
+            selected: "collection-base",
+            activeSearchRequests: 0
         }
         this.select = this.select.bind(this);
+        this.startedSearchRequest = this.startedSearchRequest.bind(this);
+        this.finishedSearchRequest = this.finishedSearchRequest.bind(this);
     }
     select(id){
         this.setState({
             selected: id
         });
+    }
+    startedSearchRequest(){
+        this.setState({ activeSearchRequests : this.state.activeSearchRequests + 1});
+    }
+    finishedSearchRequest(){
+        this.setState({ activeSearchRequests : this.state.activeSearchRequests - 1});
     }
     render(){
         let description = this.props.selectedCollection.properties && this.props.selectedCollection.properties.title;
@@ -46,7 +56,10 @@ export default class ProductSearch extends Component {
                         updateResult = {this.props.updateResult}
                         relation = 'results'
                         defaultParams = {defaultParams}
+                        startedSearchRequest = {this.startedSearchRequest}
+                        finishedSearchRequest = {this.finishedSearchRequest}
                     />
+                    {this.state.activeSearchRequests > 0 && <Loader />}
                 </div>
 
                 <div className={"sidebar-tab " + (this.state.selected === "collection-results" ? "active": "")} id="collection-results">
@@ -56,8 +69,11 @@ export default class ProductSearch extends Component {
                     {this.props.productsResult.properties && this.props.productsResult.properties.totalResults > 0 &&
                     <PageControls currentResult = {this.props.productsResult}
                         updateResult = {this.props.updateResult}
+                        startedSearchRequest = {this.startedSearchRequest}
+                        finishedSearchRequest = {this.finishedSearchRequest}
                     />
                     }
+                    {this.state.activeSearchRequests > 0 && <Loader />}
                 </div>
             </div>
         )
