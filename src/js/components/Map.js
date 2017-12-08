@@ -5,10 +5,14 @@ import MapControls from './MapControls';
 export default class Map extends Component {
     constructor(props){
         super(props);
+        this.state = {
+            wwdCreated: false
+        };
     }
 
     componentDidMount(){
         this.wwd = new WorldWind.WorldWindow("wwd-results");
+        this.setState({wwdCreated: true});
         let bingLayer = new WorldWind.BingAerialLayer(null);
 		bingLayer.enabled = true;
 
@@ -47,16 +51,8 @@ export default class Map extends Component {
         return (
             <div id="map">
                 <canvas id="wwd-results"></canvas>
-                <MapControls />
+                {this.state.wwdCreated && <MapControls wwd = {this.wwd}/>}
             </div>
         )
     }
-}
-
-function isEmpty(obj) {
-    for(let key in obj) {
-        if(obj.hasOwnProperty(key))
-            return false;
-    }
-    return true;
 }
