@@ -16,16 +16,26 @@ export default class ProductSearch extends Component {
         this.startedSearchRequest = this.startedSearchRequest.bind(this);
         this.finishedSearchRequest = this.finishedSearchRequest.bind(this);
     }
+    componentDidMount(){
+        this._isMounted = true;
+    }
+    componentWillUnmount(){
+        this._isMounted = false;
+    }
     select(id){
         this.setState({
             selected: id
         });
     }
     startedSearchRequest(){
-        this.setState({ activeSearchRequests : this.state.activeSearchRequests + 1});
+        if (this._isMounted){
+            this.setState({ activeSearchRequests : this.state.activeSearchRequests + 1});
+        }
     }
     finishedSearchRequest(){
-        this.setState({ activeSearchRequests : this.state.activeSearchRequests - 1});
+        if (this._isMounted){
+            this.setState({ activeSearchRequests : this.state.activeSearchRequests - 1});
+        }
     }
     render(){
         let description = this.props.selectedCollection.properties && this.props.selectedCollection.properties.title;
