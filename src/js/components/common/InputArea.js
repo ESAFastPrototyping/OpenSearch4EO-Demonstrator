@@ -5,17 +5,45 @@ import LayerManager from '../../WorldWind/worldwind';
 export default class InputArea extends Component {
     constructor(props) {
         super(props);
-        this.createShape = this.createShape.bind(this);
+        this.state = {
+            drawing: false
+        }
+
+        this.handleClick = this.handleClick.bind(this);
     }
 
-    createShape() {
+    componentWillUnmount() {
         if(this.shapeEditorController){
             this.shapeEditorController.destroy();
+            this.shapeEditorController = null;
         }
         if(this.shapesLayer){
             this.shapesLayer.removeAllRenderables();
+            this.props.wwd.redraw();
         }
+    }
 
+    handleClick() {
+        if(this.state.drawing) {
+            this.finishDrawing();
+        }
+        else {
+            this.startDrawing();
+        }
+        this.setState({drawing: !this.state.drawing});
+    }
+
+    finishDrawing() {
+        let sector = this.shapesLayer.renderables[0]._sector;
+        let bbox = sector.minLongitude + ',' + sector.minLatitude + ',' + sector.maxLongitude + ',' + sector.maxLatitude;
+        this.props.changeBBox(bbox);
+        this.shapeEditorController.destroy();
+        this.shapeEditorController = null;
+        this.shapesLayer.removeAllRenderables();
+        this.props.wwd.redraw();
+    }
+
+    startDrawing() {
         let wwd = this.props.wwd;
 
         // Create a layer to hold the surface shapes.
@@ -53,9 +81,11 @@ export default class InputArea extends Component {
         return (
             <div>
                 <div className="eoos-property-input">
-                    <input type="text" id="collection-location-find" />
+                    <input type="text" id="collection-location-find" value = {this.props.bbox} readOnly/>
                 </div>
-                <button id="collection-location-draw-in-map" onClick = {this.createShape}>Draw in map</button>
+                <button id="collection-location-draw-in-map" onClick = {this.handleClick}>
+                    {this.state.drawing ? "Confirm area" : "Draw in map"}
+                </button>
                 <button id="collection-location-load-file">Load from file</button>
             </div>
         );

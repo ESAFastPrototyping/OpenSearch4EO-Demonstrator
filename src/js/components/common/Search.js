@@ -19,16 +19,18 @@ export default class Search extends Component {
         let defaultParams = this.props.defaultParams || {};
 
         this.state = {
-            text: defaultParams.text || "",
+            bbox: defaultParams.bbox || '',
+            text: defaultParams.text || '',
             startDate: defaultParams.startDate || moment().subtract(1, 'years'),
             endDate: defaultParams.endDate || moment()
         };
 
         this.selectors.forEach(selector => {
-            this.state[selector.parameter] = defaultParams[selector.parameter] || "";
+            this.state[selector.parameter] = defaultParams[selector.parameter] || '';
         });
 
         this.search = _.debounce(this.search.bind(this), 1000);
+        this.changeBBox = this.changeBBox.bind(this);
         this.changeText = this.changeText.bind(this);
         this.changeStartDate = this.changeStartDate.bind(this);
         this.changeEndDate = this.changeEndDate.bind(this);
@@ -41,6 +43,9 @@ export default class Search extends Component {
         this.search();
     }
 
+    changeBBox(bbox){
+        this.setState({bbox: bbox}, this.search);
+    }
     changeText(text){
         this.setState({text: text}, this.search);
     }
@@ -84,6 +89,7 @@ export default class Search extends Component {
         let endDate = this.props.relation == "collection" ? moment(this.state.endDate).format("YYYY-MM-DD[T]HH:mm:ssZ") : moment(this.state.endDate).format("YYYY-MM-DD");
 
         let searchParams = [
+            {name: 'bbox', value: this.state.bbox},
             {name: 'query', value: this.state.text},
             {name: 'startDate', value: startDate},
             {name: 'endDate', value: endDate},
@@ -162,7 +168,7 @@ export default class Search extends Component {
 
                 {this.isInParameters('bbox') &&
                 <ContentBox title = "Search area">
-                    <InputArea wwd = {this.props.worldWindow}/>
+                    <InputArea wwd = {this.props.worldWindow} changeBBox = {this.changeBBox} bbox = {this.state.bbox}/>
                 </ContentBox> }
 
                 {this.isInParameters('startDate') && this.isInParameters('endDate') &&
