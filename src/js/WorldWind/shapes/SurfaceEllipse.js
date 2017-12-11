@@ -4,7 +4,6 @@
  */
 /**
  * @exports SurfaceEllipse
- * @version $Id: SurfaceEllipse.js 3014 2015-04-14 01:06:17Z danm $
  */
 define([
         '../geom/Angle',
@@ -200,6 +199,23 @@ define([
                 this._boundaries[i] = Location.greatCircleLocation(this.center, azimuth * Angle.RADIANS_TO_DEGREES,
                     distance / globeRadius, new Location(0, 0));
             }
+        };
+
+        // Internal use only. Intentionally not documented.
+        SurfaceEllipse.prototype.getReferencePosition = function () {
+            return this.center;
+        };
+
+        // Internal use only. Intentionally not documented.
+        SurfaceEllipse.prototype.moveTo = function (oldReferenceLocation, newReferenceLocation) {
+            var heading = Location.greatCircleAzimuth(oldReferenceLocation,
+                new Location(this.center.latitude, this.center.longitude));
+            var pathLength = Location.greatCircleDistance(oldReferenceLocation,
+                new Location(this.center.latitude, this.center.longitude));
+            var location = new Location(0, 0);
+            Location.greatCircleLocation(newReferenceLocation, heading, pathLength, location);
+
+            this.center = location;
         };
 
         /**

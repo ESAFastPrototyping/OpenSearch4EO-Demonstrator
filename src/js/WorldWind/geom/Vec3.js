@@ -2,10 +2,6 @@
  * Copyright (C) 2014 United States Government as represented by the Administrator of the
  * National Aeronautics and Space Administration. All Rights Reserved.
  */
-/**
- * @version $Id: Vec3.js 3001 2015-04-09 20:13:50Z tgaskins $
- */
-
 define([
         '../util/Logger',
         '../error/ArgumentError'
@@ -521,6 +517,23 @@ define([
             that[2] = tmp;
 
             return this;
+        };
+
+        /**
+         * Returns the vector that corresponds with a specified line segment.
+         *
+         * @param {Vec3} origin The line's starting point.
+         * @param {Number} t The specified dot product on the segment (representing the
+         * scalar value of a vector equation of line).
+         * @param {Vec3} direction
+         * @returns {Vec3} The vector that corresponds with a specified line segment.
+         */
+        Vec3.fromLine = function(origin, t, direction)
+        {
+            return new Vec3(
+                origin[0] + (direction[0] * t),
+                origin[1] + (direction[1] * t),
+                origin[2] + (direction[2] * t));
         };
 
         /**

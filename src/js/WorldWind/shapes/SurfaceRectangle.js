@@ -4,7 +4,6 @@
  */
 /**
  * @exports SurfaceRectangle
- * @version $Id: SurfaceRectangle.js 3195 2015-06-15 23:59:30Z tgaskins $
  */
 define([
         '../geom/Angle',
@@ -180,6 +179,23 @@ define([
             this._boundaries[idx] = Location.greatCircleLocation(this.center, azimuth * Angle.RADIANS_TO_DEGREES,
                 distance / globeRadius, new Location(0, 0));
 
+        };
+
+        // Internal use only. Intentionally not documented.
+        SurfaceRectangle.prototype.getReferencePosition = function () {
+            return this.center;
+        };
+
+        // Internal use only. Intentionally not documented.
+        SurfaceRectangle.prototype.moveTo = function (oldReferenceLocation, newReferenceLocation) {
+            var heading = Location.greatCircleAzimuth(oldReferenceLocation,
+                new Location(this.center.latitude, this.center.longitude));
+            var pathLength = Location.greatCircleDistance(oldReferenceLocation,
+                new Location(this.center.latitude, this.center.longitude));
+            var location = new Location(0, 0);
+            Location.greatCircleLocation(newReferenceLocation, heading, pathLength, location);
+
+            this.center = location;
         };
 
         return SurfaceRectangle;

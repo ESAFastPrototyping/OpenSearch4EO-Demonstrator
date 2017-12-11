@@ -4,7 +4,6 @@
  */
 /**
  * @exports LevelRowColumnUrlBuilder
- * @version $Id: LevelRowColumnUrlBuilder.js 2643 2015-01-09 20:37:58Z tgaskins $
  */
 define([
         '../error/ArgumentError',
@@ -25,10 +24,10 @@ define([
          * URLs are formed by appending the specified server address with the specified path and appending
          * a path of the form <em>/level/row/row_column.image-format</em>, where image-format is the corresponding
          * suffix to the image mime type specified when a URL is requested. For example, if the specified server
-         * address is <em>http://worldwindserver.net/webworldwind</em> and the specified path-to-data is
-         * <em>../data/Earth/BMNG256</em>, and the requested tile's level, row and column are 0, 5 and 9 respectively,
-         * and the image format is <em>image/jpeg</em>, the composed URL is
-         * <em>http://worldwindserver.net/webworldwind/../data/Earth/BMNG256/0/5/5_9.jpg.
+         * address is <em>https://worldwind32.arc.nasa.gov</em> and the specified path-to-data is
+         * <em>../standalonedata/Earth/BlueMarble256</em>, and the requested tile's level, row and column are 0, 5 and 9
+         * respectively, and the image format is <em>image/jpeg</em>, the composed URL is
+         * <em>https://worldwind32.arc.nasa.gov/standalonedata/Earth/BlueMarble256/0/5/5_9.jpg</em>.
          *
          * @param {String} serverAddress The server address. May be null, in which case the address is assumed to be
          * the current location (see <code>window.location</code>) minus the last path component.
