@@ -72,6 +72,7 @@ export default class CollectionSearch extends Component {
                         defaultParams = {defaultParams}
                         startedSearchRequest = {this.startedSearchRequest}
                         finishedSearchRequest = {this.finishedSearchRequest}
+                        worldWindow = {this.props.worldWindow}
                     />
                     {this.state.activeSearchRequests > 0 && <Loader />}
                 </div>

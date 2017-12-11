@@ -379,6 +379,16 @@ define([
                 this.worldWindow.addEventListener("mousedown", handleMouseDown);
                 this.worldWindow.addEventListener("mousemove", handleMouseMove, false);
             }
+
+            this.destroy = function() {
+                this.disable();
+                this.worldWindow.removeEventListener("pointerup", handleMouseUp);
+                this.worldWindow.removeEventListener("pointerdown", handleMouseDown);
+                this.worldWindow.removeEventListener("pointermove", handleMouseMove, false);
+                this.worldWindow.removeEventListener("mouseup", handleMouseUp);
+                this.worldWindow.removeEventListener("mousedown", handleMouseDown);
+                this.worldWindow.removeEventListener("mousemove", handleMouseMove, false);
+            }
         };
 
         /**

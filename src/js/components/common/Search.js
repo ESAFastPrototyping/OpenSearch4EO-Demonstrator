@@ -162,7 +162,7 @@ export default class Search extends Component {
 
                 {this.isInParameters('bbox') &&
                 <ContentBox title = "Search area">
-                    <InputArea />
+                    <InputArea wwd = {this.props.worldWindow}/>
                 </ContentBox> }
 
                 {this.isInParameters('startDate') && this.isInParameters('endDate') &&

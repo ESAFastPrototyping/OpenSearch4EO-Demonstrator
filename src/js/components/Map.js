@@ -13,6 +13,8 @@ export default class Map extends Component {
     componentDidMount(){
         this.wwd = new WorldWind.WorldWindow("wwd-results");
         this.setState({wwdCreated: true});
+        this.props.setWorldWindow(this.wwd);
+
         let bingLayer = new WorldWind.BingAerialLayer(null);
 		bingLayer.enabled = true;
 

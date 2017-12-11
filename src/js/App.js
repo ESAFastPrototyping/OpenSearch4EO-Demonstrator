@@ -11,7 +11,8 @@ export default class App extends Component {
             collectionsResult: {},
             productsResult: {},
             selectedCollection: {},
-            selectedProduct: {}
+            selectedProduct: {},
+            worldWindow: {}
         }
         this.connect = this.connect.bind(this);
         this.connectCollection = this.connectCollection.bind(this);
@@ -21,6 +22,7 @@ export default class App extends Component {
         this.updateProducts = this.updateProducts.bind(this);
         this.selectCollection = this.selectCollection.bind(this);
         this.selectProduct = this.selectProduct.bind(this);
+        this.setWorldWindow = this.setWorldWindow.bind(this);
     }
     connect(searchService){
         this.setState({searchService: searchService});
@@ -58,19 +60,24 @@ export default class App extends Component {
     selectProduct(product){
         this.setState({selectedProduct: product});
     }
+    setWorldWindow(wwd){
+        this.setState({worldWindow: wwd});
+    }
     render(){
         console.log("collections", this.state.collectionsResult);
         console.log("products", this.state.productsResult);
         return (
             <div>
-                <Map productsResult = {this.state.productsResult}/>
+                <Map productsResult = {this.state.productsResult}
+                    setWorldWindow = {this.setWorldWindow}/>
                 <Sidebar connect = {this.connect} connectCollection = {this.connectCollection}
                     collectionSearchService = {this.state.collectionSearchService}
                     resetProvider = {this.resetProvider} resetCollection = {this.resetCollection}
                     updateCollections = {this.updateCollections} updateProducts = {this.updateProducts}
                     selectCollection = {this.selectCollection} selectProduct = {this.selectProduct}
                     searchService = {this.state.searchService} collectionsResult = {this.state.collectionsResult}
-                    productsResult = {this.state.productsResult} selectedCollection = {this.state.selectedCollection}/>
+                    productsResult = {this.state.productsResult} selectedCollection = {this.state.selectedCollection}
+                    worldWindow = {this.state.worldWindow} />
             </div>
         );
     }

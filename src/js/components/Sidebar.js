@@ -9,12 +9,12 @@ const Sidebar = (props) => {
     if (props.selectedCollection.id && props.collectionSearchService.descriptionDocument){
         body = <ProductSearch selectedCollection = {props.selectedCollection} selectProduct = {props.selectProduct}
             updateResult = {props.updateProducts} searchService = {props.collectionSearchService}
-            productsResult = {props.productsResult}/>;
+            productsResult = {props.productsResult} worldWindow = {props.worldWindow}/>;
     }
     else if (props.searchService.descriptionDocument){
         body = <CollectionSearch updateResult = {props.updateCollections} selectCollection = {props.selectCollection}
             searchService = {props.searchService} collectionsResult = {props.collectionsResult}
-            connectCollection = {props.connectCollection}/>;
+            connectCollection = {props.connectCollection} worldWindow = {props.worldWindow}/>;
     }
     else {
         body = <Connector connect = {props.connect}/>
