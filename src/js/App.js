@@ -1,10 +1,13 @@
 import React, {Component} from 'react';
 import Map from './components/Map';
 import Sidebar from './components/Sidebar';
+import Connector from './components/Connector';
+import CollectionSearch from './components/CollectionSearch';
+import ProductSearch from './components/ProductSearch';
 
 export default class App extends Component {
-    constructor(props){
-        super(props);
+    constructor(){
+        super();
         this.state = {
             searchService: {},
             collectionSearchService: {},
@@ -63,21 +66,49 @@ export default class App extends Component {
     setWorldWindow(wwd){
         this.setState({worldWindow: wwd});
     }
+    createSidebarBody(){
+        let body;
+        //If there is a selected collection and we can search on it, show ProductSearch
+        if (this.state.selectedCollection.id && this.state.collectionSearchService.descriptionDocument){
+            body = <ProductSearch searchService = {this.state.collectionSearchService}
+                        productsResult = {this.state.productsResult}
+                        selectedCollection = {this.state.selectedCollection}
+                        worldWindow = {this.state.worldWindow}
+                        updateResult = {this.updateProducts}
+                        selectProduct = {this.selectProduct}
+                    />;
+        }
+        //If we can search on the provider, show CollectionSearch
+        else if (this.state.searchService.descriptionDocument){
+            body = <CollectionSearch searchService = {this.state.searchService}
+                        collectionsResult = {this.state.collectionsResult}
+                        worldWindow = {this.state.worldWindow}
+                        updateResult = {this.updateCollections}
+                        selectCollection = {this.selectCollection}
+                        connectCollection = {this.connectCollection}
+                    />;
+        }
+        //Else show input for entering description document for a provider
+        else {
+            body = <Connector connect = {this.connect}/>;
+        }
+        return body;
+    }
     render(){
         console.log("collections", this.state.collectionsResult);
         console.log("products", this.state.productsResult);
         return (
             <div>
                 <Map productsResult = {this.state.productsResult}
-                    setWorldWindow = {this.setWorldWindow}/>
-                <Sidebar connect = {this.connect} connectCollection = {this.connectCollection}
-                    collectionSearchService = {this.state.collectionSearchService}
-                    resetProvider = {this.resetProvider} resetCollection = {this.resetCollection}
-                    updateCollections = {this.updateCollections} updateProducts = {this.updateProducts}
-                    selectCollection = {this.selectCollection} selectProduct = {this.selectProduct}
-                    searchService = {this.state.searchService} collectionsResult = {this.state.collectionsResult}
-                    productsResult = {this.state.productsResult} selectedCollection = {this.state.selectedCollection}
-                    worldWindow = {this.state.worldWindow} />
+                    setWorldWindow = {this.setWorldWindow}
+                />
+                <Sidebar searchService = {this.state.searchService}
+                    selectedCollection = {this.state.selectedCollection}
+                    resetCollection = {this.resetCollection}
+                    resetProvider = {this.resetProvider}
+                >
+                    {this.createSidebarBody()}
+                </Sidebar>
             </div>
         );
     }

@@ -1,34 +1,19 @@
 import React from 'react';
-import Connector from './Connector';
 import SidebarHeader from './SidebarHeader';
-import CollectionSearch from './CollectionSearch';
-import ProductSearch from './ProductSearch';
 
 const Sidebar = (props) => {
-    let body;
-    if (props.selectedCollection.id && props.collectionSearchService.descriptionDocument){
-        body = <ProductSearch selectedCollection = {props.selectedCollection} selectProduct = {props.selectProduct}
-            updateResult = {props.updateProducts} searchService = {props.collectionSearchService}
-            productsResult = {props.productsResult} worldWindow = {props.worldWindow}/>;
-    }
-    else if (props.searchService.descriptionDocument){
-        body = <CollectionSearch updateResult = {props.updateCollections} selectCollection = {props.selectCollection}
-            searchService = {props.searchService} collectionsResult = {props.collectionsResult}
-            connectCollection = {props.connectCollection} worldWindow = {props.worldWindow}/>;
-    }
-    else {
-        body = <Connector connect = {props.connect}/>
-    }
     return (
         <div id="sidebar">
-            <SidebarHeader searchService = {props.searchService} resetProvider = {props.resetProvider}
-                resetCollection = {props.resetCollection} selectedCollection = {props.selectedCollection}/>
-
+            <SidebarHeader searchService = {props.searchService}
+                selectedCollection = {props.selectedCollection}
+                resetCollection = {props.resetCollection}
+                resetProvider = {props.resetProvider}
+            />
             <div className="sidebar-block content active" id="eoos-content">
-                {body}
+                {props.children}
             </div>
         </div>
-    )
+    );
 }
 
 export default Sidebar;
