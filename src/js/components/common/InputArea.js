@@ -89,6 +89,12 @@ export default class InputArea extends Component {
                 <button id="collection-location-draw-in-map" onClick = {this.handleClick}>
                     {this.state.drawing ? "Confirm area" : "Draw in map"}
                 </button>
+                {this.props.bbox.length > 0 &&
+                    <button onClick = {() => this.props.changeBBox([])}>
+                        Clear
+                    </button>
+                }
+
                 {/* TODO: check if this is required
                     <button id="collection-location-load-file">Load from file</button>
                  */
