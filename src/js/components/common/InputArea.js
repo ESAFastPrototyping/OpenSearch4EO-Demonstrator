@@ -38,6 +38,7 @@ export default class InputArea extends Component {
     }
 
     finishDrawing(){
+        //update bbox corresponding to current shape and hide shape editor
         let sector = this.shapesLayer.renderables[0]._sector;
         let bbox = [sector.minLongitude, sector.minLatitude, sector.maxLongitude, sector.maxLatitude];
         this.props.changeBBox(bbox);
@@ -50,7 +51,7 @@ export default class InputArea extends Component {
     startDrawing(){
         let wwd = this.props.wwd;
 
-        //create a simple rectangle polygon in the lookAt location with a size corresponding to zoom
+        //setup a simple rectangle polygon in the lookAt location with a size corresponding to zoom
         let latitudeOffset = 10*wwd.navigator.range/10000000;
         let longitudeOffset = 10*wwd.navigator.range/10000000;
         var boundary = [];
@@ -67,11 +68,12 @@ export default class InputArea extends Component {
         var highlightAttributes = new WorldWind.ShapeAttributes(attributes);
         highlightAttributes.outlineColor = WorldWind.Color.RED;
 
+        //create the polygon
         var shape = new WorldWind.SurfacePolygon(boundary, attributes);
         shape.highlightAttributes = highlightAttributes;
         this.shapesLayer.addRenderable(shape);
 
-        // Now set up to handle shape editor
+        // Now set up shape editor for controlling the polygon
         this.shapeEditorController = new WorldWind.ShapeEditorController(wwd);
 
         wwd.redraw();
@@ -87,7 +89,11 @@ export default class InputArea extends Component {
                 <button id="collection-location-draw-in-map" onClick = {this.handleClick}>
                     {this.state.drawing ? "Confirm area" : "Draw in map"}
                 </button>
-                <button id="collection-location-load-file">Load from file</button>
+                {/* TODO: check if this is required
+                    <button id="collection-location-load-file">Load from file</button>
+                 */
+                }
+
             </div>
         );
     }
