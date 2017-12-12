@@ -19,7 +19,7 @@ export default class Search extends Component {
         let defaultParams = this.props.defaultParams || {};
 
         this.state = {
-            bbox: defaultParams.bbox || '',
+            bbox: defaultParams.bbox || [],
             text: defaultParams.text || '',
             startDate: defaultParams.startDate || moment().subtract(1, 'years'),
             endDate: defaultParams.endDate || moment()
@@ -89,7 +89,7 @@ export default class Search extends Component {
         let endDate = this.props.relation == "collection" ? moment(this.state.endDate).format("YYYY-MM-DD[T]HH:mm:ssZ") : moment(this.state.endDate).format("YYYY-MM-DD");
 
         let searchParams = [
-            {name: 'bbox', value: this.state.bbox},
+            {name: 'bbox', value: this.state.bbox.join(',')},
             {name: 'query', value: this.state.text},
             {name: 'startDate', value: startDate},
             {name: 'endDate', value: endDate},

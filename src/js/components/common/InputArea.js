@@ -3,16 +3,20 @@ import WorldWind from '../../WorldWind/worldwind';
 import LayerManager from '../../WorldWind/worldwind';
 
 export default class InputArea extends Component {
-    constructor(props) {
+    constructor(props){
         super(props);
         this.state = {
             drawing: false
         }
 
+        // Create a layer to hold the surface shapes.
+        this.shapesLayer = new WorldWind.RenderableLayer("Surface Shapes");
+        this.props.wwd.addLayer(this.shapesLayer);
+
         this.handleClick = this.handleClick.bind(this);
     }
 
-    componentWillUnmount() {
+    componentWillUnmount(){
         if(this.shapeEditorController){
             this.shapeEditorController.destroy();
             this.shapeEditorController = null;
@@ -23,7 +27,7 @@ export default class InputArea extends Component {
         }
     }
 
-    handleClick() {
+    handleClick(){
         if(this.state.drawing) {
             this.finishDrawing();
         }
@@ -33,9 +37,9 @@ export default class InputArea extends Component {
         this.setState({drawing: !this.state.drawing});
     }
 
-    finishDrawing() {
+    finishDrawing(){
         let sector = this.shapesLayer.renderables[0]._sector;
-        let bbox = sector.minLongitude + ',' + sector.minLatitude + ',' + sector.maxLongitude + ',' + sector.maxLatitude;
+        let bbox = [sector.minLongitude, sector.minLatitude, sector.maxLongitude, sector.maxLatitude];
         this.props.changeBBox(bbox);
         this.shapeEditorController.destroy();
         this.shapeEditorController = null;
@@ -43,12 +47,8 @@ export default class InputArea extends Component {
         this.props.wwd.redraw();
     }
 
-    startDrawing() {
+    startDrawing(){
         let wwd = this.props.wwd;
-
-        // Create a layer to hold the surface shapes.
-        this.shapesLayer = new WorldWind.RenderableLayer("Surface Shapes");
-        wwd.addLayer(this.shapesLayer);
 
         //create a simple rectangle polygon in the lookAt location with a size corresponding to zoom
         let latitudeOffset = 10*wwd.navigator.range/10000000;
@@ -78,10 +78,11 @@ export default class InputArea extends Component {
     }
 
     render(){
+        let displayBBox = this.props.bbox.map(location => Number(location).toFixed(6));
         return (
             <div>
                 <div className="eoos-property-input">
-                    <input type="text" id="collection-location-find" value = {this.props.bbox} readOnly/>
+                    <input type="text" id="collection-location-find" value = {displayBBox} readOnly/>
                 </div>
                 <button id="collection-location-draw-in-map" onClick = {this.handleClick}>
                     {this.state.drawing ? "Confirm area" : "Draw in map"}
