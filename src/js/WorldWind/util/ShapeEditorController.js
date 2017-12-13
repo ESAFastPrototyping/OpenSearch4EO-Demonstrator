@@ -70,9 +70,10 @@ define([
          * <p/>
          * This editor supports all surface shapes except SurfaceImage.
          * @param {WorldWindow} worldWindow The World Window to associate this shape editor controller with.
+         * @param {String} shapeID optional - no other shape than shape with this id will be controlled
          * @throws {ArgumentError} If the specified world window is null or undefined.
          */
-        var ShapeEditorController = function (worldWindow) {
+        var ShapeEditorController = function (worldWindow, shapeID) {
             if (!worldWindow) {
                 throw new ArgumentError(Logger.logMessage(Logger.LEVEL_SEVERE, "ShapeEditorController", "constructor",
                     "missingWorldWindow"));
@@ -226,6 +227,10 @@ define([
                     for (var p = 0; p < pickList.objects.length; p++) {
                         if (!pickList.objects[p].isTerrain) {
                             if (shapeEditor.shape && pickList.objects[p].userObject === shapeEditor.shape) {
+                                //if there is a shapeID prevent manipulating other objects than the specified shape
+                                if (pickList.objects[p].userObject.userProperties.shapeID !== shapeID && shapeID !== undefined) {
+                                    return;
+                                }
                                 event.preventDefault();
                                 shapeEditor.isDragging = true;
                                 shapeEditor.originalAttributes = shapeEditor.shape.attributes;
@@ -286,6 +291,10 @@ define([
                 if (pickList.objects.length > 0) {
                     for (var p = 0; p < pickList.objects.length; p++) {
                         if (!pickList.objects[p].isTerrain) {
+                            //if there is a shapeID prevent manipulating other objects than the specified shape
+                            if (pickList.objects[p].userObject.userProperties.shapeID !== shapeID && shapeID !== undefined) {
+                                return;
+                            }
                             if (shapeEditor.shape == null) {
                                 // Highlight current shape
                                 shapeEditor.shape = pickList.objects[p].userObject;

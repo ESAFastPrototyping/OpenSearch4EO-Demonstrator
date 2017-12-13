@@ -73,8 +73,11 @@ export default class InputArea extends Component {
         shape.highlightAttributes = highlightAttributes;
         this.shapesLayer.addRenderable(shape);
 
+        //give the shape an ID, so the controller controls only it
+        shape.userProperties.shapeID = 'area-selector';
+
         // Now set up shape editor for controlling the polygon
-        this.shapeEditorController = new WorldWind.ShapeEditorController(wwd);
+        this.shapeEditorController = new WorldWind.ShapeEditorController(wwd, 'area-selector');
 
         wwd.redraw();
     }
