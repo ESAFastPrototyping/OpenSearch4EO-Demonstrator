@@ -706,6 +706,7 @@ define([
                 this.worldWindow.globe.computePositionFromPoint(intersection[0], intersection[1],
                     intersection[2], p);
                 this.shape.moveTo(refPos, new WorldWind.Location(p.latitude, p.longitude));
+                this.worldWindow.redraw();
             }
         };
 
