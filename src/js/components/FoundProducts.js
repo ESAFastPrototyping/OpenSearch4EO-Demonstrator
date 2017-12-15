@@ -3,13 +3,15 @@ import OpenSearchUtils from '../WorldWind/ogc/openSearch/OpenSearchUtils';
 import OpenSearchRequest from '../WorldWind/ogc/openSearch/OpenSearchRequest';
 import {parseString} from 'xml2js';
 import Product from './Product';
+import Loader from './common/Loader';
 
 export default class FoundProducts extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            info: ""
+            info: "",
+            fetchingInfo: false
         };
 
         this.showInfo = this.showInfo.bind(this);
@@ -51,13 +53,18 @@ export default class FoundProducts extends Component {
             requestOptions.url = infoLink.href;
             requestOptions.method = 'GET';
 
+            this.setState({fetchingInfo: true, info: ''});
             OpenSearchUtils.fetch(requestOptions)
             .then(result => {
             	parseString(result, (err, json) => {
             	    this.setState({info: this.formatJSON(json)});
             	});
+                this.setState({fetchingInfo: false});
             })
-            .catch(err => console.log(err));
+            .catch(err => {
+                console.log(err);
+                this.setState({fetchingInfo: false});
+            });
         }
         else {
             this.setState({info: "\n\nNo more information available, sorry"});
@@ -90,9 +97,9 @@ export default class FoundProducts extends Component {
                 <div id="results-list">
                     {products}
                 </div>
-                {this.state.info &&
+                {(this.state.fetchingInfo || this.state.info) &&
                     <div id = "info-panel">
-                        {this.state.info}
+                        {this.state.info || <Loader />}
                         <span id = "close-info-panel" className = "fa fa-window-close" onClick = {() => this.closeInfo()}></span>
                     </div>
                 }
