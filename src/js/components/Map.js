@@ -15,12 +15,11 @@ export default class Map extends Component {
         this.setState({wwdCreated: true});
         this.props.setWorldWindow(this.wwd);
 
-        let bingLayer = new WorldWind.BingAerialLayer(null);
-		bingLayer.enabled = true;
+        let mapLayer = new WorldWind.BMNGLandsatLayer();
 
         this.productLayer = new WorldWind.RenderableLayer();
 
-		this.wwd.addLayer(bingLayer);
+		this.wwd.addLayer(mapLayer);
         this.wwd.addLayer(this.productLayer);
         this.wwd.redraw();
     }
