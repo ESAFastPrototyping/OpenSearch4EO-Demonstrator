@@ -82,31 +82,31 @@ const InputTime = (props) => {
             <div className="eoos-property-timerange-inputs">
                 <div className="eoos-property-timerange-input">
                     <a className="eoos-property-timerange-spinner top" onClick = {incrementYears}></a>
-                    <input type="number" min="2015" max="2017" id = "timerange-year" value={moment(props.date).format('YYYY')} onChange = {changeYears} />
+                    <input type="text" min="2015" max="2017" id = "timerange-year" value={moment(props.date).format('YYYY')} onChange = {changeYears} />
                     <a className="eoos-property-timerange-spinner bottom" onClick = {decrementYears}></a>
                 </div>
                 <span>-</span>
                 <div className="eoos-property-timerange-input">
                     <a className="eoos-property-timerange-spinner top" onClick = {incrementMonths}></a>
-                    <input type="number" min="1" max="12" value={moment(props.date).format('MM')} onChange = {changeMonths}/>
+                    <input type="text" min="1" max="12" value={moment(props.date).format('MM')} onChange = {changeMonths}/>
                     <a className="eoos-property-timerange-spinner bottom" onClick = {decrementMonths}></a>
                 </div>
                 <span>-</span>
                 <div className="eoos-property-timerange-input">
                     <a className="eoos-property-timerange-spinner top" onClick = {incrementDays}></a>
-                    <input type="number" min="1" max="31" value={moment(props.date).format('DD')} onChange = {changeDays}/>
+                    <input type="text" min="1" max="31" value={moment(props.date).format('DD')} onChange = {changeDays}/>
                     <a className="eoos-property-timerange-spinner bottom" onClick = {decrementDays}></a>
                 </div>
                 <span></span>
                 <div className="eoos-property-timerange-input">
                     <a className="eoos-property-timerange-spinner top" onClick = {incrementHours}></a>
-                    <input type="number" min="0" max="23" value={moment(props.date).format('HH')} onChange = {changeHours}/>
+                    <input type="text" min="0" max="23" value={moment(props.date).format('HH')} onChange = {changeHours}/>
                     <a className="eoos-property-timerange-spinner bottom" onClick = {decrementHours}></a>
                 </div>
                 <span>:</span>
                 <div className="eoos-property-timerange-input">
                     <a className="eoos-property-timerange-spinner top" onClick = {incrementMinutes}></a>
-                    <input type="number" min="0" max="59" value={moment(props.date).format('mm')} onChange = {changeMinutes}/>
+                    <input type="text" min="0" max="59" value={moment(props.date).format('mm')} onChange = {changeMinutes}/>
                     <a className="eoos-property-timerange-spinner bottom" onClick = {decrementMinutes}></a>
                 </div>
             </div>
