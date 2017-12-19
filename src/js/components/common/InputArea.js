@@ -84,7 +84,7 @@ export default class InputArea extends Component {
     }
 
     render(){
-        let displayBBox = this.props.bbox.map(location => Number(location).toFixed(6));
+        let displayBBox = this.props.bbox ? this.props.bbox.map(location => Number(location).toFixed(6)) : '';
         return (
             <div>
                 <div className="eoos-property-input">
@@ -93,7 +93,7 @@ export default class InputArea extends Component {
                 <button id="collection-location-draw-in-map" onClick = {this.handleClick}>
                     {this.state.drawing ? "Confirm area" : "Draw in map"}
                 </button>
-                {this.props.bbox.length > 0 &&
+                {this.props.bbox && this.props.bbox.length > 0 &&
                     <button onClick = {() => this.props.changeBBox([])}>
                         Clear
                     </button>

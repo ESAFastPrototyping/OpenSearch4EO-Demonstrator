@@ -10,24 +10,11 @@ import _ from 'underscore';
 export default class Search extends Component {
     constructor(props){
         super(props);
-        this.selectors = [
+         this.selectors = [
             {parameter: "platform", title: "Platform"},
             {parameter: "instrument", title: "Instrument"},
             {parameter: "organisationName", title: "Organisation"}
         ];
-
-        let defaultParams = this.props.defaultParams || {};
-
-        this.state = {
-            bbox: defaultParams.bbox || [],
-            text: defaultParams.text || '',
-            startDate: defaultParams.startDate || moment().subtract(1, 'years'),
-            endDate: defaultParams.endDate || moment()
-        };
-
-        this.selectors.forEach(selector => {
-            this.state[selector.parameter] = defaultParams[selector.parameter] || '';
-        });
 
         this.search = _.debounce(this.search.bind(this), 1000);
         this.changeBBox = this.changeBBox.bind(this);
@@ -44,22 +31,23 @@ export default class Search extends Component {
     }
 
     changeBBox(bbox){
-        this.setState({bbox: bbox}, this.search);
+        this.props.changeParams({bbox: bbox}, this.search);
     }
+
     changeText(text){
-        this.setState({text: text}, this.search);
+        this.props.changeParams({text: text}, this.search);
     }
 
     changeStartDate(date){
-        this.setState({startDate: date}, this.search);
+        this.props.changeParams({startDate: date}, this.search);
     }
 
     changeEndDate(date){
-        this.setState({endDate: date}, this.search);
+        this.props.changeParams({endDate: date}, this.search);
     }
 
     changeParameter(parameter, value){
-        this.setState({[parameter]: value}, this.search);
+        this.props.changeParams({[parameter]: value}, this.search);
     }
 
     getOptions(name){
@@ -85,18 +73,18 @@ export default class Search extends Component {
     search(){
         let service = this.props.searchService;
         //TODO: why is accepted date somehow different for collection and product search?
-        let startDate = this.props.relation == "collection" ? moment(this.state.startDate).format("YYYY-MM-DD[T]HH:mm:ssZ") : moment(this.state.startDate).format("YYYY-MM-DD");
-        let endDate = this.props.relation == "collection" ? moment(this.state.endDate).format("YYYY-MM-DD[T]HH:mm:ssZ") : moment(this.state.endDate).format("YYYY-MM-DD");
+        let startDate = this.props.relation == "collection" ? moment(this.props.searchParams.startDate).format("YYYY-MM-DD[T]HH:mm:ssZ") : moment(this.props.searchParams.startDate).format("YYYY-MM-DD");
+        let endDate = this.props.relation == "collection" ? moment(this.props.searchParams.endDate).format("YYYY-MM-DD[T]HH:mm:ssZ") : moment(this.props.searchParams.endDate).format("YYYY-MM-DD");
 
         let searchParams = [
-            {name: 'bbox', value: this.state.bbox.join(',')},
-            {name: 'query', value: this.state.text},
+            {name: 'bbox', value: this.props.searchParams.bbox.join(',')},
+            {name: 'query', value: this.props.searchParams.text},
             {name: 'startDate', value: startDate},
             {name: 'endDate', value: endDate},
             {name: 'recordSchema', value: 'server-choice'}
         ];
         this.selectors.forEach(selector => {
-            searchParams.push({name: selector.parameter, value: this.state[selector.parameter]});
+            searchParams.push({name: selector.parameter, value: this.props.searchParams[selector.parameter]});
         });
 
         searchParams = searchParams.filter((param) => this.isInParameters(param.name));
@@ -104,8 +92,6 @@ export default class Search extends Component {
         this.props.startedSearchRequest();
         service.search(searchParams, {relation: this.props.relation})
         .then(result => {
-            //keep the search parameters on the result object
-            result.searchParams = this.state;
             this.props.updateResult(result);
             this.props.finishedSearchRequest();
         })
@@ -144,7 +130,7 @@ export default class Search extends Component {
             if (this.isInParameters(selector.parameter)) {
                 return accumulator.concat(
                     <ContentBox title = {selector.title} key = {selector.title}>
-                        <InputSelector text = {this.state[selector.parameter]}
+                        <InputSelector text = {this.props.searchParams[selector.parameter]}
                             change = {this.changeParameter}
                             options = {this.getOptions(selector.parameter)}
                             parameter = {selector.parameter}
@@ -163,18 +149,18 @@ export default class Search extends Component {
             <div className="search-properties">
                 {this.isInParameters('query') &&
                 <ContentBox title = "Text">
-                    <InputText text = {this.state.text} changeText = {this.changeText} />
+                    <InputText text = {this.props.searchParams.text} changeText = {this.changeText} />
                 </ContentBox> }
 
                 {this.isInParameters('bbox') &&
                 <ContentBox title = "Search area">
-                    <InputArea wwd = {this.props.worldWindow} changeBBox = {this.changeBBox} bbox = {this.state.bbox}/>
+                    <InputArea wwd = {this.props.worldWindow} changeBBox = {this.changeBBox} bbox = {this.props.searchParams.bbox}/>
                 </ContentBox> }
 
                 {this.isInParameters('startDate') && this.isInParameters('endDate') &&
                 <ContentBox title = "Time range">
-                    <InputTime label = "From" changeDate = {this.changeStartDate} date = {this.state.startDate}/>
-                    <InputTime label = "To" changeDate = {this.changeEndDate} date = {this.state.endDate}/>
+                    <InputTime label = "From" changeDate = {this.changeStartDate} date = {this.props.searchParams.startDate}/>
+                    <InputTime label = "To" changeDate = {this.changeEndDate} date = {this.props.searchParams.endDate}/>
                 </ContentBox> }
 
                 {this.createSelectorInputs()}
