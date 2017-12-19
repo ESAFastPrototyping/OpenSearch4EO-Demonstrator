@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import WorldWind from '../../WorldWind/worldwind';
 import LayerManager from '../../WorldWind/worldwind';
+import ShapeEditorController from '../../ShapeController/SingleShapeController';
 
 export default class InputArea extends Component {
     constructor(props){
@@ -77,7 +78,7 @@ export default class InputArea extends Component {
         shape.userProperties.shapeID = 'area-selector';
 
         // Now set up shape editor for controlling the polygon
-        this.shapeEditorController = new WorldWind.ShapeEditorController(wwd, 'area-selector');
+        this.shapeEditorController = new ShapeEditorController(wwd, 'area-selector');
 
         wwd.redraw();
     }
@@ -97,12 +98,6 @@ export default class InputArea extends Component {
                         Clear
                     </button>
                 }
-
-                {/* TODO: check if this is required
-                    <button id="collection-location-load-file">Load from file</button>
-                 */
-                }
-
             </div>
         );
     }

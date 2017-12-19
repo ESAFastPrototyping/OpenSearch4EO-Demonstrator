@@ -4,31 +4,32 @@
  */
 /**
  * @exports ShapeEditorController
+ * Edited from original ShapeEditorController in WebWorldWind
  */
 define([
-        '../geom/Angle',
-        '../shapes/Annotation',
-        '../shapes/AnnotationAttributes',
-        '../error/ArgumentError',
-        '../util/Color',
-        '../shapes/ControlPointMarker',
-        '../util/Font',
-        '../util/Insets',
-        '../geom/Location',
-        '../util/Logger',
-        '../shapes/Path',
-        '../shapes/PlacemarkAttributes',
-        '../geom/Position',
-        '../layer/RenderableLayer',
-        '../shapes/ShapeAttributes',
-        '../shapes/SurfaceEllipse',
-        '../shapes/SurfaceCircle',
-        '../shapes/SurfacePolygon',
-        '../shapes/SurfacePolyline',
-        '../shapes/SurfaceRectangle',
-        '../shapes/SurfaceShape',
-        '../geom/Vec2',
-        '../geom/Vec3'
+        '../WorldWind/geom/Angle',
+        '../WorldWind/shapes/Annotation',
+        '../WorldWind/shapes/AnnotationAttributes',
+        '../WorldWind/error/ArgumentError',
+        '../WorldWind/util/Color',
+        '../WorldWind/shapes/ControlPointMarker',
+        '../WorldWind/util/Font',
+        '../WorldWind/util/Insets',
+        '../WorldWind/geom/Location',
+        '../WorldWind/util/Logger',
+        '../WorldWind/shapes/Path',
+        '../WorldWind/shapes/PlacemarkAttributes',
+        '../WorldWind/geom/Position',
+        '../WorldWind/layer/RenderableLayer',
+        '../WorldWind/shapes/ShapeAttributes',
+        '../WorldWind/shapes/SurfaceEllipse',
+        '../WorldWind/shapes/SurfaceCircle',
+        '../WorldWind/shapes/SurfacePolygon',
+        '../WorldWind/shapes/SurfacePolyline',
+        '../WorldWind/shapes/SurfaceRectangle',
+        '../WorldWind/shapes/SurfaceShape',
+        '../WorldWind/geom/Vec2',
+        '../WorldWind/geom/Vec3'
     ],
     function (Angle,
               Annotation,
@@ -70,9 +71,10 @@ define([
          * <p/>
          * This editor supports all surface shapes except SurfaceImage.
          * @param {WorldWindow} worldWindow The World Window to associate this shape editor controller with.
+         * @param {String} shapeID optional - no other shape than shape with this id will be controlled
          * @throws {ArgumentError} If the specified world window is null or undefined.
          */
-        var ShapeEditorController = function (worldWindow) {
+        var ShapeEditorController = function (worldWindow, shapeID) {
             if (!worldWindow) {
                 throw new ArgumentError(Logger.logMessage(Logger.LEVEL_SEVERE, "ShapeEditorController", "constructor",
                     "missingWorldWindow"));
@@ -226,6 +228,10 @@ define([
                     for (var p = 0; p < pickList.objects.length; p++) {
                         if (!pickList.objects[p].isTerrain) {
                             if (shapeEditor.shape && pickList.objects[p].userObject === shapeEditor.shape) {
+                                //if there is a shapeID prevent manipulating other objects than the specified shape
+                                if (pickList.objects[p].userObject.userProperties.shapeID !== shapeID && shapeID !== undefined) {
+                                    return;
+                                }
                                 event.preventDefault();
                                 shapeEditor.isDragging = true;
                                 shapeEditor.originalAttributes = shapeEditor.shape.attributes;
@@ -286,6 +292,10 @@ define([
                 if (pickList.objects.length > 0) {
                     for (var p = 0; p < pickList.objects.length; p++) {
                         if (!pickList.objects[p].isTerrain) {
+                            //if there is a shapeID prevent manipulating other objects than the specified shape
+                            if (pickList.objects[p].userObject.userProperties.shapeID !== shapeID && shapeID !== undefined) {
+                                return;
+                            }
                             if (shapeEditor.shape == null) {
                                 // Highlight current shape
                                 shapeEditor.shape = pickList.objects[p].userObject;
@@ -378,6 +388,16 @@ define([
                 this.worldWindow.addEventListener("mouseup", handleMouseUp);
                 this.worldWindow.addEventListener("mousedown", handleMouseDown);
                 this.worldWindow.addEventListener("mousemove", handleMouseMove, false);
+            }
+
+            this.destroy = function() {
+                this.disable();
+                this.worldWindow.removeEventListener("pointerup", handleMouseUp);
+                this.worldWindow.removeEventListener("pointerdown", handleMouseDown);
+                this.worldWindow.removeEventListener("pointermove", handleMouseMove, false);
+                this.worldWindow.removeEventListener("mouseup", handleMouseUp);
+                this.worldWindow.removeEventListener("mousedown", handleMouseDown);
+                this.worldWindow.removeEventListener("mousemove", handleMouseMove, false);
             }
         };
 
@@ -655,7 +675,6 @@ define([
          * @param {Event} event
          */
         ShapeEditorController.prototype.dragWholeShape = function (event) {
-            console.log(this.worldWindow);
             var refPos = this.shape.getReferencePosition();
             if (refPos === null) {
                 return;
@@ -688,6 +707,7 @@ define([
                 this.worldWindow.globe.computePositionFromPoint(intersection[0], intersection[1],
                     intersection[2], p);
                 this.shape.moveTo(refPos, new WorldWind.Location(p.latitude, p.longitude));
+                this.worldWindow.redraw();
             }
         };
 
