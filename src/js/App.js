@@ -41,14 +41,14 @@ export default class App extends Component {
         this.changeCollectionParams = this.changeCollectionParams.bind(this);
     }
     
-    changeProductParams(params, callback) {
+    changeProductParams(params) {
       let newParams = Object.assign({}, this.state.productParams, params);
-      this.setState({productParams: newParams}, callback);
+      this.setState({productParams: newParams});
     }
 
-    changeCollectionParams(params, callback) {
+    changeCollectionParams(params) {
       let newParams = Object.assign({}, this.state.collectionParams, params);
-      this.setState({collectionParams: newParams}, callback);
+      this.setState({collectionParams: newParams});
     }
 
     connect(searchService){
@@ -119,6 +119,7 @@ export default class App extends Component {
         }
         //Else show input for entering description document for a provider
         else {
+            // TODO: Update to provide the
             body = <Connector connect = {this.connect}/>;
         }
         return body;

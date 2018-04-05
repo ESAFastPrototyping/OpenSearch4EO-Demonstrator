@@ -27,27 +27,26 @@ export default class Search extends Component {
     }
 
     componentDidMount(){
-        this.search();
     }
 
     changeBBox(bbox){
-        this.props.changeParams({bbox: bbox}, this.search);
+        this.props.changeParams({bbox: bbox});
     }
 
     changeText(text){
-        this.props.changeParams({text: text}, this.search);
+        this.props.changeParams({text: text});
     }
 
     changeStartDate(date){
-        this.props.changeParams({startDate: date}, this.search);
+        this.props.changeParams({startDate: date});
     }
 
     changeEndDate(date){
-        this.props.changeParams({endDate: date}, this.search);
+        this.props.changeParams({endDate: date});
     }
 
     changeParameter(parameter, value){
-        this.props.changeParams({[parameter]: value}, this.search);
+        this.props.changeParams({[parameter]: value});
     }
 
     getOptions(name){
@@ -146,24 +145,29 @@ export default class Search extends Component {
 
     render(){
         return (
-            <div className="search-properties">
-                {this.isInParameters('query') &&
-                <ContentBox title = "Text">
-                    <InputText text = {this.props.searchParams.text} changeText = {this.changeText} />
-                </ContentBox> }
+            <div>
+                <div className="search-properties">
+                    {this.isInParameters('query') &&
+                    <ContentBox title = "Text">
+                        <InputText text = {this.props.searchParams.text} changeText = {this.changeText} />
+                    </ContentBox> }
 
-                {this.isInParameters('bbox') &&
-                <ContentBox title = "Search area">
-                    <InputArea wwd = {this.props.worldWindow} changeBBox = {this.changeBBox} bbox = {this.props.searchParams.bbox}/>
-                </ContentBox> }
+                    {this.isInParameters('bbox') &&
+                    <ContentBox title = "Search area">
+                        <InputArea wwd = {this.props.worldWindow} changeBBox = {this.changeBBox} bbox = {this.props.searchParams.bbox}/>
+                    </ContentBox> }
 
-                {this.isInParameters('startDate') && this.isInParameters('endDate') &&
-                <ContentBox title = "Time range">
-                    <InputTime label = "From" changeDate = {this.changeStartDate} date = {this.props.searchParams.startDate}/>
-                    <InputTime label = "To" changeDate = {this.changeEndDate} date = {this.props.searchParams.endDate}/>
-                </ContentBox> }
+                    {this.isInParameters('startDate') && this.isInParameters('endDate') &&
+                    <ContentBox title = "Time range">
+                        <InputTime label = "From" changeDate = {this.changeStartDate} date = {this.props.searchParams.startDate}/>
+                        <InputTime label = "To" changeDate = {this.changeEndDate} date = {this.props.searchParams.endDate}/>
+                    </ContentBox> }
 
-                {this.createSelectorInputs()}
+                    {this.createSelectorInputs()}
+                </div>
+                <div>
+                    <input type="button" value="Search" onClick={this.search}/>
+                </div>
             </div>
         )
     }

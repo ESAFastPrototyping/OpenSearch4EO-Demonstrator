@@ -10,6 +10,8 @@ export default class Connector extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleClick = this.handleClick.bind(this);
         this.handleKeyPress = this.handleKeyPress.bind(this);
+        this.handleFedeo = this.handleFedeo.bind(this);
+        this.handleGeoSpaceBel = this.handleGeoSpaceBel.bind(this);
         this.connect = this.connect.bind(this);
     }
 
@@ -24,8 +26,17 @@ export default class Connector extends Component {
     handleClick(){
         this.connect();
     }
-    connect(){
-        let service = new OpenSearchService(this.state.url);
+
+    handleFedeo() {
+        this.connect('https://fedeo.esa.int/opensearch/description.xml');
+    }
+
+    handleGeoSpaceBel() {
+        this.connect('http://geo.spacebel.be/opensearch/description.xml');
+    }
+
+    connect(url){
+        let service = new OpenSearchService(url || this.state.url);
         service.discover()
         .then(result => {
             this.props.connect(result);
@@ -45,6 +56,12 @@ export default class Connector extends Component {
                     <input type="url" id="provider-connector-url" value = {this.state.url} onChange = {this.handleChange} onKeyPress = {this.handleKeyPress}/>
                     <div className="eoos-provider-go" onClick = {this.handleClick}></div>
                 </label>
+                <div className={'available-providers'} onClick={this.handleFedeo}>
+                    Fedeo
+                </div>
+                <div className={'available-providers'} onClick={this.handleGeoSpaceBel}>
+                    GeoSpaceBel
+                </div>
             </div>
         )
     }
