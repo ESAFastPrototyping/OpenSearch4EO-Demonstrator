@@ -1276,3 +1276,20 @@ Apache license 2.0, Copyright (c) 2015 Tom Adamec */
 	border-bottom: 1px solid rgba(183, 183, 183, 0.2);
 	position: relative;
 }
+
+.from .react-calendar {
+	position: absolute;
+	z-index: 10000;
+	left: 120px;
+	top: 60px;
+}
+
+.to .react-calendar {
+	position: absolute;
+	z-index: 10000;
+	left: 120px;
+}
+
+.calendar-opener {
+	cursor: pointer;
+}

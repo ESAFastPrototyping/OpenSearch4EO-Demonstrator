@@ -74,14 +74,14 @@ export default class Connector extends Component {
                     <h3>Saved providers</h3>
                     <div className="sidebar-list">
 
-                        <div className="sidebar-list-item provider">
-                            <span onClick={this.connectFedeo}>FEDEO</span>
+                        <div onClick={this.connectFedeo} className="sidebar-list-item provider">
+                            <span>FEDEO</span>
                         </div>
-                        <div className="sidebar-list-item provider">
-                            <span onClick={this.connectGeoSpaceBel}>GEO Space Bel</span>
+                        <div onClick={this.connectGeoSpaceBel} className="sidebar-list-item provider">
+                            <span>GEO Space Bel</span>
                         </div>
-                        <div className="sidebar-list-item provider">
-                            <span onClick={this.connectNasa}>NASA EarthData</span>
+                        <div onClick={this.connectNasa} className="sidebar-list-item provider">
+                            <span>NASA EarthData</span>
                         </div>
 
                     </div>

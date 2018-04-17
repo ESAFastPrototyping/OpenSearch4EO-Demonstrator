@@ -155,8 +155,8 @@ export default class Search extends Component {
 
                 {this.isInParameters('startDate') && this.isInParameters('endDate') &&
                 <ContentBox title = "Time range">
-                    <InputTime label = "From" changeDate = {this.changeStartDate} date = {this.props.searchParams.startDate}/>
-                    <InputTime label = "To" changeDate = {this.changeEndDate} date = {this.props.searchParams.endDate}/>
+                    <InputTime label = "From" changeDate = {this.changeStartDate} date = {this.props.searchParams.startDate} calendarClass="from"/>
+                    <InputTime label = "To&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" changeDate = {this.changeEndDate} date = {this.props.searchParams.endDate} calendarClass="to"/>
                 </ContentBox> }
 
                 {this.createSelectorInputs()}
