@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import OpenSearchService from '../WorldWind/ogc/openSearch/OpenSearchService';
 
 export default class Connector extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             url: ""
@@ -11,40 +11,81 @@ export default class Connector extends Component {
         this.handleClick = this.handleClick.bind(this);
         this.handleKeyPress = this.handleKeyPress.bind(this);
         this.connect = this.connect.bind(this);
+        this.connectFedeo = this.connectFedeo.bind(this);
+        this.connectGeoSpaceBel = this.connectGeoSpaceBel.bind(this);
+        this.connectNasa = this.connectNasa.bind(this);
     }
 
-    handleChange(event){
+    handleChange(event) {
         this.setState({url: event.target.value});
     }
-    handleKeyPress(event){
-        if(event.key == 'Enter'){
+
+    handleKeyPress(event) {
+        if (event.key == 'Enter') {
             this.connect();
         }
     }
-    handleClick(){
+
+    handleClick() {
         this.connect();
     }
-    connect(){
-        let service = new OpenSearchService(this.state.url);
+
+    connect() {
+        this.connectUrl(this.state.url);
+    }
+
+    connectUrl(url) {
+        let service = new OpenSearchService(url);
         service.discover()
-        .then(result => {
-            this.props.connect(result);
-            console.log(result);
-        })
-        .catch(err => alert("There was an issue with the provided link.\nTry again later or try a different provider."));
+            .then(result => {
+                this.props.connect(result);
+                console.log(result);
+            })
+            .catch(err => alert("There was an issue with the provided link.\nTry again later or try a different provider."));
 
         this.setState({url: ""});
     }
 
-    render(){
+    connectFedeo() {
+        this.connectUrl('https://fedeo.esa.int/opensearch/description.xml');
+    }
+
+    connectGeoSpaceBel() {
+        this.connectUrl('http://geo.spacebel.be/opensearch/description.xml');
+    }
+
+    connectNasa() {
+        this.connectUrl('https://cmr.earthdata.nasa.gov/opensearch/collections/descriptor_document.xml?clientId=WebWorldWindDemo');
+    }
+
+    render() {
         return (
-            <div className="sidebar-connector">
-                <label htmlFor="provider-connector-url">
-                    Address of the OpenSearch Description Document <br/>
-                    (Collection Search)
-                    <input type="url" id="provider-connector-url" value = {this.state.url} onChange = {this.handleChange} onKeyPress = {this.handleKeyPress}/>
-                    <div className="eoos-provider-go" onClick = {this.handleClick}></div>
-                </label>
+            <div>
+                <div className="sidebar-connector">
+                    <label htmlFor="provider-connector-url">
+                        Address of the OpenSearch Description Document <br/>
+                        (Collection Search)
+                        <input type="url" id="provider-connector-url" value={this.state.url}
+                               onChange={this.handleChange} onKeyPress={this.handleKeyPress}/>
+                        <div className="eoos-provider-go" onClick={this.handleClick}></div>
+                    </label>
+                </div>
+                <div>
+                    <h3>Saved providers</h3>
+                    <div className="sidebar-list">
+
+                        <div className="sidebar-list-item provider">
+                            <span onClick={this.connectFedeo}>FEDEO</span>
+                        </div>
+                        <div className="sidebar-list-item provider">
+                            <span onClick={this.connectGeoSpaceBel}>GEO Space Bel</span>
+                        </div>
+                        <div className="sidebar-list-item provider">
+                            <span onClick={this.connectNasa}>NASA EarthData</span>
+                        </div>
+
+                    </div>
+                </div>
             </div>
         )
     }

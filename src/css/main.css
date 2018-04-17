@@ -1260,3 +1260,19 @@ Apache license 2.0, Copyright (c) 2015 Tom Adamec */
 }
 
 /* Map controls styling end */
+
+.sidebar-list {
+	padding: 0 .5rem;
+}
+
+.sidebar-list-item:last-of-type {
+	border: 0;
+}
+
+.sidebar-list-item {
+	padding: .7rem;
+	border: 0;
+	cursor: pointer;
+	border-bottom: 1px solid rgba(183, 183, 183, 0.2);
+	position: relative;
+}
