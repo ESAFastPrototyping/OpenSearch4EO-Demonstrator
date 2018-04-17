@@ -1,6 +1,17 @@
 /*
- * Copyright (C) 2014 United States Government as represented by the Administrator of the
- * National Aeronautics and Space Administration. All Rights Reserved.
+ * Copyright 2015-2018 WorldWind Contributors
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 /**
  * @exports OpenSearchUrl
@@ -20,12 +31,15 @@ define([
 
         /**
          * Constructs an OpenSearchUrl.
+         *
          * @alias OpenSearchUrl
          * @constructor
-         * @classdesc Represents an Open Search Url.
-         * The Open Search Url describes an interface by which a client can make requests for an external resource,
+         * @classdesc Represents an OpenSearch URL.
+         *
+         * The OpenSearch URL describes an interface by which a client can make requests for an external resource,
          * such as search results, or additional description documents.
-         * This object holds as properties the fields for a Open Search Url node.
+         *
+         * This object holds as properties the fields for a OpenSearch URL node.
          * Most fields can be accessed as properties named according to their document names converted to camel case.
          */
         var OpenSearchUrl = function () {
@@ -59,7 +73,7 @@ define([
             },
 
             /**
-             * A valid HTTP verb for this Url
+             * A valid HTTP verb for this URL.
              * @memberof OpenSearchUrl.prototype
              * @type {String}
              */
@@ -70,7 +84,7 @@ define([
             },
 
             /**
-             * The encoding for POST or PUT requests
+             * The encoding for POST or PUT requests.
              * @memberof OpenSearchUrl.prototype
              * @type {String}
              */
@@ -81,7 +95,7 @@ define([
             },
 
             /**
-             * Represent a parameterized form of the URL by which a search engine is queried.
+             * The parameterized form of the URL by which a search engine is queried.
              * @memberof OpenSearchUrl.prototype
              * @type {String}
              */
@@ -92,9 +106,9 @@ define([
             },
 
             /**
-             * A list with the parameters
+             * The list of parameters.
              * @memberof OpenSearchUrl.prototype
-             * @type {[OpenSearchParameter]}
+             * @type {OpenSearchParameter[]}
              */
             parameters: {
                 get: function () {
@@ -129,7 +143,7 @@ define([
             /**
              * The role of the resource being described in relation to the description document.
              * @memberof OpenSearchUrl.prototype
-             * @type {[String]}
+             * @type {String[]}
              * @default ['results']
              */
             relations: {
@@ -141,11 +155,11 @@ define([
 
         /**
          * Internal use. Applications should not call this method.
-         * Parses an Open Search Url node.
+         * Parses an URL node.
          *
-         * @param {Node} node An Open Search Url node.
+         * @param {Node} node The URL node to parse.
          *
-         * @return {OpenSearchUrl}
+         * @return {OpenSearchUrl} The resulting OpenSearchUrl.
          */
         OpenSearchUrl.prototype.parse = function (node) {
             this.parseAttributes(node);
@@ -157,18 +171,18 @@ define([
 
             //params only in nodes, not in template
             var onlyNodeParams = nodeParams.filter(function (param) {
-                var templateParam = OpenSearchUtils.arrayFind(templateParams, function(templateParam) {
-                    return templateParam.name === param.name;
+                var templateParam = OpenSearchUtils.arrayFind(templateParams, function(templateParamElement) {
+                    return templateParamElement.name === param.name;
                 });
                 return templateParam == null;
             });
 
             var parameters = templateParams.map(function (templateParam) {
-                var nodeParam = OpenSearchUtils.arrayFind(nodeParams, function (nodeParam) {
-                    return nodeParam.name === templateParam.name;
+                var nodeParam = OpenSearchUtils.arrayFind(nodeParams, function (nodeParamElement) {
+                    return nodeParamElement.name === templateParam.name;
                 });
                 if (nodeParam) {
-                    return templateParam.merge(nodeParam)
+                    return templateParam.merge(nodeParam);
                 }
                 return templateParam;
             }).concat(onlyNodeParams);
@@ -190,9 +204,9 @@ define([
 
         /**
          * Internal use. Applications should not call this method.
-         * Parses the attributes of an Open Search Url node and stores the result in this OpenSearchUrl instance.
+         * Parses the attributes of an URL node and stores the result in this OpenSearchUrl instance.
          *
-         * @param {Node} node An Open Search Url node
+         * @param {Node} node The URL node to parse.
          */
         OpenSearchUrl.prototype.parseAttributes = function (node) {
             this._type = node.getAttribute('type');
@@ -228,10 +242,10 @@ define([
 
         /**
          * Internal use. Applications should not call this method.
-         * Parses an Open Search Url template and extracts the search parameters.
+         * Parses an URL template and extracts its search parameters.
          *
-         * @param {String} template The URL template to be processed
-         * @return {[OpenSearchParameter]|undefined}
+         * @param {String} template The URL template to parse.
+         * @return {OpenSearchParameter[]|undefined} The list of search parameters.
          */
         OpenSearchUrl.prototype.parseTemplate = function (template) {
             if (!template) {
@@ -275,12 +289,11 @@ define([
 
         /**
          * Internal use. Applications should not call this method.
-         * Parses an Open Search Url and extracts the parameters from the Parameter node introduced with the
-         * Open Search Parameter extension.
+         * Parses an URL node and extracts the parameters from the Parameter node introduced by the OpenSearch
+         * Parameter extension.
          *
-         * @param {Node} node An Open Search Url node
-         *
-         * @return {[OpenSearchParameter]}
+         * @param {Node} node The URL to parse.
+         * @return {OpenSearchParameter[]} The list of search parameters.
          */
         OpenSearchUrl.prototype.parseNodeParams = function (node) {
             var paramNodes = OpenSearchUtils.getXmlElements(node, 'Parameter');
@@ -291,10 +304,9 @@ define([
 
         /**
          * Internal use. Applications should not call this method.
-         * Checks if this OpenSearchUrl is compatible with the search parameters supplied.
+         * Checks if this URL is compatible with the specified search parameters.
          *
-         * @param {Array} searchParams A list of search parameters
-         *
+         * @param {Array} searchParams The list of search parameters.
          * @return {Boolean}
          */
         OpenSearchUrl.prototype.isCompatible = function (searchParams) {
@@ -320,11 +332,10 @@ define([
 
         /**
          * Internal use. Applications should not call this method.
-         * Creates a query url for the supplied search params to be used for GET requests.
+         * Creates a query URL for the supplied search parameters to be used for GET requests.
          *
-         * @param {Array|null} searchParams A list of search parameters
-         *
-         * @return {String} The url
+         * @param {Array|null} searchParams The list of search parameters.
+         * @return {String} The resulting URL.
          */
         OpenSearchUrl.prototype.createRequestUrl = function (searchParams) {
             searchParams = searchParams || [];
@@ -345,11 +356,10 @@ define([
 
         /**
          * Internal use. Applications should not call this method.
-         * Creates the request body for the supplied search params to be used for POST or PUT requests.
+         * Creates the request body for the supplied search parameters to be used for POST or PUT requests.
          *
-         * @param {Array|null} searchParams A list of search parameters
-         *
-         * @return {FormData}
+         * @param {Array|null} searchParams The list of search parameters.
+         * @return {FormData} The resulting request body.
          */
         OpenSearchUrl.prototype.createRequestBody = function (searchParams) {
             var formData = new FormData();
@@ -362,11 +372,10 @@ define([
 
         /**
          * Internal use. Applications should not call this method.
-         * Creates an key-value pair Object with the name and value of the search params.
+         * Creates an key-value pair object with the name and value of the search parameters.
          *
-         * @param {Array|null} searchParams A list of search parameters
-         *
-         * @return {Array}
+         * @param {Array|null} searchParams The list of search parameters.
+         * @return {Object} The resulting object.
          */
         OpenSearchUrl.prototype.createQueryParts = function (searchParams) {
             searchParams = searchParams || [];
@@ -382,9 +391,8 @@ define([
          * Internal use. Applications should not call this method.
          * Serializes a value to be used for a GET request.
          *
-         * @param {*} value The value to be serialized
-         *
-         * @return {String} The serialized value
+         * @param {Any} value The value to be serialized.
+         * @return {String} The serialized value.
          */
         OpenSearchUrl.prototype.serializeParam = function (value) {
             if (typeof value === 'string') {
@@ -410,8 +418,9 @@ define([
 
         /**
          * Internal use. Applications should not call this method.
-         * Creates an Url parser as an anchor element.
-         * @return {HTMLElement} An anchor element
+         * Creates an URL parser as an anchor element.
+         *
+         * @return {HTMLElement} The anchor element.
          */
         OpenSearchUrl.createUrlParser = function () {
             if (!OpenSearchUrl.urlParser) {

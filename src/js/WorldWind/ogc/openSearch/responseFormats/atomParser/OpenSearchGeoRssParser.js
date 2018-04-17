@@ -1,6 +1,17 @@
 /*
- * Copyright (C) 2014 United States Government as represented by the Administrator of the
- * National Aeronautics and Space Administration. All Rights Reserved.
+ * Copyright 2015-2018 WorldWind Contributors
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 /**
  * @exports OpenSearchGeoRssParser
@@ -15,18 +26,20 @@ define([
         'use strict';
 
         /**
-         * Parses GeoRSS to geoJSON geometry
-         * GeoRSS can be encoded as Simple and GML
+         * Parses GeoRSS and converts it to GeoJSON.
+         *
+         * The Simple and GML encoding of GeoRSS are supported.
+         *
          * @exports OpenSearchGeoRssParser
          */
         var OpenSearchGeoRssParser = {
 
             /**
-             * Parses GeoRSS-Simple to geoJSON geometry
+             * Parses the specified GeoRSS-Simple node as a GeoJSON geometry.
              *
-             * @param {Node} node the GeoRSS node
+             * @param {Node} node The GeoRSS node.
              *
-             * @return {Object} a geoJSON geometry object
+             * @return {Object} The resulting GeoJSON geometry.
              */
             parseSimple: function (node) {
                 var geometry = {
@@ -51,11 +64,11 @@ define([
             },
 
             /**
-             * Parses GeoRSS-GML to geoJSON geometry
+             * Parses the specified GeoRSS-GML node as a GeoJSON geometry.
              *
-             * @param {Node} node the GeoRSS node
+             * @param {Node} node The GeoRSS node.
              *
-             * @return {Object} a geoJSON geometry object
+             * @return {Object} The resulting GeoJSON geometry.
              */
             parseGml: function (node) {
                 var geometry = {
@@ -99,11 +112,11 @@ define([
             },
 
             /**
-             * Parses a GeoRSS box to geoJSON bbox
+             * Parses the specified GeoRSS box node as GeoJSON bounding box.
              *
-             * @param {Node} node the GeoRSS box node
+             * @param {Node} node The GeoRSS box node.
              *
-             * @return {Array} a geoJSON bbox array
+             * @return {Array} The resulting GeoJSON bounding box.
              */
             parseBox: function (node) {
                 var locations = OpenSearchGeoRssParser.parseLocations(node);
@@ -111,11 +124,11 @@ define([
             },
 
             /**
-             * Extracts the coordinates of a GeoRSS node as a geoJSON coordinates array.
+             * Extracts the coordinates of the specified GeoRSS node as a GeoJSON coordinates array.
              *
-             * @param {Node} node the GeoRSS node
+             * @param {Node} node The GeoRSS node.
              *
-             * @return {Array} a geoJSON coordinates array
+             * @return {Array} The resulting GeoJSON coordinates array.
              */
             parseLocations: function (node) {
                 var points = node.textContent.trim().replace(/\s+/g, ' ').split(' ');
@@ -129,11 +142,11 @@ define([
             },
 
             /**
-             * Extracts the coordinates of a GeoRSS-GML Polygon node as a geoJSON coordinates array.
+             * Extracts the coordinates of the specified GeoRSS-GML Polygon node as a GeoJSON coordinates array.
              *
-             * @param {Node} node the GeoRSS-GML Polygon node
+             * @param {Node} node The GeoRSS-GML Polygon node.
              *
-             * @return {Array} a geoJSON coordinates array
+             * @return {Array} The resulting GeoJSON coordinates array.
              */
             parseGmlPolygon: function (node) {
                 var exteriorPosList = OpenSearchUtils.getXmlElements(node, 'posList')[0];
@@ -154,11 +167,11 @@ define([
             },
 
             /**
-             * Extracts the coordinates of a GeoRSS-GML MultiSurface node as a geoJSON coordinates array.
+             * Extracts the coordinates of the specified GeoRSS-GML MultiSurface node as a GeoJSON coordinates array.
              *
-             * @param {Node} node the GeoRSS-GML MultiSurface node
+             * @param {Node} node The GeoRSS-GML MultiSurface node.
              *
-             * @return {Array} a geoJSON coordinates array
+             * @return {Array} The resulting GeoJSON coordinates array.
              */
             parseMultiPolygon: function (node) {
                 //node can contain a single 'surfaceMembers' element and/or multiple 'surfaceMember' elements
