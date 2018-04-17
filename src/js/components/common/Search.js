@@ -16,7 +16,7 @@ export default class Search extends Component {
             {parameter: "organisationName", title: "Organisation"}
         ];
 
-        this.search = _.debounce(this.search.bind(this), 1000);
+        this.search = this.search.bind(this);
         this.changeBBox = this.changeBBox.bind(this);
         this.changeText = this.changeText.bind(this);
         this.changeStartDate = this.changeStartDate.bind(this);
@@ -26,28 +26,24 @@ export default class Search extends Component {
         this.isInParameters = this.isInParameters.bind(this);
     }
 
-    componentDidMount(){
-        this.search();
-    }
-
     changeBBox(bbox){
-        this.props.changeParams({bbox: bbox}, this.search);
+        this.props.changeParams({bbox: bbox});
     }
 
     changeText(text){
-        this.props.changeParams({text: text}, this.search);
+        this.props.changeParams({text: text});
     }
 
     changeStartDate(date){
-        this.props.changeParams({startDate: date}, this.search);
+        this.props.changeParams({startDate: date});
     }
 
     changeEndDate(date){
-        this.props.changeParams({endDate: date}, this.search);
+        this.props.changeParams({endDate: date});
     }
 
     changeParameter(parameter, value){
-        this.props.changeParams({[parameter]: value}, this.search);
+        this.props.changeParams({[parameter]: value});
     }
 
     getOptions(name){
@@ -164,6 +160,10 @@ export default class Search extends Component {
                 </ContentBox> }
 
                 {this.createSelectorInputs()}
+
+                <div>
+                    <button onClick={this.search}>Search</button>
+                </div>
             </div>
         )
     }

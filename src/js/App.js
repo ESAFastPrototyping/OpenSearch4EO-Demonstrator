@@ -41,14 +41,14 @@ export default class App extends Component {
         this.changeCollectionParams = this.changeCollectionParams.bind(this);
     }
     
-    changeProductParams(params, callback) {
+    changeProductParams(params) {
       let newParams = Object.assign({}, this.state.productParams, params);
-      this.setState({productParams: newParams}, callback);
+      this.setState({productParams: newParams});
     }
 
-    changeCollectionParams(params, callback) {
+    changeCollectionParams(params) {
       let newParams = Object.assign({}, this.state.collectionParams, params);
-      this.setState({collectionParams: newParams}, callback);
+      this.setState({collectionParams: newParams});
     }
 
     connect(searchService){
