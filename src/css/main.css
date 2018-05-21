@@ -443,12 +443,18 @@ button:not(:disabled):hover {
 
 .sidebar-tabs {
 /* 	background: #eee; */
-	height: 2rem;
+	height: 4rem;
 	line-height: 2rem;
 	padding: 0 .5rem;
 	font-size: .85rem;
 	margin-top: .3rem;
 	border-bottom: 1px solid #eee;
+}
+
+@media(min-width: 1300px) {
+	.sidebar-tabs {
+		height: 2rem;
+	}
 }
 
 .sidebar-tabs > a {
