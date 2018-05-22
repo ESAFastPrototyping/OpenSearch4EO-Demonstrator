@@ -41,7 +41,12 @@ export default class Connector extends Component {
                 this.props.connect(result);
                 console.log(result);
             })
-            .catch(err => alert("There was an issue with the provided link.\nTry again later or try a different provider."));
+            .catch(err => {
+                console.error("Error: ", err);
+                alert("There was an issue with the provided link.\nTry again later or try a different provider.\n " +
+                    "If you are a developer, try taking a look whether your browser provided some more information.\n " +
+                    "Ignored CORS and wrong HTTPS certificate won't be shown as the XMLHTTPRequest doesn't provide this information.")
+            });
 
         this.setState({url: ""});
     }
