@@ -55,6 +55,7 @@ define([ // PLEASE KEEP ALL THIS IN ALPHABETICAL ORDER BY MODULE NAME (not direc
         './formats/geojson/GeoJSONGeometryPoint',
         './formats/geojson/GeoJSONGeometryPolygon',
         './formats/geojson/GeoJSONParser',
+        './formats/geojson/GeoJSONParserWithTexture',
         './formats/geotiff/GeoTiffReader',
         './gesture/GestureRecognizer',
         './globe/Globe',
@@ -295,6 +296,7 @@ define([ // PLEASE KEEP ALL THIS IN ALPHABETICAL ORDER BY MODULE NAME (not direc
               GeoJSONGeometryPoint,
               GeoJSONGeometryPolygon,
               GeoJSONParser,
+              GeoJSONParserWithTexture,
               GeoTiffReader,
               GestureRecognizer,
               Globe,
@@ -744,6 +746,7 @@ define([ // PLEASE KEEP ALL THIS IN ALPHABETICAL ORDER BY MODULE NAME (not direc
         WorldWind['GeoJSONGeometryPoint'] = GeoJSONGeometryPoint;
         WorldWind['GeoJSONGeometryPolygon'] = GeoJSONGeometryPolygon;
         WorldWind['GeoJSONParser'] = GeoJSONParser;
+        WorldWind['GeoJSONParserWithTexture'] = GeoJSONParserWithTexture;
         WorldWind['GeoTiffReader'] = GeoTiffReader;
         WorldWind['GestureRecognizer'] = GestureRecognizer;
         WorldWind['Globe'] = Globe;
@@ -758,7 +761,7 @@ define([ // PLEASE KEEP ALL THIS IN ALPHABETICAL ORDER BY MODULE NAME (not direc
         WorldWind['ImageSource'] = ImageSource;
         WorldWind['ImageTile'] = ImageTile;
         WorldWind['Insets'] = Insets;
-        WorldWind['KmlControls'];
+        WorldWind['KmlControls'] = KmlControls;
         WorldWind['KmlFile'] = KmlFile;
         WorldWind['KmlTreeVisibility'] = KmlTreeVisibility;
         WorldWind['LandsatRestLayer'] = LandsatRestLayer;

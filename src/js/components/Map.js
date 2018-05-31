@@ -28,7 +28,17 @@ export default class Map extends Component {
         this.productLayer.removeAllRenderables();
 
         if (this.productsHaveGeometry()){
-            let geoJSON = new WorldWind.GeoJSONParser(JSON.stringify(this.props.productsResult));
+            if(this.props.productsResult && this.props.productsResult.features) {
+                this.props.productsResult.features.forEach(product => {
+                    if (!product.properties) {
+                        product.properties = {};
+                    }
+                    if (product.links) {
+                        product.properties.links = links;
+                    }
+                });
+            }
+            let geoJSON = new WorldWind.GeoJSONParserWithTexture(JSON.stringify(this.props.productsResult));
             geoJSON.load(null, null, this.productLayer);
         }
 

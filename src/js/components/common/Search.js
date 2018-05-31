@@ -76,8 +76,7 @@ export default class Search extends Component {
             {name: 'bbox', value: this.props.searchParams.bbox.join(',')},
             {name: 'query', value: this.props.searchParams.text},
             {name: 'startDate', value: startDate},
-            {name: 'endDate', value: endDate},
-            {name: 'recordSchema', value: 'server-choice'}
+            {name: 'endDate', value: endDate}
         ];
         this.selectors.forEach(selector => {
             searchParams.push({name: selector.parameter, value: this.props.searchParams[selector.parameter]});
@@ -105,7 +104,7 @@ export default class Search extends Component {
             alert('413 Request Entity Too Large\nPlease narrow down the search');
         }
         else if(err.toString().indexOf('500') > -1){
-            alert('500 Internal Server Error\nAn error occured on the server, try later');
+            alert('500 Internal Server Error\nAn error occured on the server, try later\n. Full text of Error: ' + err);
         }
         else if(err.toString().indexOf('501') > -1){
             alert('501 Not Implemented\nAn error occured on the server');

@@ -154,15 +154,15 @@ define([
                         if (this.status >= 200 && this.status < 300) {
                             return resolve(this.response);
                         }
-                        return reject(new Error(this.status + ' ' + this.statusText));
+                        return reject(new Error(this.status + ' ' + this.statusText + ' If any, response text: ' + this.responseText));
                     };
 
                     xhr.onerror = function () {
-                        return reject(new Error('Unable to fetch data'));
+                        return reject(new Error('Unable to fetch data. Response text, if any: ' + this.responseText));
                     };
 
                     xhr.ontimeout = function () {
-                        return reject(new Error('Request timed out'));
+                        return reject(new Error('Request timed out. Response text, if any: ' + this.responseText));
                     };
 
                     xhr.open(options.method, options.url, true, options.user, options.password);
