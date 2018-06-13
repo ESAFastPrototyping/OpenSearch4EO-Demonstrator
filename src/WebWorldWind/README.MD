@@ -1,0 +1,1 @@
+Changes to the Web World Wind against the version 0.9.0
