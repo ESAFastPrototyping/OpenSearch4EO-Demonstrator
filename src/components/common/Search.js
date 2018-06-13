@@ -46,10 +46,10 @@ export default class Search extends Component {
     }
 
     getOptions(name){
-        let atomUrl = this.props.searchService.descriptionDocument.urls.find(url => url.type == 'application/atom+xml' && url.relations[0] == this.props.relation);
+        let atomUrl = this.props.searchService.descriptionDocument.urls.find(url => url.type === 'application/atom+xml' && url.relations[0] === this.props.relation);
         let parameter;
         if (atomUrl && atomUrl.parameters){
-            parameter = atomUrl.parameters.find(parameter => parameter.name == name);
+            parameter = atomUrl.parameters.find(parameter => parameter.name === name);
         }
         if (parameter){
             return parameter.options || [];
@@ -60,7 +60,7 @@ export default class Search extends Component {
     }
 
     isInParameters(parameter){
-        let atomUrl = this.props.searchService.descriptionDocument.urls.find(url => url.type == 'application/atom+xml' && url.relations[0] == this.props.relation);
+        let atomUrl = this.props.searchService.descriptionDocument.urls.find(url => url.type === 'application/atom+xml' && url.relations[0] === this.props.relation);
         let parameters = atomUrl ? atomUrl._paramsByName : {};
         return !!parameters[parameter];
     }
@@ -68,8 +68,8 @@ export default class Search extends Component {
     search(){
         let service = this.props.searchService;
         //TODO: why is accepted date somehow different for collection and product search?
-        let startDate = this.props.relation == "collection" ? moment(this.props.searchParams.startDate).format("YYYY-MM-DD[T]HH:mm:ss[Z]") : moment(this.props.searchParams.startDate).format("YYYY-MM-DD");
-        let endDate = this.props.relation == "collection" ? moment(this.props.searchParams.endDate).format("YYYY-MM-DD[T]HH:mm:ss[Z]") : moment(this.props.searchParams.endDate).format("YYYY-MM-DD");
+        let startDate = this.props.relation === "collection" ? moment(this.props.searchParams.startDate).format("YYYY-MM-DD[T]HH:mm:ss[Z]") : moment(this.props.searchParams.startDate).format("YYYY-MM-DD");
+        let endDate = this.props.relation === "collection" ? moment(this.props.searchParams.endDate).format("YYYY-MM-DD[T]HH:mm:ss[Z]") : moment(this.props.searchParams.endDate).format("YYYY-MM-DD");
 
         let searchParams = [
             {name: 'bbox', value: this.props.searchParams.bbox.join(',')},

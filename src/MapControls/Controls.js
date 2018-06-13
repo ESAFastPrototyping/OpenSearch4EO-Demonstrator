@@ -231,7 +231,7 @@ class Controls {
 
             // redraw heading indicator
             this._lastHeading = this._lastHeading || 0;
-            if (this.wwd.navigator.heading != this._lastHeading) {
+            if (this.wwd.navigator.heading !== this._lastHeading) {
                 this.redrawHeadingIndicator();
             }
             this._lastHeading = this.wwd.navigator.heading;

@@ -1,14 +1,12 @@
 import React, {Component} from 'react';
 import Controls from '../MapControls/Controls';
 
-export default class MapControls extends React.Component {
-    constructor(props){
-        super(props);
-    }
+export default class MapControls extends Component {
     componentDidMount(){
         let controls = new Controls(this.props.wwd);
         controls.setupInteraction();
     }
+
     render(){
         return (
             <div className="control-group">

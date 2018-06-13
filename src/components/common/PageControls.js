@@ -4,7 +4,7 @@ import OpenSearchRequest from '../../WebWorldWind/ogc/openSearch/OpenSearchReque
 import OpenSearchUtils from '../../WebWorldWind/ogc/openSearch/OpenSearchUtils';
 import OpenSearchAtomParser from '../../WebWorldWind/ogc/openSearch/responseFormats/atomParser/OpenSearchAtomParser';
 
-export default class PageControls extends React.Component {
+export default class PageControls extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -12,7 +12,7 @@ export default class PageControls extends React.Component {
         };
     }
     navigate(url){
-        if(!url || this.state.isFetching == true){
+        if(!url || this.state.isFetching === true){
             return;
         }
         let requestOptions = new OpenSearchRequest();

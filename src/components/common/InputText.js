@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 const InputText = ({ text, changeText }) => {
     function handleChange(event) {
@@ -10,6 +10,6 @@ const InputText = ({ text, changeText }) => {
             <input type="text" id="collection-fulltext" onChange = {handleChange} value = {text}/>
         </div>
     );
-}
+};
 
 export default InputText;

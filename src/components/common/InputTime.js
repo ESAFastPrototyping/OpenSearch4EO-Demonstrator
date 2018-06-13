@@ -135,33 +135,33 @@ class InputTime extends React.Component {
                 </span>
                 <div className="eoos-property-timerange-inputs">
                     <div className="eoos-property-timerange-input">
-                        <a className="eoos-property-timerange-spinner top" onClick = {this.incrementYears}></a>
+                        <a className="eoos-property-timerange-spinner top" onClick = {this.incrementYears}> </a>
                         <input type="text" min="2015" max="2017" id = "timerange-year" value={moment(this.props.date).format('YYYY')} onChange = {this.changeYears} />
-                        <a className="eoos-property-timerange-spinner bottom" onClick = {this.decrementYears}></a>
+                        <a className="eoos-property-timerange-spinner bottom" onClick = {this.decrementYears}> </a>
                     </div>
                     <span>-</span>
                     <div className="eoos-property-timerange-input">
-                        <a className="eoos-property-timerange-spinner top" onClick = {this.incrementMonths}></a>
+                        <a className="eoos-property-timerange-spinner top" onClick = {this.incrementMonths}> </a>
                         <input type="text" min="1" max="12" value={moment(this.props.date).format('MM')} onChange = {this.changeMonths}/>
-                        <a className="eoos-property-timerange-spinner bottom" onClick = {this.decrementMonths}></a>
+                        <a className="eoos-property-timerange-spinner bottom" onClick = {this.decrementMonths}> </a>
                     </div>
                     <span>-</span>
                     <div className="eoos-property-timerange-input">
-                        <a className="eoos-property-timerange-spinner top" onClick = {this.incrementDays}></a>
+                        <a className="eoos-property-timerange-spinner top" onClick = {this.incrementDays}> </a>
                         <input type="text" min="1" max="31" value={moment(this.props.date).format('DD')} onChange = {this.changeDays}/>
-                        <a className="eoos-property-timerange-spinner bottom" onClick = {this.decrementDays}></a>
+                        <a className="eoos-property-timerange-spinner bottom" onClick = {this.decrementDays}> </a>
                     </div>
-                    <span></span>
+                    <span> </span>
                     <div className="eoos-property-timerange-input">
-                        <a className="eoos-property-timerange-spinner top" onClick = {this.incrementHours}></a>
+                        <a className="eoos-property-timerange-spinner top" onClick = {this.incrementHours}> </a>
                         <input type="text" min="0" max="23" value={moment(this.props.date).format('HH')} onChange = {this.changeHours}/>
-                        <a className="eoos-property-timerange-spinner bottom" onClick = {this.decrementHours}></a>
+                        <a className="eoos-property-timerange-spinner bottom" onClick = {this.decrementHours}> </a>
                     </div>
                     <span>:</span>
                     <div className="eoos-property-timerange-input">
-                        <a className="eoos-property-timerange-spinner top" onClick = {this.incrementMinutes}></a>
+                        <a className="eoos-property-timerange-spinner top" onClick = {this.incrementMinutes}> </a>
                         <input type="text" min="0" max="59" value={moment(this.props.date).format('mm')} onChange = {this.changeMinutes}/>
-                        <a className="eoos-property-timerange-spinner bottom" onClick = {this.decrementMinutes}></a>
+                        <a className="eoos-property-timerange-spinner bottom" onClick = {this.decrementMinutes}> </a>
                     </div>
                 </div>
             </div>

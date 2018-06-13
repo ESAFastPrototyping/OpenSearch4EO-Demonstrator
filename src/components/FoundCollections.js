@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import OpenSearchService from '../WebWorldWind/ogc/openSearch/OpenSearchService';
 
 export default class FoundCollections extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     handleClick(collection) {
         let links = collection.links;
         if (links && links.search && links.search[0] && links.search[0].href) {

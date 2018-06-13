@@ -1,5 +1,3 @@
-"use strict";
-
 /**
  * Provides GeoJSON string constants.
  * @alias GeoJSONConstants

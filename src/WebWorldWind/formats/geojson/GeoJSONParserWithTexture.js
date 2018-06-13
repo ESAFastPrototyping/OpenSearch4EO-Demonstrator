@@ -8,7 +8,6 @@ import GeoJSONFeatureCollection from './GeoJSONFeatureCollection';
 
 const ArgumentError = WorldWind.ArgumentError,
 
-    GeoJSONGeometry = WorldWind.GeoJSONGeometry,
     GeoJSONGeometryCollection = WorldWind.GeoJSONGeometryCollection,
     GeoJSONGeometryLineString = WorldWind.GeoJSONGeometryLineString,
     GeoJSONGeometryMultiLineString = WorldWind.GeoJSONGeometryMultiLineString,

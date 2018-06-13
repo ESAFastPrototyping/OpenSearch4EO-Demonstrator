@@ -24,7 +24,7 @@ export default class FoundProducts extends Component {
 
     formatJSON(json) {
         let str = JSON.stringify(json, null, '\t');
-        str = str.replace(/[\[\]],?\n?\t*/g, "");
+        str = str.replace(/[\\[\\]],?\n?\t*/g, "");
         str = str.replace(/[{"]/g, "");
         str = str.replace(/\t*},?\n?/g, "");
         return str.replace(/\t{2}/g, "\t");
@@ -45,10 +45,10 @@ export default class FoundProducts extends Component {
 
         let infoLink;
         if (product.links && product.links.via){
-            infoLink = product.links.via.find(link => link.title == 'Product metadata');
+            infoLink = product.links.via.find(link => link.title === 'Product metadata');
         }
         else if (product.properties && product.properties.links && product.properties.links.via){
-            infoLink = product.properties.links.via.find(link => link.title == 'Product metadata');
+            infoLink = product.properties.links.via.find(link => link.title === 'Product metadata');
         }
         if (infoLink && infoLink.href){
             requestOptions.url = infoLink.href;
