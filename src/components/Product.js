@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Product = ({ product, showInfo }) => {
+const Product = ({product, showInfo}) => {
     return (
         <div className="eoos-result">
             <div className="eoos-result-properties">
@@ -11,7 +11,7 @@ const Product = ({ product, showInfo }) => {
             </div>
             <div className="eoos-result-controls">
                 <div className="eoos-result-detail-button" title="Show details…"
-                    onClick = {() => showInfo(product)}></div>
+                     onClick={() => showInfo(product)}></div>
             </div>
         </div>
     );

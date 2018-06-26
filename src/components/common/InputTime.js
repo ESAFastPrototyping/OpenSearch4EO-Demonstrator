@@ -32,76 +32,86 @@ class InputTime extends React.Component {
         }
     }
 
-    incrementYears(){
+    incrementYears() {
         let newDate = moment(this.props.date).add(1, 'years');
         this.props.changeDate(newDate);
     }
-    decrementYears(){
+
+    decrementYears() {
         let newDate = moment(this.props.date).subtract(1, 'years');
         this.props.changeDate(newDate);
     }
-    changeYears(event){
-        let newDate = moment(this.props.date).year(event.target.value>2999 ? 2999 : event.target.value);
+
+    changeYears(event) {
+        let newDate = moment(this.props.date).year(event.target.value > 2999 ? 2999 : event.target.value);
         this.props.changeDate(newDate);
     }
 
-    incrementMonths(){
+    incrementMonths() {
         let newDate = moment(this.props.date).add(1, 'months');
         this.props.changeDate(newDate);
     }
-    decrementMonths(){
+
+    decrementMonths() {
         let newDate = moment(this.props.date).subtract(1, 'months');
         this.props.changeDate(newDate);
     }
-    changeMonths(event){
+
+    changeMonths(event) {
         let val = event.target.value;
         const max = 12;
-        val = val>max ? val % 10 - 1 : val - 1;
-        val = val<0 ? 0 : val;
+        val = val > max ? val % 10 - 1 : val - 1;
+        val = val < 0 ? 0 : val;
         let newDate = moment(this.props.date).month(val);
         this.props.changeDate(newDate);
     }
 
-    incrementDays(){
+    incrementDays() {
         let newDate = moment(this.props.date).add(1, 'days');
         this.props.changeDate(newDate);
     }
-    decrementDays(){
+
+    decrementDays() {
         let newDate = moment(this.props.date).subtract(1, 'days');
         this.props.changeDate(newDate);
     }
-    changeDays(event){
+
+    changeDays(event) {
         let val = event.target.value;
         const max = moment(this.props.date).daysInMonth();
-        val = val>max ? val % 10 : val;
-        val = val<1 ? 1 : val;
+        val = val > max ? val % 10 : val;
+        val = val < 1 ? 1 : val;
         let newDate = moment(this.props.date).date(val);
         this.props.changeDate(newDate);
     }
 
-    incrementHours(){
+    incrementHours() {
         let newDate = moment(this.props.date).add(1, 'hours');
         this.props.changeDate(newDate);
     }
-    decrementHours(){
+
+    decrementHours() {
         let newDate = moment(this.props.date).subtract(1, 'hours');
         this.props.changeDate(newDate);
     }
-    changeHours(event){
-        let newDate = moment(this.props.date).hour(event.target.value>23 ? 23 : event.target.value);
+
+    changeHours(event) {
+        let newDate = moment(this.props.date).hour(event.target.value > 23 ? 23 : event.target.value);
         this.props.changeDate(newDate);
     }
 
-    incrementMinutes(){
+    incrementMinutes() {
         let newDate = moment(this.props.date).add(1, 'minutes');
         this.props.changeDate(newDate);
     }
-    decrementMinutes(){
+
+    decrementMinutes() {
         let newDate = moment(this.props.date).subtract(1, 'minutes');
         this.props.changeDate(newDate);
     }
-    changeMinutes(event){
-        let newDate = moment(this.props.date).minute(event.target.value>59 ? 59 : event.target.value);
+
+    changeMinutes(event) {
+        let newDate = moment(this.props.date).minute(event.target.value > 59 ? 59 : event.target.value);
         this.props.changeDate(newDate);
     }
 
@@ -110,6 +120,7 @@ class InputTime extends React.Component {
             calendar: !this.state.calendar
         });
     }
+
     changeFromCalendar(time) {
         let currentTime = moment(time);
         currentTime.set('hour', moment(this.props.date).get('hour'));
@@ -122,46 +133,52 @@ class InputTime extends React.Component {
 
     render() {
         let calendar = '';
-        if(this.state.calendar) {
+        if (this.state.calendar) {
             calendar = (<Calendar onChange={this.changeFromCalendar} value={new Date(this.props.date)}></Calendar>)
         }
 
         return (
             <div className="eoos-property-timerange">
                 {this.props.label}
-                <span className="calendar-opener" onClick={this.openCalendar}><i className="fa fa-calendar" aria-hidden="true"></i></span>
+                <span className="calendar-opener" onClick={this.openCalendar}><i className="fa fa-calendar"
+                                                                                 aria-hidden="true"></i></span>
                 <span className={this.props.calendarClass}>
                     {calendar}
                 </span>
                 <div className="eoos-property-timerange-inputs">
                     <div className="eoos-property-timerange-input">
-                        <a className="eoos-property-timerange-spinner top" onClick = {this.incrementYears}> </a>
-                        <input type="text" min="2015" max="2017" id = "timerange-year" value={moment(this.props.date).format('YYYY')} onChange = {this.changeYears} />
-                        <a className="eoos-property-timerange-spinner bottom" onClick = {this.decrementYears}> </a>
+                        <a className="eoos-property-timerange-spinner top" onClick={this.incrementYears}> </a>
+                        <input type="text" min="2015" max="2017" id="timerange-year"
+                               value={moment(this.props.date).format('YYYY')} onChange={this.changeYears}/>
+                        <a className="eoos-property-timerange-spinner bottom" onClick={this.decrementYears}> </a>
                     </div>
                     <span>-</span>
                     <div className="eoos-property-timerange-input">
-                        <a className="eoos-property-timerange-spinner top" onClick = {this.incrementMonths}> </a>
-                        <input type="text" min="1" max="12" value={moment(this.props.date).format('MM')} onChange = {this.changeMonths}/>
-                        <a className="eoos-property-timerange-spinner bottom" onClick = {this.decrementMonths}> </a>
+                        <a className="eoos-property-timerange-spinner top" onClick={this.incrementMonths}> </a>
+                        <input type="text" min="1" max="12" value={moment(this.props.date).format('MM')}
+                               onChange={this.changeMonths}/>
+                        <a className="eoos-property-timerange-spinner bottom" onClick={this.decrementMonths}> </a>
                     </div>
                     <span>-</span>
                     <div className="eoos-property-timerange-input">
-                        <a className="eoos-property-timerange-spinner top" onClick = {this.incrementDays}> </a>
-                        <input type="text" min="1" max="31" value={moment(this.props.date).format('DD')} onChange = {this.changeDays}/>
-                        <a className="eoos-property-timerange-spinner bottom" onClick = {this.decrementDays}> </a>
+                        <a className="eoos-property-timerange-spinner top" onClick={this.incrementDays}> </a>
+                        <input type="text" min="1" max="31" value={moment(this.props.date).format('DD')}
+                               onChange={this.changeDays}/>
+                        <a className="eoos-property-timerange-spinner bottom" onClick={this.decrementDays}> </a>
                     </div>
                     <span> </span>
                     <div className="eoos-property-timerange-input">
-                        <a className="eoos-property-timerange-spinner top" onClick = {this.incrementHours}> </a>
-                        <input type="text" min="0" max="23" value={moment(this.props.date).format('HH')} onChange = {this.changeHours}/>
-                        <a className="eoos-property-timerange-spinner bottom" onClick = {this.decrementHours}> </a>
+                        <a className="eoos-property-timerange-spinner top" onClick={this.incrementHours}> </a>
+                        <input type="text" min="0" max="23" value={moment(this.props.date).format('HH')}
+                               onChange={this.changeHours}/>
+                        <a className="eoos-property-timerange-spinner bottom" onClick={this.decrementHours}> </a>
                     </div>
                     <span>:</span>
                     <div className="eoos-property-timerange-input">
-                        <a className="eoos-property-timerange-spinner top" onClick = {this.incrementMinutes}> </a>
-                        <input type="text" min="0" max="59" value={moment(this.props.date).format('mm')} onChange = {this.changeMinutes}/>
-                        <a className="eoos-property-timerange-spinner bottom" onClick = {this.decrementMinutes}> </a>
+                        <a className="eoos-property-timerange-spinner top" onClick={this.incrementMinutes}> </a>
+                        <input type="text" min="0" max="59" value={moment(this.props.date).format('mm')}
+                               onChange={this.changeMinutes}/>
+                        <a className="eoos-property-timerange-spinner bottom" onClick={this.decrementMinutes}> </a>
                     </div>
                 </div>
             </div>

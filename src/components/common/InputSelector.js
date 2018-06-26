@@ -5,11 +5,11 @@ const InputSelector = (props) => {
         props.change(props.parameter, event.target.value);
     }
 
-    let options = props.options.map(option => <option value={option.value} key = {option.value}/>);
+    let options = props.options.map(option => <option value={option.value} key={option.value}/>);
 
     return (
         <div className="eoos-property-input select">
-            <input type="text" value = {props.text} onChange = {handleChange} list = {props.parameter}/>
+            <input type="text" value={props.text} onChange={handleChange} list={props.parameter}/>
             <datalist id={props.parameter}>
                 {options}
             </datalist>

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import OpenSearchService from '../WebWorldWind/ogc/openSearch/OpenSearchService';
 
 export default class FoundCollections extends Component {

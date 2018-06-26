@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ContentBox = ({ title, children }) => {
+const ContentBox = ({title, children}) => {
     return (
         <div className="eoos-property">
             <div className="eoos-property-content">

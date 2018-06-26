@@ -1,35 +1,41 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import WorldWind from '@nasaworldwind/worldwind';
 import MapControls from './MapControls';
 import GeoJSONParserWithTexture from '../WebWorldWind/formats/geojson/GeoJSONParserWithTexture';
 
+const WorldWindow = WorldWind.WorldWindow,
+    BMNGLandsatLayer = WorldWind.BMNGLandsatLayer,
+    RenderableLayer = WorldWind.RenderableLayer;
+
 export default class Map extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             wwdCreated: false
         };
     }
 
-    componentDidMount(){
-        this.wwd = new WorldWind.WorldWindow("wwd-results");
+    componentDidMount() {
+        const wwd = new WorldWindow("wwd-results");
         this.setState({wwdCreated: true});
-        this.props.setWorldWindow(this.wwd);
+        this.props.setWorldWindow(wwd);
 
-        let mapLayer = new WorldWind.BMNGLandsatLayer();
+        let mapLayer = new BMNGLandsatLayer();
+        this.productLayer = new RenderableLayer();
 
-        this.productLayer = new WorldWind.RenderableLayer();
+        wwd.addLayer(mapLayer);
+        wwd.addLayer(this.productLayer);
 
-		this.wwd.addLayer(mapLayer);
-        this.wwd.addLayer(this.productLayer);
-        this.wwd.redraw();
+        wwd.redraw();
+
+        this.wwd = wwd;
     }
 
-    componentDidUpdate(){
+    componentDidUpdate() {
         this.productLayer.removeAllRenderables();
 
-        if (this.productsHaveGeometry()){
-            if(this.props.productsResult && this.props.productsResult.features) {
+        if (this.productsHaveGeometry()) {
+            if (this.props.productsResult && this.props.productsResult.features) {
                 this.props.productsResult.features.forEach(product => {
                     if (!product.properties) {
                         product.properties = {};
@@ -46,24 +52,24 @@ export default class Map extends Component {
         this.wwd.redraw();
     }
 
-    productsHaveGeometry(){
+    productsHaveGeometry() {
         if (!this.props.productsResult.features || this.props.productsResult.features.length === 0) {
             return false;
         }
         let geometryExists = true;
         this.props.productsResult.features.forEach(feature => {
-            if (!feature.geometry){
+            if (!feature.geometry) {
                 geometryExists = false;
             }
         });
         return geometryExists;
     }
 
-    render(){
+    render() {
         return (
             <div id="map">
                 <canvas id="wwd-results"></canvas>
-                {this.state.wwdCreated && <MapControls wwd = {this.wwd}/>}
+                {this.state.wwdCreated && <MapControls wwd={this.wwd}/>}
             </div>
         )
     }

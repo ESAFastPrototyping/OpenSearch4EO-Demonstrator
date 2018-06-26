@@ -2,12 +2,12 @@ import React, {Component} from 'react';
 import Controls from '../MapControls/Controls';
 
 export default class MapControls extends Component {
-    componentDidMount(){
+    componentDidMount() {
         let controls = new Controls(this.props.wwd);
         controls.setupInteraction();
     }
 
-    render(){
+    render() {
         return (
             <div className="control-group">
 
@@ -23,9 +23,11 @@ export default class MapControls extends Component {
                     </div>
                     <div className="tilt-control control">
                         <a id="tilt-more-control">
-                            <svg version="1.1" id="icon-tilt-more" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                            width="18px" height="18px" viewBox="0 0 511.625 511.627" enableBackground="new 0 0 511.625 511.627"
-                            xmlSpace="preserve">
+                            <svg version="1.1" id="icon-tilt-more" xmlns="http://www.w3.org/2000/svg"
+                                 xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                 width="18px" height="18px" viewBox="0 0 511.625 511.627"
+                                 enableBackground="new 0 0 511.625 511.627"
+                                 xmlSpace="preserve">
                                 <g>
                                     <path d="M224.595,201.822h-93.576c-6.879,0-13.674,3.236-15.211,7.307l-24.902,66.025c-2.188,5.797,2.867,10.61,11.34,10.61
                                         h115.271c8.477,0,15.584-4.813,15.873-10.611l3.295-66.024C236.888,205.057,231.474,201.822,224.595,201.822z"/>
@@ -40,9 +42,11 @@ export default class MapControls extends Component {
                             </svg>
                         </a>
                         <a id="tilt-less-control">
-                            <svg version="1.1" id="icon-tilt-less" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                            width="18px" height="18px" viewBox="0 0 511.625 511.627" enableBackground="new 0 0 511.625 511.627"
-                            xmlSpace="preserve">
+                            <svg version="1.1" id="icon-tilt-less" xmlns="http://www.w3.org/2000/svg"
+                                 xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                 width="18px" height="18px" viewBox="0 0 511.625 511.627"
+                                 enableBackground="new 0 0 511.625 511.627"
+                                 xmlSpace="preserve">
                                 <g>
                                     <path d="M210.81,37.038H55.599c-11.047,0-20,8.954-20,20v155.211c0,11.046,8.953,20,20,20H210.81c11.045,0,20-8.954,20-20V57.038
                                         C230.81,45.992,221.854,37.038,210.81,37.038z"/>

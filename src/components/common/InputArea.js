@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import WorldWind from '@nasaworldwind/worldwind';
 
 export default class InputArea extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             drawing: false
@@ -15,19 +15,19 @@ export default class InputArea extends Component {
         this.handleClick = this.handleClick.bind(this);
     }
 
-    componentWillUnmount(){
-        if(this.shapeEditorController){
+    componentWillUnmount() {
+        if (this.shapeEditorController) {
             this.shapeEditorController.destroy();
             this.shapeEditorController = null;
         }
-        if(this.shapesLayer){
+        if (this.shapesLayer) {
             this.shapesLayer.removeAllRenderables();
             this.props.wwd.redraw();
         }
     }
 
-    handleClick(){
-        if(this.state.drawing) {
+    handleClick() {
+        if (this.state.drawing) {
             this.finishDrawing();
         }
         else {
@@ -36,7 +36,7 @@ export default class InputArea extends Component {
         this.setState({drawing: !this.state.drawing});
     }
 
-    finishDrawing(){
+    finishDrawing() {
         //update bbox corresponding to current shape and hide shape editor
         let sector = this.shapesLayer.renderables[0]._sector;
         let bbox = [sector.minLongitude, sector.minLatitude, sector.maxLongitude, sector.maxLatitude];
@@ -47,12 +47,12 @@ export default class InputArea extends Component {
         this.props.wwd.redraw();
     }
 
-    startDrawing(){
+    startDrawing() {
         let wwd = this.props.wwd;
 
         //setup a simple rectangle polygon in the lookAt location with a size corresponding to zoom
-        let latitudeOffset = 10*wwd.navigator.range/10000000;
-        let longitudeOffset = 10*wwd.navigator.range/10000000;
+        let latitudeOffset = 10 * wwd.navigator.range / 10000000;
+        let longitudeOffset = 10 * wwd.navigator.range / 10000000;
         var boundary = [];
         boundary.push(new WorldWind.Location(wwd.navigator.lookAtLocation.latitude - latitudeOffset, wwd.navigator.lookAtLocation.longitude - longitudeOffset));
         boundary.push(new WorldWind.Location(wwd.navigator.lookAtLocation.latitude - latitudeOffset, wwd.navigator.lookAtLocation.longitude + longitudeOffset));
@@ -81,20 +81,20 @@ export default class InputArea extends Component {
         wwd.redraw();
     }
 
-    render(){
+    render() {
         let displayBBox = this.props.bbox ? this.props.bbox.map(location => Number(location).toFixed(6)) : '';
         return (
             <div>
                 <div className="eoos-property-input">
-                    <input type="text" id="collection-location-find" value = {displayBBox} readOnly/>
+                    <input type="text" id="collection-location-find" value={displayBBox} readOnly/>
                 </div>
-                <button id="collection-location-draw-in-map" onClick = {this.handleClick}>
+                <button id="collection-location-draw-in-map" onClick={this.handleClick}>
                     {this.state.drawing ? "Confirm area" : "Draw in map"}
                 </button>
                 {this.props.bbox && this.props.bbox.length > 0 &&
-                    <button onClick = {() => this.props.changeBBox([])}>
-                        Clear
-                    </button>
+                <button onClick={() => this.props.changeBBox([])}>
+                    Clear
+                </button>
                 }
             </div>
         );

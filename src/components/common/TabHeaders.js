@@ -1,10 +1,10 @@
 import React from 'react';
 
-const TabHeaders = ({ tabs, select, selected }) => {
+const TabHeaders = ({tabs, select, selected}) => {
     let headers = tabs.map(tab => {
         return (
-            <a data-for = {tab.id} className = {selected === tab.id ? "active" : ""}
-                onClick = {() => select(tab.id)} key = {tab.id}>
+            <a data-for={tab.id} className={selected === tab.id ? "active" : ""}
+               onClick={() => select(tab.id)} key={tab.id}>
                 {tab.title}
             </a>
         );
