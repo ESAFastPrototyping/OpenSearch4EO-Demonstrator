@@ -48,7 +48,14 @@ export default class FoundProducts extends Component {
             infoLink = product.links.via.find(link => link.title === 'Product metadata');
         }
         else if (product.properties && product.properties.links && product.properties.links.via){
-            infoLink = product.properties.links.via.find(link => link.title === 'Product metadata');
+            infoLink = product.properties.links.via.find(link => {
+                return link.title === 'Product metadata'
+            });
+        } else if (product.properties && product.properties.links && product.properties.links.alternates) {
+            infoLink = product.properties.links.alternates.find(link => {
+                return link.type === 'application/gml+xml;profile=http://www.opengis.net/spec/EOMPOM/1.0' ||
+                    link.type === 'application/gml+xml;profile=http://www.opengis.net/spec/EOMPOM/1.1'
+            });
         }
         if (infoLink && infoLink.href){
             requestOptions.url = infoLink.href;
