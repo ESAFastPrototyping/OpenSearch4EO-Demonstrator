@@ -15,6 +15,6 @@ const InputSelector = (props) => {
             </datalist>
         </div>
     );
-}
+};
 
 export default InputSelector;

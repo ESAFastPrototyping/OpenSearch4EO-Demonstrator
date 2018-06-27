@@ -1,15 +1,22 @@
 import React, {Component} from 'react';
 import WorldWind from '@nasaworldwind/worldwind';
 
+const Color = WorldWind.Color,
+    Location = WorldWind.Location,
+    RenderableLayer = WorldWind.RenderableLayer,
+    ShapeAttributes = WorldWind.ShapeAttributes,
+    ShapeEditorController = WorldWind.ShapeEditorController,
+    SurfacePolygon = WorldWind.SurfacePolygon;
+
 export default class InputArea extends Component {
     constructor(props) {
         super(props);
         this.state = {
             drawing: false
-        }
+        };
 
         // Create a layer to hold the surface shapes.
-        this.shapesLayer = new WorldWind.RenderableLayer("Surface Shapes");
+        this.shapesLayer = new RenderableLayer("Surface Shapes");
         this.props.wwd.addLayer(this.shapesLayer);
 
         this.handleClick = this.handleClick.bind(this);
@@ -54,21 +61,21 @@ export default class InputArea extends Component {
         let latitudeOffset = 10 * wwd.navigator.range / 10000000;
         let longitudeOffset = 10 * wwd.navigator.range / 10000000;
         var boundary = [];
-        boundary.push(new WorldWind.Location(wwd.navigator.lookAtLocation.latitude - latitudeOffset, wwd.navigator.lookAtLocation.longitude - longitudeOffset));
-        boundary.push(new WorldWind.Location(wwd.navigator.lookAtLocation.latitude - latitudeOffset, wwd.navigator.lookAtLocation.longitude + longitudeOffset));
-        boundary.push(new WorldWind.Location(wwd.navigator.lookAtLocation.latitude + latitudeOffset, wwd.navigator.lookAtLocation.longitude + longitudeOffset));
-        boundary.push(new WorldWind.Location(wwd.navigator.lookAtLocation.latitude + latitudeOffset, wwd.navigator.lookAtLocation.longitude - longitudeOffset));
+        boundary.push(new Location(wwd.navigator.lookAtLocation.latitude - latitudeOffset, wwd.navigator.lookAtLocation.longitude - longitudeOffset));
+        boundary.push(new Location(wwd.navigator.lookAtLocation.latitude - latitudeOffset, wwd.navigator.lookAtLocation.longitude + longitudeOffset));
+        boundary.push(new Location(wwd.navigator.lookAtLocation.latitude + latitudeOffset, wwd.navigator.lookAtLocation.longitude + longitudeOffset));
+        boundary.push(new Location(wwd.navigator.lookAtLocation.latitude + latitudeOffset, wwd.navigator.lookAtLocation.longitude - longitudeOffset));
 
         //create attributes
-        var attributes = new WorldWind.ShapeAttributes(null);
-        attributes.outlineColor = WorldWind.Color.BLACK;
-        attributes.interiorColor = new WorldWind.Color(1, 1, 1, 0.5);
+        var attributes = new ShapeAttributes(null);
+        attributes.outlineColor = Color.BLACK;
+        attributes.interiorColor = new Color(1, 1, 1, 0.5);
 
-        var highlightAttributes = new WorldWind.ShapeAttributes(attributes);
-        highlightAttributes.outlineColor = WorldWind.Color.RED;
+        var highlightAttributes = new ShapeAttributes(attributes);
+        highlightAttributes.outlineColor = Color.RED;
 
         //create the polygon
-        var shape = new WorldWind.SurfacePolygon(boundary, attributes);
+        var shape = new SurfacePolygon(boundary, attributes);
         shape.highlightAttributes = highlightAttributes;
         this.shapesLayer.addRenderable(shape);
 
@@ -76,7 +83,7 @@ export default class InputArea extends Component {
         shape.userProperties.shapeID = 'area-selector';
 
         // Now set up shape editor for controlling the polygon
-        this.shapeEditorController = new WorldWind.ShapeEditorController(wwd, 'area-selector');
+        this.shapeEditorController = new ShapeEditorController(wwd, 'area-selector');
 
         wwd.redraw();
     }

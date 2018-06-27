@@ -1,8 +1,12 @@
 import React from 'react';
 
-const Product = ({product, showInfo}) => {
+const Product = ({product, showInfo, selected, selectProduct}) => {
+    const selectedClass = selected ? 'selected eoos-result' : 'eoos-result';
+
     return (
-        <div className="eoos-result">
+        <div className={selectedClass} onClick={function(){
+            selectProduct(product.properties);
+        }}>
             <div className="eoos-result-properties">
                 <div className="eoos-result-name-time">
                     <span className="eoos-result-name">{product.properties.title}</span>
@@ -15,6 +19,6 @@ const Product = ({product, showInfo}) => {
             </div>
         </div>
     );
-}
+};
 
 export default Product;

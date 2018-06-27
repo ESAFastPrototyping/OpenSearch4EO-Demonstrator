@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import WorldWind from '@nasaworldwind/worldwind';
 import MapControls from './MapControls';
 import GeoJSONParserWithTexture from '../WebWorldWind/formats/geojson/GeoJSONParserWithTexture';
+import HighlightController from '../WebWorldWind/util/HighlightController';
 
 const WorldWindow = WorldWind.WorldWindow,
     BMNGLandsatLayer = WorldWind.BMNGLandsatLayer,
@@ -25,7 +26,11 @@ export default class Map extends Component {
 
         wwd.addLayer(mapLayer);
         wwd.addLayer(this.productLayer);
+        wwd.deepPicking = true;
+        wwd.navigator.lookAtLocation.latitude = 45;
+        wwd.navigator.lookAtLocation.longitude = 20;
 
+        new HighlightController(wwd, this.props.selectProduct);
         wwd.redraw();
 
         this.wwd = wwd;

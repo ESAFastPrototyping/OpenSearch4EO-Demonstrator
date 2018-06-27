@@ -85,7 +85,10 @@ export default class FoundProducts extends Component {
         if (this.props.productsResult.features && this.props.productsResult.features.length > 0) {
             products = this.props.productsResult.features.map((product, index) => {
                 return (
-                    <Product key={index} product={product} showInfo={this.showInfo}/>
+                    <Product key={index} product={product} showInfo={this.showInfo}
+                             selected={this.props.selectedProduct && (product.properties.identifier === this.props.selectedProduct.identifier)}
+                             selectProduct={this.props.selectProduct}
+                    />
                 );
             });
             resultsCount = this.props.productsResult.properties.totalResults;

@@ -11,7 +11,7 @@ export default class CollectionSearch extends Component {
         this.state = {
             selected: "provider-base",
             activeSearchRequests: 0
-        }
+        };
         this.select = this.select.bind(this);
         this.startedSearchRequest = this.startedSearchRequest.bind(this);
         this.finishedSearchRequest = this.finishedSearchRequest.bind(this);

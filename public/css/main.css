@@ -526,6 +526,9 @@ button:not(:disabled):hover {
 .eoos-result:hover {
 	background: #f0f8ff;
 }
+.eoos-result.selected {
+	background: #A2FFFF;
+}
 .eoos-result-properties {
 	width: calc(100vw - 6rem);
 	display: flex;

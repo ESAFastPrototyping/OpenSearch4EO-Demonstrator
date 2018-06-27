@@ -9,6 +9,6 @@ const ContentBox = ({title, children}) => {
             </div>
         </div>
     );
-}
+};
 
 export default ContentBox;

@@ -7,7 +7,7 @@ import GeoJSONFeature from './GeoJSONFeature';
 import GeoJSONFeatureCollection from './GeoJSONFeatureCollection';
 
 const ArgumentError = WorldWind.ArgumentError,
-
+    Color = WorldWind.Color,
     GeoJSONGeometryCollection = WorldWind.GeoJSONGeometryCollection,
     GeoJSONGeometryLineString = WorldWind.GeoJSONGeometryLineString,
     GeoJSONGeometryMultiLineString = WorldWind.GeoJSONGeometryMultiLineString,
@@ -73,6 +73,7 @@ var GeoJSONParserWithTexture = function (dataSource) {
     this.defaultPlacemarkAttributes = new PlacemarkAttributes(null);
 
     this.defaultShapeAttributes = new ShapeAttributes(null);
+    this.defaultShapeAttributes.outlineColor = Color.YELLOW;
 
     this.setProj4jsAliases();
 };
@@ -790,17 +791,22 @@ GeoJSONParserWithTexture.prototype.addRenderablesForPolygon = function (layer, g
             shape = new TexturedSurfacePolygon(
                 positions,
                 configuration && configuration.attributes ? configuration.attributes : null);
-            if (configuration.highlightAttributes) {
-                shape.highlightAttributes = configuration.highlightAttributes;
-            }
+
+            shape.customProperties = properties;
+
             if (configuration && configuration.pickDelegate) {
                 shape.pickDelegate = configuration.pickDelegate;
             }
             if (configuration && configuration.userProperties) {
                 shape.userProperties = configuration.userProperties;
             }
+            // This decides link for the quick look image.
             if (properties.links && properties.links.icon && properties.links.icon.length && properties.links.icon[0].href) {
-                var texture = new Image(100, 100);
+                let url = new URL(properties.links.icon[0].href);
+                let width = url.searchParams.get('width') || 100;
+                let height = url.searchParams.get('height') || 100;
+
+                var texture = new Image(width, height);
                 texture.crossOrigin = "anonymous";
                 texture.src = properties.links.icon[0].href;
 
@@ -810,6 +816,9 @@ GeoJSONParserWithTexture.prototype.addRenderablesForPolygon = function (layer, g
         }
     }
 };
+
+// Keep somewhere the currently visible pieces. In an order? The order is part in the renderables.
+// Why aren't the highlight attributes displayed?
 
 /**
  * Creates {@link SurfacePolygon}s for a MultiPolygon geometry.

@@ -100,6 +100,7 @@ export default class App extends Component {
                                   worldWindow = {this.state.worldWindow}
                                   updateResult = {this.updateProducts}
                                   selectProduct = {this.selectProduct}
+                                  selectedProduct = {this.state.selectedProduct}
                                   searchParams = {this.state.productParams}
                                   collectionSearchParams = {this.state.collectionParams}
                                   changeParams = {this.changeProductParams}
@@ -124,12 +125,12 @@ export default class App extends Component {
         return body;
     }
     render(){
-        console.log("collections", this.state.collectionsResult);
-        console.log("products", this.state.productsResult);
         return (
             <div>
                 <Map productsResult = {this.state.productsResult}
                      setWorldWindow = {this.setWorldWindow}
+                     selectProduct = {this.selectProduct}
+                     selectedProduct = {this.state.selectedProduct}
                 />
                 <Sidebar searchService = {this.state.searchService}
                          selectedCollection = {this.state.selectedCollection}

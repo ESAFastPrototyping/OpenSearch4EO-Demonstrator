@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Controls from '../MapControls/Controls';
+import Controls from '../WebWorldWind/Controls';
 
 export default class MapControls extends Component {
     componentDidMount() {

@@ -84,6 +84,7 @@ export default class ProductSearch extends Component {
                      id="collection-results">
                     <FoundProducts productsResult={this.props.productsResult}
                                    selectProduct={this.props.selectProduct}
+                                   selectedProduct={this.props.selectedProduct}
                     />
                     {this.props.productsResult.properties && this.props.productsResult.properties.totalResults > 0 &&
                     <PageControls currentResult={this.props.productsResult}
