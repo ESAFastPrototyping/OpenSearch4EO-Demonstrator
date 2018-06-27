@@ -5,8 +5,10 @@ import GeoJSONParserWithTexture from '../WebWorldWind/formats/geojson/GeoJSONPar
 import HighlightController from '../WebWorldWind/util/HighlightController';
 
 const WorldWindow = WorldWind.WorldWindow,
-    BMNGLandsatLayer = WorldWind.BMNGLandsatLayer,
-    RenderableLayer = WorldWind.RenderableLayer;
+    Location = WorldWind.Location,
+    RenderableLayer = WorldWind.RenderableLayer,
+    Sector = WorldWind.Sector,
+    WmsLayer = WorldWind.WmsLayer;
 
 export default class Map extends Component {
     constructor(props) {
@@ -21,10 +23,19 @@ export default class Map extends Component {
         this.setState({wwdCreated: true});
         this.props.setWorldWindow(wwd);
 
-        let mapLayer = new BMNGLandsatLayer();
         this.productLayer = new RenderableLayer();
 
-        wwd.addLayer(mapLayer);
+        wwd.addLayer(new WmsLayer({
+            service: "https://tiles.maps.eox.at/wms",
+            layerNames: "s2cloudless",
+            sector: new Sector(-90, 90, -180, 180),
+            levelZeroDelta: new Location(45, 45),
+            numLevels: 19,
+            format: "image/jpg",
+            opacity: 1,
+            size: 256,
+            version: "1.3.0"
+        }));
         wwd.addLayer(this.productLayer);
         wwd.deepPicking = true;
         wwd.navigator.lookAtLocation.latitude = 45;
