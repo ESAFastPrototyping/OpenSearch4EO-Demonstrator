@@ -9,8 +9,9 @@ export default class ProductSearch extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selected: "collection-base",
-            activeSearchRequests: 0
+            selected: "collection-search",
+            activeSearchRequests: 0,
+            amountOfResults: 0
         };
         this.select = this.select.bind(this);
         this.startedSearchRequest = this.startedSearchRequest.bind(this);
@@ -39,32 +40,31 @@ export default class ProductSearch extends Component {
         }
     }
 
-    finishedSearchRequest() {
+    finishedSearchRequest(result) {
         if (this._isMounted) {
-            this.setState({activeSearchRequests: this.state.activeSearchRequests - 1});
+            this.setState({
+                activeSearchRequests: this.state.activeSearchRequests - 1,
+                amountOfResults: result && result.properties && result.properties.totalResults || 0
+            });
+            if(result) {
+                this.select('collection-results');
+            }
         }
     }
 
     render() {
         let description = this.props.selectedCollection.properties && this.props.selectedCollection.properties.title;
 
+        let searchResultsTitle = 'Search results (' + this.state.amountOfResults + ')';
         let tabs = [
-            {id: "collection-base", title: "Collection"},
             {id: "collection-search", title: "Product Search"},
-            {id: "collection-results", title: "Search results"}
+            {id: "collection-results", title: searchResultsTitle}
         ];
 
+        // Total
         return (
             <div className="sidebar-block content active" id="collection-content">
-                <TabHeaders tabs={tabs} select={this.select} selected={this.state.selected}/>
-
-                <div className={"sidebar-tab " + (this.state.selected === "collection-base" ? "active" : "")}
-                     id="collection-base">
-                    <div className="sidebar-base-description">
-                        <span className="sidebar-header-content-name">Collection</span>
-                        <span className="sidebar-text">{description || "No description available"}</span>
-                    </div>
-                </div>
+                <TabHeaders tabs={tabs} select={this.select} selected={this.state.selected} />
 
                 <div className={"sidebar-tab " + (this.state.selected === "collection-search" ? "active" : "")}
                      id="collection-search">

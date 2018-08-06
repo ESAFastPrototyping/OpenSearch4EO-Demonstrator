@@ -87,7 +87,7 @@ export default class Search extends Component {
         service.search(searchParams, {relation: this.props.relation})
             .then(result => {
                 this.props.updateResult(result);
-                this.props.finishedSearchRequest();
+                this.props.finishedSearchRequest(result);
             })
             .catch(err => {
                 this.handleError(err);

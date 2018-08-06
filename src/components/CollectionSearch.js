@@ -9,8 +9,9 @@ export default class CollectionSearch extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selected: "provider-base",
-            activeSearchRequests: 0
+            selected: "provider-search",
+            activeSearchRequests: 0,
+            amountOfResults: 0
         };
         this.select = this.select.bind(this);
         this.startedSearchRequest = this.startedSearchRequest.bind(this);
@@ -37,37 +38,28 @@ export default class CollectionSearch extends Component {
         }
     }
 
-    finishedSearchRequest() {
+    finishedSearchRequest(result) {
         if (this._isMounted) {
-            this.setState({activeSearchRequests: this.state.activeSearchRequests - 1});
+            this.setState({
+                activeSearchRequests: this.state.activeSearchRequests - 1,
+                amountOfResults: result && result.properties && result.properties.totalResults || 0
+            });
+            if(result) {
+                this.select('provider-results');
+            }
         }
     }
 
     render() {
-        let description = "";
-        let longName = "";
-        if (this.props.searchService.descriptionDocument) {
-            description = this.props.searchService.descriptionDocument.description;
-            longName = this.props.searchService.descriptionDocument.longName;
-        }
-
+        let searchResultsTitle = 'Search results (' + this.state.amountOfResults + ')';
         let tabs = [
-            {id: "provider-base", title: "Provider"},
             {id: "provider-search", title: "Collection Search"},
-            {id: "provider-results", title: "Search results"}
+            {id: "provider-results", title: searchResultsTitle}
         ];
 
         return (
             <div className="sidebar-block content active" id="provider-content">
                 <TabHeaders tabs={tabs} select={this.select} selected={this.state.selected}/>
-
-                <div className={"sidebar-tab " + (this.state.selected === "provider-base" ? "active" : "")}
-                     id="provider-base">
-                    <div className="sidebar-base-description">
-                        <span className="sidebar-header-content-name">{longName}</span>
-                        <span className="sidebar-text">{description}</span>
-                    </div>
-                </div>
 
                 <div className={"sidebar-tab " + (this.state.selected === "provider-search" ? "active" : "")}
                      id="provider-search">

@@ -8,6 +8,8 @@ const Sidebar = (props) => {
                            selectedCollection={props.selectedCollection}
                            resetCollection={props.resetCollection}
                            resetProvider={props.resetProvider}
+                           providerInfo={props.providerInfo}
+                           collectionInfo={props.collectionInfo}
             />
             <div className="sidebar-block content active" id="eoos-content">
                 {props.children}

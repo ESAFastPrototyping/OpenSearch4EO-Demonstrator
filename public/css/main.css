@@ -279,6 +279,40 @@ button:not(:disabled):hover {
 	width: 100%;
 	height: 100%;
 }
+.info-overlay {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: #666666cc;
+	z-index: 9999;
+}
+.info {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 9999;
+}
+.info-content {
+	position: relative;
+	z-index: 10000;
+	background-color: white;
+	width: 400px;
+	margin: auto;
+	top: 40%;
+	padding: 20px;
+	border-radius: 5px;
+	color: #222222cc;
+}
+.info-close {
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	cursor: pointer;
+}
 #sidebar {
 	position: absolute;
 	top: 0;
@@ -362,12 +396,28 @@ button:not(:disabled):hover {
 .sidebar-header-change {
 	position: absolute;
 	top: 0;
-	right: 0;
-	width: 3.5rem;
+	right: 1.5rem;
+	width: 2rem;
 	padding: .2rem .5rem;
 	font-size: .75rem;
 	color: #aaa;
 	text-decoration: none;
+}
+.sidebar-header-change>i.fa {
+	font-size: 1.25rem;
+}
+.sidebar-header-info {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 2rem;
+	padding: .2rem .5rem;
+	font-size: .75rem;
+	color: #aaa;
+	text-decoration: none;
+}
+.sidebar-header-info>i.fa {
+	font-size: 1.25rem;
 }
 .sidebar-block.active .sidebar-header-change {
 	display: block;

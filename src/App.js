@@ -3,6 +3,7 @@ import Map from './components/Map';
 import Sidebar from './components/Sidebar';
 import Connector from './components/Connector';
 import CollectionSearch from './components/CollectionSearch';
+import Info from './components/Info';
 import ProductSearch from './components/ProductSearch';
 import moment from 'moment';
 
@@ -26,7 +27,8 @@ export default class App extends Component {
                 platform: '',
                 instrument: '',
                 organisationName: ''
-            }
+            },
+            info: null
         }
         this.connect = this.connect.bind(this);
         this.connectCollection = this.connectCollection.bind(this);
@@ -39,6 +41,37 @@ export default class App extends Component {
         this.setWorldWindow = this.setWorldWindow.bind(this);
         this.changeProductParams = this.changeProductParams.bind(this);
         this.changeCollectionParams = this.changeCollectionParams.bind(this);
+        this.providerInfo = this.providerInfo.bind(this);
+        this.collectionInfo = this.collectionInfo.bind(this);
+        this.clearInfo = this.clearInfo.bind(this);
+    }
+
+    collectionInfo(e) {
+        e.stopPropagation();
+        const description = this.state.selectedCollection && this.state.selectedCollection.properties && this.state.selectedCollection.properties.title || 'No description provided'
+        this.setState({
+            info: `
+                <h1>Collection Information</h1>
+                <p>${description}</p>
+            `
+        });
+    }
+
+    providerInfo(e) {
+        e.stopPropagation();
+        this.setState({
+            info: `
+                <h1>Provider Information </h1>
+                <p><b>Developer</b>: ${this.state.searchService._descriptionDocument._developer}</p>
+                <p>${this.state.searchService._descriptionDocument._description}</p>
+            `
+        });
+    }
+
+    clearInfo() {
+        this.setState({
+            info: null
+        })
     }
 
     changeProductParams(params) {
@@ -125,8 +158,17 @@ export default class App extends Component {
         return body;
     }
     render(){
+        let info = '';
+        if(this.state.info) {
+            info = (
+                <Info text={this.state.info}
+                      close={this.clearInfo}
+                />
+            );
+        }
         return (
             <div>
+                {info}
                 <Map productsResult = {this.state.productsResult}
                      setWorldWindow = {this.setWorldWindow}
                      selectProduct = {this.selectProduct}
@@ -136,6 +178,8 @@ export default class App extends Component {
                          selectedCollection = {this.state.selectedCollection}
                          resetCollection = {this.resetCollection}
                          resetProvider = {this.resetProvider}
+                         providerInfo = {this.providerInfo}
+                         collectionInfo = {this.collectionInfo}
                 >
                     {this.createSidebarBody()}
                 </Sidebar>
