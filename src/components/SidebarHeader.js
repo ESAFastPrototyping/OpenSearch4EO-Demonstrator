@@ -19,7 +19,7 @@ const SidebarHeader = ({searchService, resetProvider, resetCollection, selectedC
             {selectedCollection.properties &&
             <div className="sidebar-block header" id="collection-header">
                 <span className="sidebar-header-name">Collection</span>
-                <a className="sidebar-header-change" onClick={resetCollection}><i class="fa fa-pencil-square-o"></i></a>
+                <a className="sidebar-header-change" onClick={resetCollection}><i className="fa fa-pencil-square-o"></i></a>
                 <a className="sidebar-header-info" onClick={collectionInfo}><i className="fa fa-info-circle" aria-hidden="true"></i></a>
                 <div className="sidebar-header-content-name">{selectedCollection.properties.identifier}</div>
             </div>
