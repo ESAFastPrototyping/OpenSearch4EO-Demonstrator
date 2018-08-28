@@ -58,7 +58,7 @@ var HighlightController = function (worldWindow, changeSelected) {
                 let indexOfHighlighted = -1;
                 if(previouslyHighlightedItem) {
                     nonTerrainObjects.forEach((object, index) => {
-                        if (object.userObject.customProperties.identifier == previouslyHighlightedItem.customProperties.identifier) {
+                        if (object.userObject.customProperties.identifier === previouslyHighlightedItem.customProperties.identifier) {
                             indexOfHighlighted = index;
                         }
                     });
@@ -103,7 +103,7 @@ var HighlightController = function (worldWindow, changeSelected) {
     this.worldWindow.addEventListener("click", handlePick);
 
     // Listen for taps on mobile devices and highlight the placemarks that the user taps.
-    var tapRecognizer = new TapRecognizer(this.worldWindow, handlePick);
+    new TapRecognizer(this.worldWindow, handlePick);
 };
 
 // Add the possibility

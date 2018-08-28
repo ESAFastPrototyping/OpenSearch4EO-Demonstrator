@@ -48,7 +48,8 @@ export default class App extends Component {
 
     collectionInfo(e) {
         e.stopPropagation();
-        const description = this.state.selectedCollection && this.state.selectedCollection.properties && this.state.selectedCollection.properties.title || 'No description provided'
+        let description = this.state.selectedCollection && this.state.selectedCollection.properties && this.state.selectedCollection.properties.title;
+        description = description || 'No description provided';
         this.setState({
             info: `
                 <h1>Collection Information</h1>

@@ -42,9 +42,10 @@ export default class ProductSearch extends Component {
 
     finishedSearchRequest(result) {
         if (this._isMounted) {
+            let totalResults = result && result.properties && result.properties.totalResults;
             this.setState({
                 activeSearchRequests: this.state.activeSearchRequests - 1,
-                amountOfResults: result && result.properties && result.properties.totalResults || 0
+                amountOfResults: totalResults || 0
             });
             if(result) {
                 this.select('collection-results');
@@ -53,8 +54,6 @@ export default class ProductSearch extends Component {
     }
 
     render() {
-        let description = this.props.selectedCollection.properties && this.props.selectedCollection.properties.title;
-
         let searchResultsTitle = 'Search results (' + this.state.amountOfResults + ')';
         let tabs = [
             {id: "collection-search", title: "Product Search"},

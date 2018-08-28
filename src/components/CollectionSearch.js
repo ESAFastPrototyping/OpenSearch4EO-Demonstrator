@@ -40,9 +40,10 @@ export default class CollectionSearch extends Component {
 
     finishedSearchRequest(result) {
         if (this._isMounted) {
+            let totalResults = result && result.properties && result.properties.totalResults;
             this.setState({
                 activeSearchRequests: this.state.activeSearchRequests - 1,
-                amountOfResults: result && result.properties && result.properties.totalResults || 0
+                amountOfResults: totalResults || 0
             });
             if(result) {
                 this.select('provider-results');
