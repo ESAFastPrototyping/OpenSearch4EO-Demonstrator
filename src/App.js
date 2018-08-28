@@ -29,7 +29,7 @@ export default class App extends Component {
                 organisationName: ''
             },
             info: null
-        }
+        };
         this.connect = this.connect.bind(this);
         this.connectCollection = this.connectCollection.bind(this);
         this.resetProvider = this.resetProvider.bind(this);
