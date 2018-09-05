@@ -787,7 +787,7 @@ GeoJSONParserWithTexture.prototype.addRenderablesForPolygon = function (layer, g
                 positions.push(position);
             }
 
-            var shape;
+            let shape;
             shape = new TexturedSurfacePolygon(
                 positions,
                 configuration && configuration.attributes ? configuration.attributes : null);
@@ -806,11 +806,21 @@ GeoJSONParserWithTexture.prototype.addRenderablesForPolygon = function (layer, g
                 let width = url.searchParams.get('width') || 100;
                 let height = url.searchParams.get('height') || 100;
 
-                var texture = new Image(width, height);
-                texture.crossOrigin = "anonymous";
-                texture.src = properties.links.icon[0].href;
+                let texture = new Image(width, height);
+                fetch(properties.links.icon[0].href).then(result => {
+                    var contentType = result.headers.get('Content-Type');
+                    if(contentType.indexOf('image') !== -1) {
+                        texture.src = properties.links.icon[0].href;
 
-                shape.image = texture;
+                        shape.image = texture;
+
+                        var e = document.createEvent('Event');
+                        e.initEvent(WorldWind.REDRAW_EVENT_TYPE, true, true);
+                        window.dispatchEvent(e);
+                    }
+                });
+
+                texture.crossOrigin = "anonymous";
             }
             layer.addRenderable(shape);
         }
