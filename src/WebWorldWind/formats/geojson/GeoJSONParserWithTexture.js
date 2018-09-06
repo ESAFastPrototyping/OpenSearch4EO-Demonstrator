@@ -820,6 +820,10 @@ GeoJSONParserWithTexture.prototype.addRenderablesForPolygon = function (layer, g
                     }
                 });
 
+                const highlightAttributes = new ShapeAttributes();
+                highlightAttributes.outlineColor = Color.BLUE;
+                shape.highlightAttributes = highlightAttributes;
+
                 texture.crossOrigin = "anonymous";
             }
             layer.addRenderable(shape);

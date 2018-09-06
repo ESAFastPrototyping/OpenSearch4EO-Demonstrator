@@ -47,6 +47,10 @@ export default class Map extends Component {
         this.wwd = wwd;
     }
 
+    shouldComponentUpdate(nextProps) {
+        return nextProps.productsResult !== this.props.productsResult;
+    }
+
     componentDidUpdate() {
         this.productLayer.removeAllRenderables();
 

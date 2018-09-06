@@ -58,7 +58,7 @@ Object.defineProperties(TexturedSurfaceShape.prototype, {
 });
 
 TexturedSurfaceShape.prototype.renderToTexture = function (dc, ctx2D, xScale, yScale, dx, dy) {
-    var attributes = (this._highlighted ? (this._highlightAttributes || this._attributes) : this._attributes);
+    var attributes = (this.highlighted ? (this.highlightAttributes || this._attributes) : this._attributes);
     var drawInterior = (!this._isInteriorInhibited && attributes.drawInterior);
     var drawOutline = (attributes.drawOutline && attributes.outlineWidth > 0);
     var pickColor;

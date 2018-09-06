@@ -1,10 +1,7 @@
 import WorldWind from '@nasaworldwind/worldwind';
-import TexturedSurfacePolygon from "../shapes/TexturedSurfacePolygon";
 
 const ArgumentError = WorldWind.ArgumentError,
-    Color = WorldWind.Color,
     Logger = WorldWind.Logger,
-    ShapeAttributes = WorldWind.ShapeAttributes,
     TapRecognizer = WorldWind.TapRecognizer;
 
 /**
@@ -75,19 +72,7 @@ var HighlightController = function (worldWindow, changeSelected) {
                 }
 
                 currentlyHighlighted = nonTerrainObjects[indexOfHighlighted].userObject;
-
-                let customProperties = currentlyHighlighted.customProperties;
-                let shapeAttributes = new ShapeAttributes(null);
-                shapeAttributes.outlineColor = Color.BLUE;
-                let highlightedPolygon = new TexturedSurfacePolygon(nonTerrainObjects[indexOfHighlighted].userObject.boundaries, shapeAttributes);
-                highlightedPolygon.image = currentlyHighlighted.image;
-                highlightedPolygon.customProperties = customProperties;
-
-                let parentLayer = nonTerrainObjects[indexOfHighlighted].parentLayer;
-                // Remove
-                parentLayer.removeRenderable(currentlyHighlighted);
-                // Add as last.
-                parentLayer.addRenderable(highlightedPolygon);
+                currentlyHighlighted.highlighted = true;
 
                 changeSelected(currentlyHighlighted.customProperties);
             }
