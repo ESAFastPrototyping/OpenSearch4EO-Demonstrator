@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {parseString} from 'xml2js';
 import Product from './Product';
 import Loader from './common/Loader';
+import JSONTree from 'react-json-tree';
 
 import OpenSearchRequest from '../WebWorldWind/ogc/openSearch/OpenSearchRequest';
 import OpenSearchUtils from '../WebWorldWind/ogc/openSearch/OpenSearchUtils';
@@ -20,14 +21,6 @@ export default class FoundProducts extends Component {
 
     closeInfo() {
         this.setState({info: ""});
-    }
-
-    formatJSON(json) {
-        let str = JSON.stringify(json, null, '\t');
-        str = str.replace(/[\\[\\]],?\n?\t*/g, "");
-        str = str.replace(/[{"]/g, "");
-        str = str.replace(/\t*},?\n?/g, "");
-        return str.replace(/\t{2}/g, "\t");
     }
 
     productsHaveGeoData() {
@@ -65,7 +58,9 @@ export default class FoundProducts extends Component {
             OpenSearchUtils.fetch(requestOptions)
                 .then(result => {
                     parseString(result, (err, json) => {
-                        this.setState({info: this.formatJSON(json)});
+                        this.setState({
+                            info: json
+                        });
                     });
                     this.setState({fetchingInfo: false});
                 })
@@ -94,6 +89,14 @@ export default class FoundProducts extends Component {
             resultsCount = this.props.productsResult.properties.totalResults;
         }
 
+        let info = (<Loader/>);
+        let infoStyle = {
+            marginTop: '30px'
+        };
+        if(this.state.info) {
+            info = (<JSONTree data={this.state.info}/>)
+        }
+
         return (
             <div>
                 <h3>{"Found products - " + resultsCount + " results"}</h3>
@@ -110,8 +113,10 @@ export default class FoundProducts extends Component {
                 </div>
                 {(this.state.fetchingInfo || this.state.info) &&
                 <div id="info-panel">
-                    {this.state.info || <Loader/>}
-                    <span id="close-info-panel" className="fa fa-window-close" onClick={() => this.closeInfo()}></span>
+                    <div style={infoStyle}>
+                        {info}
+                    </div>
+                    <div id="close-info-panel" className="fa fa-window-close" onClick={() => this.closeInfo()}></div>
                 </div>
                 }
             </div>
