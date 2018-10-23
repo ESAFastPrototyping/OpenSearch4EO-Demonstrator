@@ -949,13 +949,13 @@ body.eoos-index {
 	overflow-y: auto;
 	overflow-x: auto;
 	border: 1px #CCC solid;
-	background-color: rgb(0, 43, 54);
+	background-color: #FFFFFF;
 }
 
 #close-info-panel {
 	position: fixed;
 	top: 10vh;
-	left: 30vw;
+	right: 30vw;
 	width: 2rem;
 	height: 2rem;
 	line-height: 1.9rem;
