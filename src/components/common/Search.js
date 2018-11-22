@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import InputText from './InputText';
 import InputArea from './InputArea';
 import InputTime from './InputTime';
 import InputSelector from './InputSelector';
