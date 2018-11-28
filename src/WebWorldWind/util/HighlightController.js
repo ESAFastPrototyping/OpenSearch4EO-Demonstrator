@@ -73,6 +73,9 @@ var HighlightController = function (worldWindow, changeSelected) {
 
                 currentlyHighlighted = nonTerrainObjects[indexOfHighlighted].userObject;
                 currentlyHighlighted.highlighted = true;
+                var relevantLayer = currentlyHighlighted.layer;
+                relevantLayer.removeRenderable(currentlyHighlighted);
+                relevantLayer.addRenderable(currentlyHighlighted);
 
                 changeSelected(currentlyHighlighted.customProperties);
             }

@@ -45,31 +45,58 @@ export default class Map extends Component {
         wwd.redraw();
 
         this.wwd = wwd;
+        this.changeOnlySelection = false;
     }
 
     shouldComponentUpdate(nextProps) {
-        return nextProps.productsResult !== this.props.productsResult;
+        if(nextProps.productsResult !== this.props.productsResult) {
+            this.changeOnlySelection = false;
+        } else if(nextProps.selectedProduct !== this.props.selectedProduct) {
+            this.changeOnlySelection = true;
+        }
+
+        return (nextProps.productsResult !== this.props.productsResult) ||
+            (nextProps.selectedProduct !== this.props.selectedProduct);
     }
 
     componentDidUpdate() {
-        this.productLayer.removeAllRenderables();
+        if(this.changeOnlySelection) {
+            let products = this.productLayer.renderables;
+            let selectedIdentifier = this.props.selectedProduct.identifier;
+            let currentlyHighlighted = null;
+            products.forEach(product => {
+                product.highlighted = product.customProperties.identifier == selectedIdentifier;
+                if(product.highlighted) {
+                    currentlyHighlighted = product;
+                }
+            });
 
-        if (this.productsHaveGeometry()) {
-            if (this.props.productsResult && this.props.productsResult.features) {
-                this.props.productsResult.features.forEach(product => {
-                    if (!product.properties) {
-                        product.properties = {};
-                    }
-                    if (product.links) {
-                        product.properties.links = product.links;
-                    }
-                });
+            if(currentlyHighlighted) {
+                var relevantLayer = currentlyHighlighted.layer;
+                relevantLayer.removeRenderable(currentlyHighlighted);
+                relevantLayer.addRenderable(currentlyHighlighted);
             }
-            let geoJSON = new GeoJSONParserWithTexture(JSON.stringify(this.props.productsResult));
-            geoJSON.load(null, null, this.productLayer);
-        }
+            this.wwd.redraw();
+        } else {
+            this.productLayer.removeAllRenderables();
 
-        this.wwd.redraw();
+            if (this.productsHaveGeometry()) {
+                if (this.props.productsResult && this.props.productsResult.features) {
+                    this.props.productsResult.features.forEach(product => {
+                        if (!product.properties) {
+                            product.properties = {};
+                        }
+                        if (product.links) {
+                            product.properties.links = product.links;
+                        }
+                    });
+                }
+                let geoJSON = new GeoJSONParserWithTexture(JSON.stringify(this.props.productsResult));
+                geoJSON.load(null, null, this.productLayer);
+            }
+
+            this.wwd.redraw();
+        }
     }
 
     productsHaveGeometry() {

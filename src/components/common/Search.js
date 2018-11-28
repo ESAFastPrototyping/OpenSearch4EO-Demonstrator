@@ -142,7 +142,6 @@ export default class Search extends Component {
     createSelectorInputs() {
         const allParameters = this.getAllParameters();
         return Object.keys(allParameters).map(parameterName => {
-            console.log(parameterName, ' ', allParameters[parameterName]);
             if (['startDate', 'endDate'].indexOf(parameterName) !== -1) {
                 return null;
             }
