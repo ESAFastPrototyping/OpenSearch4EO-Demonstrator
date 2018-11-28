@@ -65,7 +65,7 @@ export default class Map extends Component {
             let selectedIdentifier = this.props.selectedProduct.identifier;
             let currentlyHighlighted = null;
             products.forEach(product => {
-                product.highlighted = product.customProperties.identifier == selectedIdentifier;
+                product.highlighted = product.customProperties.identifier === selectedIdentifier;
                 if(product.highlighted) {
                     currentlyHighlighted = product;
                 }
