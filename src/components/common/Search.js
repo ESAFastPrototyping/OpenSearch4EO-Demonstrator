@@ -4,6 +4,7 @@ import InputTime from './InputTime';
 import InputSelector from './InputSelector';
 import ContentBox from './ContentBox';
 import moment from 'moment';
+import InputPassword from "./InputPassword";
 
 export default class Search extends Component {
     constructor(props) {
@@ -157,6 +158,17 @@ export default class Search extends Component {
                                    bbox={this.props.searchParams.bbox}/>
                     </ContentBox>
                 );
+            } else if(parameter.name === 'password') {
+                return (
+                    <ContentBox title={title} info={parameter.title} key={parameter.name} required={parameter.required}
+                                minimum={parameter.minInclusive || parameter.minExclusive || null}
+                                maximum={parameter.maxInclusive || parameter.maxExclusive || null}
+                                pattern={parameter.pattern || null}>
+                        <InputPassword text={this.props.searchParams[parameter.name]}
+                                       changeText={this.changeParameter}
+                        />
+                    </ContentBox>
+                )
             } else {
                 return (
                     <ContentBox title={title} info={parameter.title} key={parameter.name} required={parameter.required}
