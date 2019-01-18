@@ -142,7 +142,7 @@ export default class Search extends Component {
     createSelectorInputs() {
         const allParameters = this.getAllParameters();
         return Object.keys(allParameters).map(parameterName => {
-            if (['startDate', 'endDate'].indexOf(parameterName) !== -1) {
+            if (['startDate', 'endDate', 'startPage', 'startRecord', 'maximumRecords', 'bbox', 'geometry', 'lat', 'lon', 'radius'].indexOf(parameterName) !== -1) {
                 return null;
             }
 

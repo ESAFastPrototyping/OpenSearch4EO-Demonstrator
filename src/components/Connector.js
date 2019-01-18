@@ -56,7 +56,7 @@ export default class Connector extends Component {
     }
 
     connectGeoSpaceBel() {
-        this.connectUrl('http://geo.spacebel.be/opensearch/description.xml');
+        this.connectUrl('https://geo.spacebel.be/opensearch/description.xml');
     }
 
     connectNasa() {

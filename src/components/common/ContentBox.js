@@ -8,7 +8,6 @@ const ContentBox = ({title, info, required, minimum, maximum, pattern, children}
                 {info && (<p>{info}</p>)}
                 {minimum !== null && typeof minimum !== 'undefined' && (<p>Minimum Value: {minimum}</p>)}
                 {maximum !== null && typeof maximum !== 'undefined' && (<p>Maximum Value: {maximum}</p>)}
-                {pattern && (<p>Valid pattern: {pattern}</p>)}
                 {children}
             </div>
         </div>
