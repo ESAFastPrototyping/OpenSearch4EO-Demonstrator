@@ -20,6 +20,7 @@ export default class Search extends Component {
         this.changeText = this.changeText.bind(this);
         this.changeStartDate = this.changeStartDate.bind(this);
         this.changeEndDate = this.changeEndDate.bind(this);
+        this.changePassword = this.changePassword.bind(this);
         this.changeParameter = this.changeParameter.bind(this);
         this.getOptions = this.getOptions.bind(this);
         this.isInParameters = this.isInParameters.bind(this);
@@ -39,6 +40,10 @@ export default class Search extends Component {
 
     changeEndDate(date) {
         this.props.changeParams({endDate: date});
+    }
+
+    changePassword(password) {
+        this.props.changeParams({password: password});
     }
 
     changeParameter(parameter, value) {
@@ -135,7 +140,7 @@ export default class Search extends Component {
             alert('504 Gateway Timeout\nUnavailable, try again later');
         }
         else {
-            alert('An unknown error occured, sorry. Try later');
+            alert('An unknown error occured, sorry. Try later. ' + err.toString());
         }
     }
 
@@ -164,7 +169,7 @@ export default class Search extends Component {
                                 maximum={parameter.maxInclusive || parameter.maxExclusive || null}
                                 pattern={parameter.pattern || null}>
                         <InputPassword text={this.props.searchParams[parameter.name]}
-                                       changeText={this.changeParameter}
+                                       changeText={this.changePassword}
                         />
                     </ContentBox>
                 )
