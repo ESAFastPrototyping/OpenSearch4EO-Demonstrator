@@ -808,6 +808,9 @@ GeoJSONParserWithTexture.prototype.addRenderablesForPolygon = function (layer, g
 
                 let texture = new Image(width, height);
                 fetch(properties.links.icon[0].href).then(result => {
+                    if(result.status === 401) {
+                        alert('Ask for login and try again.');
+                    }
                     var contentType = result.headers.get('Content-Type');
                     if(contentType.indexOf('image') !== -1) {
                         texture.src = properties.links.icon[0].href;

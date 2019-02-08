@@ -15,6 +15,10 @@ export default class Search extends Component {
             {parameter: "organisationName", title: "Organisation"}
         ];
 
+        this.state = {
+            login: false
+        };
+
         this.search = this.search.bind(this);
         this.changeBBox = this.changeBBox.bind(this);
         this.changeText = this.changeText.bind(this);
@@ -24,6 +28,18 @@ export default class Search extends Component {
         this.changeParameter = this.changeParameter.bind(this);
         this.getOptions = this.getOptions.bind(this);
         this.isInParameters = this.isInParameters.bind(this);
+        this.login = this.login.bind(this);
+    }
+
+    login(username, password) {
+        this.props.login(username, password);
+        // Callback when the user actually provides the login information.
+
+        this.setState({
+            login: false
+        });
+
+        this.search();
     }
 
     changeBBox(bbox) {
@@ -106,14 +122,18 @@ export default class Search extends Component {
         searchParams = searchParams.filter((param) => this.isInParameters(param.name));
 
         this.props.startedSearchRequest();
-        service.search(searchParams, {relation: this.props.relation})
+        service.search(searchParams, {relation: this.props.relation}, this.props.username, this.props.password)
             .then(result => {
                 this.props.updateResult(result);
                 this.props.finishedSearchRequest(result);
             })
             .catch(err => {
-                this.handleError(err);
                 this.props.finishedSearchRequest();
+                if (err.toString().indexOf('403') > -1) {
+                    this.props.login();
+                } else {
+                    this.handleError(err);
+                }
             });
     }
 

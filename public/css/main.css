@@ -1352,3 +1352,35 @@ Apache license 2.0, Copyright (c) 2015 Tom Adamec */
 .calendar-opener {
 	cursor: pointer;
 }
+
+#login {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
+#login .overlay {
+	background-color: #CCCCCCaa;
+	z-index: 10000;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
+#login .login-form {
+	width: 300px;
+	height: 300px;
+	z-index: 10001;
+	margin: auto;
+	position: relative;
+	top: 100px;
+	background-color: white;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+

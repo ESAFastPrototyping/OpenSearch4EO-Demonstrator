@@ -20,6 +20,10 @@ export default class PageControls extends Component {
         requestOptions.url = url;
         requestOptions.method = 'GET';
 
+        if(this.props.username && this.props.password) {
+            requestOptions.addAuthorization(this.props.username, this.props.password);
+        }
+
         this.props.startedSearchRequest();
         this.setState({isFetching: true});
 
