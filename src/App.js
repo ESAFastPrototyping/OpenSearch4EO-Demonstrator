@@ -6,7 +6,10 @@ import CollectionSearch from './components/CollectionSearch';
 import Info from './components/Info';
 import ProductSearch from './components/ProductSearch';
 import moment from 'moment';
+import Login from './components/common/Login';
 
+// We need to keep the information about the username and password on global level as everything should be using it,
+// if it is provided.
 export default class App extends Component {
     constructor(){
         super();
@@ -28,7 +31,10 @@ export default class App extends Component {
                 instrument: '',
                 organisationName: ''
             },
-            info: null
+            info: null,
+            username: null,
+            password: null,
+            login: false
         };
         this.connect = this.connect.bind(this);
         this.connectCollection = this.connectCollection.bind(this);
@@ -44,6 +50,9 @@ export default class App extends Component {
         this.providerInfo = this.providerInfo.bind(this);
         this.collectionInfo = this.collectionInfo.bind(this);
         this.clearInfo = this.clearInfo.bind(this);
+        this.login = this.login.bind(this);
+        this.onLogin = this.onLogin.bind(this);
+        this.hide = this.hide.bind(this);
     }
 
     collectionInfo(e) {
@@ -69,6 +78,31 @@ export default class App extends Component {
         });
     }
 
+    login(onLogin) {
+        this.setState({
+            login: true,
+            onLogin: onLogin
+        });
+    }
+    
+    hide() {
+        this.setState({
+            login: false
+        })
+    }
+
+    onLogin(username, password) {
+        if(this.state.onLogin && typeof this.state.onLogin === 'function') {
+            this.state.onLogin(username, password);    
+        }
+        
+        this.setState({
+            username: username,
+            password: password,
+            login: false
+        })
+    }
+
     clearInfo() {
         this.setState({
             info: null
@@ -88,9 +122,11 @@ export default class App extends Component {
     connect(searchService){
         this.setState({searchService: searchService});
     }
+
     connectCollection(collectionSearchService){
         this.setState({collectionSearchService: collectionSearchService});
     }
+
     resetProvider(){
         this.setState({
             searchService: {},
@@ -101,6 +137,7 @@ export default class App extends Component {
             selectedProduct: {}
         });
     }
+
     resetCollection(){
         this.setState({
             productsResult: {},
@@ -109,21 +146,27 @@ export default class App extends Component {
             selectedProduct: {}
         });
     }
+
     updateCollections(result){
         this.setState({collectionsResult: result});
     }
+
     updateProducts(result){
         this.setState({productsResult: result});
     }
+
     selectCollection(collection){
         this.setState({selectedCollection: collection});
     }
+
     selectProduct(product){
         this.setState({selectedProduct: product});
     }
+
     setWorldWindow(wwd){
         this.setState({worldWindow: wwd});
     }
+
     createSidebarBody(){
         let body;
         //If there is a selected collection and we can search on it, show ProductSearch
@@ -138,6 +181,9 @@ export default class App extends Component {
                                   searchParams = {this.state.productParams}
                                   collectionSearchParams = {this.state.collectionParams}
                                   changeParams = {this.changeProductParams}
+                                  username = {this.state.username}
+                                  password = {this.state.password}
+                                  login = {this.login}
             />;
         }
         //If we can search on the provider, show CollectionSearch
@@ -150,14 +196,23 @@ export default class App extends Component {
                                      connectCollection = {this.connectCollection}
                                      searchParams = {this.state.collectionParams}
                                      changeParams = {this.changeCollectionParams}
+                                     username = {this.state.username}
+                                     password = {this.state.password}
+                                     login = {this.login}
             />;
         }
         //Else show input for entering description document for a provider
         else {
-            body = <Connector connect = {this.connect}/>;
+            body = <Connector
+                username = {this.state.username}
+                password = {this.state.password}
+                connect = {this.connect}
+                login = {this.login}
+            />;
         }
         return body;
     }
+
     render(){
         let info = '';
         if(this.state.info) {
@@ -169,6 +224,11 @@ export default class App extends Component {
         }
         return (
             <div>
+                <div>
+                    {this.state.login && <Login login={this.login}
+                                                onLogin={this.onLogin}
+                                                hide={this.hide} />}
+                </div>
                 {info}
                 <Map productsResult = {this.state.productsResult}
                      setWorldWindow = {this.setWorldWindow}
@@ -181,6 +241,8 @@ export default class App extends Component {
                          resetProvider = {this.resetProvider}
                          providerInfo = {this.providerInfo}
                          collectionInfo = {this.collectionInfo}
+                         username = {this.state.username}
+                         password = {this.state.password}
                 >
                     {this.createSidebarBody()}
                 </Sidebar>

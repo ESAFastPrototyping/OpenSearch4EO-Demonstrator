@@ -81,7 +81,7 @@ export default class Search extends Component {
         return atomUrl ? atomUrl._paramsByName : {};
     }
 
-    search() {
+    search(username, password) {
         let service = this.props.searchService;
 
         let searchParams = [
@@ -106,14 +106,18 @@ export default class Search extends Component {
         searchParams = searchParams.filter((param) => this.isInParameters(param.name));
 
         this.props.startedSearchRequest();
-        service.search(searchParams, {relation: this.props.relation})
+        service.search(searchParams, {relation: this.props.relation}, username || this.props.username, password || this.props.password)
             .then(result => {
                 this.props.updateResult(result);
                 this.props.finishedSearchRequest(result);
             })
             .catch(err => {
-                this.handleError(err);
                 this.props.finishedSearchRequest();
+                if (err.toString().indexOf('401') > -1) {
+                    this.props.login(this.search);
+                } else {
+                    this.handleError(err);
+                }
             });
     }
 

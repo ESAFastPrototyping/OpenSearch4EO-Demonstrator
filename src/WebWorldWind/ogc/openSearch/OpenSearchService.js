@@ -88,11 +88,15 @@ Object.defineProperties(OpenSearchService.prototype, {
  *                      .then(result => console.log(result))
  *                      .catch(err => console.error(err));
  */
-OpenSearchService.prototype.discover = function (options) {
+OpenSearchService.prototype.discover = function (options, username, password) {
     var self = this;
     var requestOptions = new OpenSearchRequest(options);
     requestOptions.url = requestOptions.url || this._url;
     requestOptions.method = requestOptions.method || 'GET';
+    if(username && password) {
+        requestOptions.addAuthorization(username, password);
+    }
+    
     if (!requestOptions.url) {
         return Promise.reject(new Error('OpenSearchService discover - no url provided'));
     }
@@ -109,6 +113,8 @@ OpenSearchService.prototype.discover = function (options) {
  *
  * @param {Array|null} searchParams A list of objects, each object must have a name and value property.
  * @param {OpenSearchRequest|null} options See {@link OpenSearchRequest} for possible options.
+ * @param {String} username
+ * @param {String} password
  * @return {Promise} A promise which when resolved returns a GeoJSON collection, or an error when rejected.
  * @example openSearchService
  *                      .search([
@@ -117,7 +123,7 @@ OpenSearchService.prototype.discover = function (options) {
  *                      .then(result => console.log(result))
  *                      .catch(err => console.error(err));
  */
-OpenSearchService.prototype.search = function (searchParams, options) {
+OpenSearchService.prototype.search = function (searchParams, options, username, password) {
     if (!this._descriptionDocument) {
         return Promise.reject(new Error('OpenSearchService search - no descriptionDocument, run discover first'));
     }
@@ -133,6 +139,10 @@ OpenSearchService.prototype.search = function (searchParams, options) {
 
     requestOptions.method = openSearchUrl.method;
     requestOptions.encType = openSearchUrl.encType;
+
+    if(username && password) {
+        requestOptions.addAuthorization(username, password);
+    }
 
     if (openSearchUrl.method === 'GET') {
         requestOptions.url = openSearchUrl.createRequestUrl(searchParams);

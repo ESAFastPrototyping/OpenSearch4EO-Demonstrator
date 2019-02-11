@@ -42,7 +42,7 @@ const ArgumentError = WorldWind.ArgumentError,
  * @param {String} dataSource The data source of the GeoJSON. Can be a string or an URL to a GeoJSON.
  * @throws {ArgumentError} If the specified data source is null or undefined.
  */
-var GeoJSONParserWithTexture = function (dataSource) {
+var GeoJSONParserWithTexture = function (dataSource, login, username, password) {
     if (!dataSource) {
         throw new ArgumentError(
             Logger.logMessage(Logger.LEVEL_SEVERE, "GeoJSON", "constructor", "missingDataSource"));
@@ -69,6 +69,9 @@ var GeoJSONParserWithTexture = function (dataSource) {
     // Documented in defineProperties below.
     this._shapeConfigurationCallback = this.defaultShapeConfigurationCallback;
 
+    this._login = login;
+    this._username = username;
+    this._password = password;
 
     this.defaultPlacemarkAttributes = new PlacemarkAttributes(null);
 
@@ -805,20 +808,9 @@ GeoJSONParserWithTexture.prototype.addRenderablesForPolygon = function (layer, g
                 let url = new URL(properties.links.icon[0].href);
                 let width = url.searchParams.get('width') || 100;
                 let height = url.searchParams.get('height') || 100;
-
+                
                 let texture = new Image(width, height);
-                fetch(properties.links.icon[0].href).then(result => {
-                    var contentType = result.headers.get('Content-Type');
-                    if(contentType.indexOf('image') !== -1) {
-                        texture.src = properties.links.icon[0].href;
-
-                        shape.image = texture;
-
-                        var e = document.createEvent('Event');
-                        e.initEvent(WorldWind.REDRAW_EVENT_TYPE, true, true);
-                        window.dispatchEvent(e);
-                    }
-                });
+                this.verifyImage(properties, texture, shape);        
 
                 const highlightAttributes = new ShapeAttributes();
                 highlightAttributes.outlineColor = Color.BLUE;
@@ -830,6 +822,46 @@ GeoJSONParserWithTexture.prototype.addRenderablesForPolygon = function (layer, g
         }
     }
 };
+
+GeoJSONParserWithTexture.prototype.verifyImage = function(properties, texture, shape, username, password) {
+    const headers = {};
+    username = username || this._username;
+    password = password || this._password;
+    
+    if(username && password) {
+        headers['Authorization'] = 'Basic ' + btoa(username + ':' + password);
+    }
+
+    fetch(properties.links.icon[0].href, {
+        credentials: 'include',
+        headers: headers
+    }).then(result => {
+        if(result.status === 401) {
+            this._login(this.verifyImage.bind(this, properties, texture, shape));
+        } else {
+            var contentType = result.headers.get('Content-Type');
+            if(contentType.indexOf('image') !== -1) {
+                
+                // Add the authentication to the URL if HTTPS
+                let link = properties.links.icon[0].href;
+                if(link.indexOf('https://') === 0 && username && password) {
+                    link = link.replace('https://', 'https://' + username + ':' + password + '@');
+                }
+                texture.src = link;
+
+                shape.image = texture;
+
+                var e = document.createEvent('Event');
+                e.initEvent(WorldWind.REDRAW_EVENT_TYPE, true, true);
+                window.dispatchEvent(e);
+            }
+        }
+    }).catch(err => {
+        console.error('Loading images: ', err);
+    });
+};
+
+
 
 // Keep somewhere the currently visible pieces. In an order? The order is part in the renderables.
 // Why aren't the highlight attributes displayed?

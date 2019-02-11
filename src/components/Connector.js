@@ -34,18 +34,21 @@ export default class Connector extends Component {
         this.connectUrl(this.state.url);
     }
 
-    connectUrl(url) {
+    connectUrl(url, username, password) {
         let service = new OpenSearchService(url);
-        service.discover()
+        service.discover({}, username || this.props.username, password || this.props.password)
             .then(result => {
                 this.props.connect(result);
-                console.log(result);
             })
             .catch(err => {
-                console.error("Error: ", err);
-                alert("There was an issue with the provided link.\nTry again later or try a different provider.\n " +
-                    "If you are a developer, try taking a look whether your browser provided some more information.\n " +
-                    "Ignored CORS and wrong HTTPS certificate won't be shown as the XMLHTTPRequest doesn't provide this information.")
+                if(err.toString().indexOf('401') !== -1) {
+                    this.props.login(this.connectUrl.bind(this, url));
+                } else {
+                    console.error("Error: ", err);
+                    alert("There was an issue with the provided link.\nTry again later or try a different provider.\n " +
+                        "If you are a developer, try taking a look whether your browser provided some more information.\n " +
+                        "Ignored CORS and wrong HTTPS certificate won't be shown as the XMLHTTPRequest doesn't provide this information.")
+                }
             });
 
         this.setState({url: ""});

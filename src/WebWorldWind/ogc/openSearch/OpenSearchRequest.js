@@ -50,6 +50,10 @@ var OpenSearchRequest = function (options) {
     this.password = options.password || defaultOptions.password;
 };
 
+OpenSearchRequest.prototype.addAuthorization = function(name, password) {
+    this.addHeader('Authorization', 'Basic ' + btoa(name + ':' + password));
+};
+
 OpenSearchRequest.prototype.addHeader = function (name, value) {
     var header = this.getHeader(name);
     if (header) {

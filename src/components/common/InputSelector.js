@@ -9,7 +9,7 @@ const InputSelector = (props) => {
 
     return (
         <div className="eoos-property-input select">
-            <input type="text" value={props.text} onChange={handleChange} list={props.parameter}/>
+            <input type="text" value={props.text || ''} onChange={handleChange} list={props.parameter}/>
             <datalist id={props.parameter}>
                 {options}
             </datalist>

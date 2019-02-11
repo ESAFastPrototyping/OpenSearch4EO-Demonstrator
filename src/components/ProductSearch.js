@@ -75,6 +75,9 @@ export default class ProductSearch extends Component {
                             worldWindow={this.props.worldWindow}
                             searchParams={this.props.searchParams}
                             changeParams={this.props.changeParams}
+                            username={this.props.username}
+                            password={this.props.password}
+                            login={this.props.login}
                     />
                     {this.state.activeSearchRequests > 0 && <Loader/>}
                 </div>
@@ -90,6 +93,8 @@ export default class ProductSearch extends Component {
                                   updateResult={this.props.updateResult}
                                   startedSearchRequest={this.startedSearchRequest}
                                   finishedSearchRequest={this.finishedSearchRequest}
+                                  username={this.props.username}
+                                  password={this.props.password}
                     />
                     }
                     {this.state.activeSearchRequests > 0 && <Loader/>}
