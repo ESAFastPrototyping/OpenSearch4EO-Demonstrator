@@ -351,7 +351,8 @@ button:not(:disabled):hover {
 .sidebar-block.content.active {
 	height: auto;
 	flex-grow: 1;
-	overflow-y: auto;
+    display: flex;
+    flex-direction: column;
 }
 .sidebar-block.header.active {
 	border-bottom: 1px dashed #d8d8d8;
@@ -487,6 +488,7 @@ button:not(:disabled):hover {
 	flex-grow: 1;
 	display: none;
 	flex-direction: column;
+	overflow-y: auto;
 }
 .sidebar-tab.active {
 	display: flex;

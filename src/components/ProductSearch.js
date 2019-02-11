@@ -11,7 +11,8 @@ export default class ProductSearch extends Component {
         this.state = {
             selected: "collection-search",
             activeSearchRequests: 0,
-            amountOfResults: 0
+            amountOfResults: 0,
+            search: false
         };
         this.select = this.select.bind(this);
         this.startedSearchRequest = this.startedSearchRequest.bind(this);
@@ -99,6 +100,10 @@ export default class ProductSearch extends Component {
                     }
                     {this.state.activeSearchRequests > 0 && <Loader/>}
                 </div>
+                
+                {this.state.selected === "collection-search" && <div>
+                    <button onClick={window.dispatcher}>Search</button>
+                </div>}
             </div>
         )
     }

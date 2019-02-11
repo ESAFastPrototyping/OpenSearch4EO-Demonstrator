@@ -16,6 +16,7 @@ export default class CollectionSearch extends Component {
         this.select = this.select.bind(this);
         this.startedSearchRequest = this.startedSearchRequest.bind(this);
         this.finishedSearchRequest = this.finishedSearchRequest.bind(this);
+        
     }
 
     componentDidMount() {
@@ -75,6 +76,7 @@ export default class CollectionSearch extends Component {
                             username={this.props.username}
                             password={this.props.password}
                             login={this.props.login}
+                            ref={instance => { this.searchInstance = instance; }}
                     />
                     {this.state.activeSearchRequests > 0 && <Loader/>}
                 </div>
@@ -96,6 +98,10 @@ export default class CollectionSearch extends Component {
                     }
                     {this.state.activeSearchRequests > 0 && <Loader/>}
                 </div>
+                
+                {this.state.selected === "provider-search" && <div>
+                    <button onClick={window.dispatcher}>Search</button>
+                </div>}
             </div>
         )
     }

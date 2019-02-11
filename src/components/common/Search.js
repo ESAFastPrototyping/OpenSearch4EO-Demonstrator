@@ -24,6 +24,8 @@ export default class Search extends Component {
         this.changeParameter = this.changeParameter.bind(this);
         this.getOptions = this.getOptions.bind(this);
         this.isInParameters = this.isInParameters.bind(this);
+        
+        window.sListener = this.search;
     }
 
     changeBBox(bbox) {
@@ -220,10 +222,6 @@ export default class Search extends Component {
                 </ContentBox>}
 
                 {this.createSelectorInputs()}
-
-                <div>
-                    <button onClick={this.search}>Search</button>
-                </div>
             </div>
         )
     }
