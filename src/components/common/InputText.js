@@ -7,7 +7,7 @@ const InputText = ({text, changeText}) => {
 
     return (
         <div className="eoos-property-input">
-            <input type="text" id="collection-fulltext" onChange={handleChange} value={text}/>
+            <input type="text" id="collection-fulltext" onChange={handleChange} value={text || ''}/>
         </div>
     );
 };

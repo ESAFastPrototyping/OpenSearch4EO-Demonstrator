@@ -52,6 +52,7 @@ export default class App extends Component {
         this.clearInfo = this.clearInfo.bind(this);
         this.login = this.login.bind(this);
         this.onLogin = this.onLogin.bind(this);
+        this.hide = this.hide.bind(this);
     }
 
     collectionInfo(e) {
@@ -77,13 +78,24 @@ export default class App extends Component {
         });
     }
 
-    login() {
+    login(onLogin) {
         this.setState({
-            login: true
+            login: true,
+            onLogin: onLogin
         });
+    }
+    
+    hide() {
+        this.setState({
+            login: false
+        })
     }
 
     onLogin(username, password) {
+        if(this.state.onLogin && typeof this.state.onLogin === 'function') {
+            this.state.onLogin(username, password);    
+        }
+        
         this.setState({
             username: username,
             password: password,
@@ -214,7 +226,8 @@ export default class App extends Component {
             <div>
                 <div>
                     {this.state.login && <Login login={this.login}
-                                                onLogin={this.onLogin}/>}
+                                                onLogin={this.onLogin}
+                                                hide={this.hide} />}
                 </div>
                 {info}
                 <Map productsResult = {this.state.productsResult}

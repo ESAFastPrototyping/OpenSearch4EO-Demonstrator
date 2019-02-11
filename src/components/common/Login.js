@@ -7,6 +7,7 @@ class Login extends Component {
         this.changeName = this.changeName.bind(this);
         this.changePassword = this.changePassword.bind(this);
         this.onLogin = this.onLogin.bind(this);
+        this.hide = this.hide.bind(this);
 
         this.state = {
             name: '',
@@ -29,15 +30,31 @@ class Login extends Component {
     onLogin() {
         this.props.onLogin(this.state.name, this.state.password);
     }
+    
+    hide() {
+        this.props.hide();
+    }
 
     render(){
         return (
             <div id="login">
-                <div className="overlay"></div>
+                <div className="overlay" onClick={this.hide} onTouchStart={this.hide}></div>
                 <div className="login-form">
-                    <div><label>Name: <input type="text" onChange={this.changeName} /></label></div>
-                    <div><label>Password: <input type="password" onChange={this.changePassword} /></label></div>
-                    <div><button onClick={this.onLogin}>Try again</button></div>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>Name: </td>
+                                <td><input type="text" onChange={this.changeName} /></td>
+                            </tr>
+                            <tr>
+                                <td>Password: </td>
+                                <td><input type="password" onChange={this.changePassword} /></td>
+                            </tr>
+                            <tr>
+                                <td colSpan="2"><button onClick={this.onLogin}>Try again</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         );

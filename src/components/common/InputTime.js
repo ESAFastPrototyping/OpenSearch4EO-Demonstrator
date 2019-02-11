@@ -148,7 +148,7 @@ class InputTime extends React.Component {
                 <div className="eoos-property-timerange-inputs">
                     <div className="eoos-property-timerange-input">
                         <a className="eoos-property-timerange-spinner top" onClick={this.incrementYears}> </a>
-                        <input type="text" min="2015" max="2017" id="timerange-year"
+                        <input type="text" min="2015" max="2017" className="timerange-year"
                                value={moment(this.props.date).format('YYYY')} onChange={this.changeYears}/>
                         <a className="eoos-property-timerange-spinner bottom" onClick={this.decrementYears}> </a>
                     </div>

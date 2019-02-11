@@ -170,7 +170,8 @@ button:not(:disabled):hover {
 	width: 2.3rem;
 	margin: 0;
 }
-#timerange-year {
+
+.eoos-property-timerange-input > input.timerange-year {
 	width: 3.45rem
 }
 .eoos-property-timerange-inputs > span {
@@ -1373,7 +1374,7 @@ Apache license 2.0, Copyright (c) 2015 Tom Adamec */
 
 #login .login-form {
 	width: 300px;
-	height: 300px;
+	height: 115px;
 	z-index: 10001;
 	margin: auto;
 	position: relative;
@@ -1384,3 +1385,12 @@ Apache license 2.0, Copyright (c) 2015 Tom Adamec */
 	border-radius: 5px;
 }
 
+#login table {
+	margin: auto;
+    padding-top: 10px;
+}
+
+#login button {
+    width: 100%;
+    margin-top: 5px;
+}
