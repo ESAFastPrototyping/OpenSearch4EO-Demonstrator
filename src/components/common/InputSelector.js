@@ -2,6 +2,14 @@ import React from 'react';
 
 const InputSelector = (props) => {
     function handleChange(event) {
+        if(props.pattern && event.target.value) {
+            var regexp = RegExp(props.pattern);
+            if(!regexp.test(event.target.value.toString())) {
+                alert('The provided text is invalid. The text must follow this pattern: ' + props.pattern);
+                return;
+            }
+        }   
+        
         props.change(props.parameter, event.target.value);
     }
 
@@ -9,7 +17,7 @@ const InputSelector = (props) => {
 
     return (
         <div className="eoos-property-input select">
-            <input type="text" value={props.text || ''} onChange={handleChange} list={props.parameter}/>
+            <input type="text" value={props.text || ''} pattern={props.pattern || ''} onChange={handleChange} list={props.parameter}/>
             <datalist id={props.parameter}>
                 {options}
             </datalist>

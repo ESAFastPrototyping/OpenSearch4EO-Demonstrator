@@ -189,6 +189,7 @@ export default class Search extends Component {
                                        change={this.changeParameter}
                                        options={this.getOptions(parameter.name)}
                                        parameter={parameter.name}
+                                       pattern={parameter.pattern || null}
                         />
                     </ContentBox>
                 )
