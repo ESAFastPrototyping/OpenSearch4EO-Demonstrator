@@ -4,6 +4,7 @@ import Loader from './common/Loader';
 import PageControls from './common/PageControls';
 import Search from './common/Search';
 import TabHeaders from './common/TabHeaders';
+import ProductSearch from "./ProductSearch";
 
 export default class CollectionSearch extends Component {
     constructor(props) {
@@ -41,6 +42,7 @@ export default class CollectionSearch extends Component {
 
     finishedSearchRequest(result) {
         if (this._isMounted) {
+            this.props.setCreateCircle(false);
             let totalResults = result && result.properties && result.properties.totalResults;
             this.setState({
                 activeSearchRequests: this.state.activeSearchRequests - 1,
@@ -76,6 +78,8 @@ export default class CollectionSearch extends Component {
                             username={this.props.username}
                             password={this.props.password}
                             login={this.props.login}
+                            setCreateCircle = {this.props.setCreateCircle}
+                            createCircle = {this.props.createCircle}
                             ref={instance => { this.searchInstance = instance; }}
                     />
                     {this.state.activeSearchRequests > 0 && <Loader/>}

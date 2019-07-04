@@ -4,7 +4,8 @@ import InputTime from './InputTime';
 import InputSelector from './InputSelector';
 import ContentBox from './ContentBox';
 import moment from 'moment';
-import InputPassword from "./InputPassword";
+import InputPassword from './InputPassword';
+import InputCircle from './InputCircle';
 
 export default class Search extends Component {
     constructor(props) {
@@ -152,7 +153,8 @@ export default class Search extends Component {
 
     createSelectorInputs() {
         const allParameters = this.getAllParameters();
-        return Object.keys(allParameters).map(parameterName => {
+        const parameterNames = Object.keys(allParameters);
+        const selectorInputs = parameterNames.map(parameterName => {
             if (['startDate', 'endDate', 'startPage', 'startRecord', 'maximumRecords', 'bbox', 'geometry', 'lat', 'lon', 'radius'].indexOf(parameterName) !== -1) {
                 return null;
             }
@@ -194,7 +196,14 @@ export default class Search extends Component {
                     </ContentBox>
                 )
             }
-        })
+        });
+        if(parameterNames.indexOf('lat') !== -1 && parameterNames.indexOf('lon') !== -1 && parameterNames.indexOf('radius') !== -1) {
+            if(!this.props.createCircle) {
+                this.props.setCreateCircle(true);
+            }
+        }
+
+        return selectorInputs;
     }
 
     render() {

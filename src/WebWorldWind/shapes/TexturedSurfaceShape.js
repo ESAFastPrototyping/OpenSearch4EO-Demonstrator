@@ -1,4 +1,4 @@
-import WorldWind from '@nasaworldwind/worldwind';
+import WorldWind from 'webworldwind-esa';
 
 const SurfacePolygon = WorldWind.SurfacePolygon,
     SurfaceShape = WorldWind.SurfaceShape;

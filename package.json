@@ -5,7 +5,7 @@
   "private": true,
   "homepage": "https://worldwindlabs.github.io/OpenSearch4EO-Demonstrator",
   "dependencies": {
-    "@nasaworldwind/worldwind": "0.9.0",
+    "webworldwind-esa": "0.10.0-alpha.3",
     "jquery": "^3.2.1",
     "moment": "^2.19.1",
     "proj4": "^2.4.4",

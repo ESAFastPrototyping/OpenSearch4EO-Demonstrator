@@ -24,6 +24,9 @@ export default class App extends Component {
             productParams: {},
             collectionParams: {
                 bbox: [],
+                lat: '',
+                lon: '',
+                radius: '',
                 text: '',
                 startDate: moment().subtract(1, 'years'),
                 endDate: moment(),
@@ -34,8 +37,11 @@ export default class App extends Component {
             info: null,
             username: null,
             password: null,
-            login: false
+            login: false,
+            createCircle: false
         };
+        this.setCreateCircle = this.setCreateCircle.bind(this);
+        this.circle = this.circle.bind(this);
         this.connect = this.connect.bind(this);
         this.connectCollection = this.connectCollection.bind(this);
         this.resetProvider = this.resetProvider.bind(this);
@@ -53,6 +59,21 @@ export default class App extends Component {
         this.login = this.login.bind(this);
         this.onLogin = this.onLogin.bind(this);
         this.hide = this.hide.bind(this);
+    }
+
+    setCreateCircle(createCircle) {
+        this.setState({createCircle: createCircle});
+    }
+
+    circle(circle) {
+        const colParams = this.state.collectionParams;
+        colParams.lat = circle.center.latitude;
+        colParams.lon = circle.center.longitude;
+        colParams.radius = circle.radius;
+
+        this.setState({
+            collectionParams: colParams
+        })
     }
 
     collectionInfo(e) {
@@ -184,6 +205,8 @@ export default class App extends Component {
                                   username = {this.state.username}
                                   password = {this.state.password}
                                   login = {this.login}
+                                  setCreateCircle = {this.setCreateCircle}
+                                  createCircle = {this.state.createCircle}
             />;
         }
         //If we can search on the provider, show CollectionSearch
@@ -199,6 +222,8 @@ export default class App extends Component {
                                      username = {this.state.username}
                                      password = {this.state.password}
                                      login = {this.login}
+                                     setCreateCircle = {this.setCreateCircle}
+                                     createCircle = {this.state.createCircle}
             />;
         }
         //Else show input for entering description document for a provider
@@ -234,6 +259,8 @@ export default class App extends Component {
                      setWorldWindow = {this.setWorldWindow}
                      selectProduct = {this.selectProduct}
                      selectedProduct = {this.state.selectedProduct}
+                     createCircle = {this.state.createCircle}
+                     circle = {this.circle}
                 />
                 <Sidebar searchService = {this.state.searchService}
                          selectedCollection = {this.state.selectedCollection}

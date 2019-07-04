@@ -1,4 +1,4 @@
-import WorldWind from '@nasaworldwind/worldwind';
+import WorldWind from 'webworldwind-esa';
 import OpenSearchNamespaces from '../OpenSearchNamespaces';
 import OpenSearchUrl from './OpenSearchUrl';
 import OpenSearchUtils from '../OpenSearchUtils';

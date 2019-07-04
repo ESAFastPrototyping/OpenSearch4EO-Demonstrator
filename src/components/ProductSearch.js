@@ -43,6 +43,7 @@ export default class ProductSearch extends Component {
 
     finishedSearchRequest(result) {
         if (this._isMounted) {
+            this.props.setCreateCircle(false);
             let totalResults = result && result.properties && result.properties.totalResults;
             this.setState({
                 activeSearchRequests: this.state.activeSearchRequests - 1,
@@ -79,6 +80,8 @@ export default class ProductSearch extends Component {
                             username={this.props.username}
                             password={this.props.password}
                             login={this.props.login}
+                            createCircle = {this.props.createCircle}
+                            setCreateCircle = {this.props.setCreateCircle}
                     />
                     {this.state.activeSearchRequests > 0 && <Loader/>}
                 </div>

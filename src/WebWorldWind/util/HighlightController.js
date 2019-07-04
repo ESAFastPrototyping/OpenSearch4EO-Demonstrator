@@ -1,4 +1,4 @@
-import WorldWind from '@nasaworldwind/worldwind';
+import WorldWind from 'webworldwind-esa';
 
 const ArgumentError = WorldWind.ArgumentError,
     Logger = WorldWind.Logger,
@@ -48,7 +48,8 @@ var HighlightController = function (worldWindow, changeSelected) {
             redrawRequired = true;
 
             let nonTerrainObjects = pickList.objects.filter(object => {
-                return !object.isTerrain;
+                return !object.isTerrain && object.userObject && object.userObject.customProperties &&
+                    object.userObject.customProperties.identifier;
             });
 
             if(nonTerrainObjects.length > 0) {

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import WorldWind from '@nasaworldwind/worldwind';
+import WorldWind from 'webworldwind-esa';
+import ShapeEditor from '../WebWorldWind/util/editor/ShapeEditor';
 import MapControls from './MapControls';
 import GeoJSONParserWithTexture from '../WebWorldWind/formats/geojson/GeoJSONParserWithTexture';
 import HighlightController from '../WebWorldWind/util/HighlightController';
@@ -41,6 +42,79 @@ export default class Map extends Component {
         wwd.navigator.lookAtLocation.latitude = 45;
         wwd.navigator.lookAtLocation.longitude = 20;
 
+        const shapeEditor = new ShapeEditor(wwd);
+        this.editor = shapeEditor;
+
+        var config = {
+            move: true,
+            reshape: true,
+            rotate: true,
+            manageControlPoint: true
+        };
+
+        var shapesLayer = new WorldWind.RenderableLayer("Surface Shapes");
+        wwd.addLayer(shapesLayer);
+
+        var handlePick = (o) => {
+            if(!this.props.createCircle || shapeEditor._shape) {
+                if(shapeEditor._shape && o.shiftKey) {
+                    const shape = shapeEditor._shape;
+                    shapeEditor.stop();
+                    shape.attributes.drawInterior = false;
+                    shape.highlightAttributes.drawInterior = false;
+                    this.props.circle(shape);
+                }
+                return;
+            }
+            if(!shapeEditor._shape && o.shiftKey) {
+                shapesLayer.removeAllRenderables();
+            }
+            if(shapesLayer.renderables.length > 0) {
+                return;
+            }
+
+
+            // The input argument is either an Event or a TapRecognizer. Both have the same properties for determining
+            // the mouse or tap location.
+            var x = o.clientX,
+                y = o.clientY;
+
+            // Perform the pick. Must first convert from window coordinates to canvas coordinates, which are
+            // relative to the upper left corner of the canvas rather than the upper left corner of the page.
+            var pickList = wwd.pick(wwd.canvasCoordinates(x, y));
+
+            const shapeAttributes = new WorldWind.ShapeAttributes();
+            shapeAttributes.drawInterior = false;
+            var properties = {
+                center: null,
+                radius: 200e3,
+                attributes: new WorldWind.ShapeAttributes()
+            };
+
+            shapeEditor.create(function SurfaceCircle(){}, properties).then(
+                function (shape) {
+                    if (shape !== null) {
+                        shape.highlightAttributes = new WorldWind.ShapeAttributes();
+                        shape.highlightAttributes.interiorColor = new WorldWind.Color(1,1,1,0.5);
+                        shapesLayer.addRenderable(shape);
+                        shapeEditor.edit(shape, config);
+                    } else {
+                        console.log("No shape created - null shape returned.");
+                    }
+
+                },
+                function (error) {
+                    if (error) {
+                        console.log("Error in shape creation: " + error);
+                    } else {
+                        console.log("No shape created.");
+                    }
+                }
+            );
+        };
+
+        wwd.addEventListener("click", handlePick);
+
         new HighlightController(wwd, this.props.selectProduct);
         wwd.redraw();
 
@@ -49,9 +123,9 @@ export default class Map extends Component {
     }
 
     shouldComponentUpdate(nextProps) {
-        if(nextProps.productsResult !== this.props.productsResult) {
+        if (nextProps.productsResult !== this.props.productsResult) {
             this.changeOnlySelection = false;
-        } else if(nextProps.selectedProduct !== this.props.selectedProduct) {
+        } else if (nextProps.selectedProduct !== this.props.selectedProduct) {
             this.changeOnlySelection = true;
         }
 
@@ -60,18 +134,18 @@ export default class Map extends Component {
     }
 
     componentDidUpdate() {
-        if(this.changeOnlySelection) {
+        if (this.changeOnlySelection) {
             let products = this.productLayer.renderables;
             let selectedIdentifier = this.props.selectedProduct.identifier;
             let currentlyHighlighted = null;
             products.forEach(product => {
                 product.highlighted = product.customProperties.identifier === selectedIdentifier;
-                if(product.highlighted) {
+                if (product.highlighted) {
                     currentlyHighlighted = product;
                 }
             });
 
-            if(currentlyHighlighted) {
+            if (currentlyHighlighted) {
                 var relevantLayer = currentlyHighlighted.layer;
                 relevantLayer.removeRenderable(currentlyHighlighted);
                 relevantLayer.addRenderable(currentlyHighlighted);

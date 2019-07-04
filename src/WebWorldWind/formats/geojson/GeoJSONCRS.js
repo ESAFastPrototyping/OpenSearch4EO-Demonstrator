@@ -1,4 +1,4 @@
-import WorldWind from '@nasaworldwind/worldwind';
+import WorldWind from 'webworldwind-esa';
 
 import Proj4 from 'proj4';
 import GeoJSONConstants from './GeoJSONConstants';

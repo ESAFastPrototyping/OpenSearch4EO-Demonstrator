@@ -1,4 +1,4 @@
-import WorldWind from '@nasaworldwind/worldwind';
+import WorldWind from 'webworldwind-esa';
 import OpenSearchAtomParser from './responseFormats/atomParser/OpenSearchAtomParser';
 import OpenSearchConstants from './OpenSearchConstants';
 import OpenSearchDescriptionDocument from './descriptionDocument/OpenSearchDescriptionDocument';
