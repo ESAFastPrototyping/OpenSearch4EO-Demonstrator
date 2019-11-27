@@ -6,7 +6,7 @@ that the parameters are correctly used in the Collections search as well as in t
 
 ## Deployment
 
-The current version is deployed at the [https://worldwindlabs.github.io/OpenSearch4EO-Demonstrator/](https://worldwindlabs.github.io/OpenSearch4EO-Demonstrator/) 
+The current version is deployed at the [https://esafastprototyping.github.io/OpenSearch4EO-Demonstrator/](https://esafastprototyping.github.io/OpenSearch4EO-Demonstrator/) 
 
 ## Building the application
 
